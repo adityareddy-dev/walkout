@@ -1,8 +1,10 @@
 # Walkout
 
-Twelve shoppers with different lives go through a real online shop in a real browser. One is on a cheap Android phone, one on slow 3G, one reads at 200 percent zoom, one only uses the keyboard, one uses a screen reader, one has the browser in Spanish, and so on. Each shopper is a Muse Spark agent on the Meta Model API that looks at the screen and picks one action at a time.
+Twelve shoppers with different lives go through a real online shop in a real browser: a cheap Android phone, slow 3G, 200 percent zoom, keyboard only, a screen reader, Spanish, and more. Each is a Muse Spark agent on the Meta Model API that looks at the screen and picks one action at a time.
 
-The browser records where each one gave up (taps that did nothing, slow taps, errors, slow requests) and ties slow taps to the script line through Long Animation Frames. The model writes one sentence per walkout and a fix, then the same shoppers run again on the fixed build. The scoreboard shows how many bought before and after.
+The shop is the OpenTelemetry Demo at release 2.1.3, which shipped a cart total that ignores quantity (open-telemetry/opentelemetry-demo#1526). Release 3.1.0 is the clean build.
+
+The browser records where each shopper gave up (taps that did nothing, slow taps traced to the script line, errors, slow requests). The model writes one sentence per walkout and a patch, the shop is rebuilt, and the same shoppers run again. The scoreboard shows how many bought before and after.
 
 ## Setup
 
@@ -14,6 +16,6 @@ npx playwright install chromium
 npm run demo
 ```
 
-`npm run demo` starts the shop at the broken commit, runs the shoppers, writes the fix, runs them again and prints the scoreboard. Every model call is priced into `spend/meta.jsonl` and a run stops before it would pass `WALKOUT_BUDGET_USD` (20 by default).
+Every model call is priced into `spend/meta.jsonl`, and a run stops before it would pass `WALKOUT_BUDGET_USD` (20 by default).
 
 MIT licence.

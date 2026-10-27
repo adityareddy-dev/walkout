@@ -46,3 +46,13 @@ Changes to the loop from set B:
 - A `select` action. A native dropdown never shows in a headless screenshot, so tapping the quantity box showed nothing and the first smoke run tapped it until it ran out of steps.
 - The shopper's own past thoughts come back with its steps (the day-one loop had them too). Without them the second smoke run read "$128.93 which is right" and then scrolled between the total and the form for twelve steps.
 - Marks in screen pixels. The 2.1.3 checkout form is wider than a 412 px phone, so Chrome zooms the page out to about 0.75, and every mark below the fold was drawn on the field above its own (the Place Order mark sat on the card number field). Marks and taps now use `visualViewport`. The day-one doc had warned about this zoom for raw points.
+
+## 2026-10-26 23:05 CDT, first live demo: before round and the fix (M2 to M6 live)
+
+`npm run demo -- --no-shop` on the defect shop, twelve shoppers, three at a time, round `2026-10-270359-before`.
+
+- Before: 1 of 12 bought, 0.66 USD, about 3.5 min for the round.
+- Ten walked out at the cart over the total, each in their own words, for example the slow 3G shopper: "I added three Explorascopes at $101.96 each but the total shows $128.93 instead of $332.85, so I will not pay." The Spanish shopper said it in Spanish.
+- The keyboard-only shopper never reached the quantity box and Add To Cart: 23 steps of Tab, then gave up. Worth checking by hand before it goes in the story.
+- The reduced-motion shopper paid $128.93 for three without noticing. One of twelve missed the defect.
+- The fix (M6): Spark picked four cart files, Wonder wrote the patch in one call (0.033 USD). It multiplies units and nanos by quantity in `CartItems.tsx`, the same shape as upstream #2660. It went on branch `walkout/fix-2026-10-270359-before` of the 2.1.3 source. The frontend image rebuilt in about 75 s with the npm layer cached, and the patched shop was serving on :8080 2 min 10 s after the patch came back.
