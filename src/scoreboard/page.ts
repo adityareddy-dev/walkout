@@ -62,6 +62,31 @@ function roundMeta(name: string, r: BoardRound): string {
   return `<dt>${name}</dt><dd>${shop}${build}${extra}</dd>`;
 }
 
+// Why the shoppers of one round left, split by what shows the cause: some
+// causes show only on the screen (a wrong total), others only in the browser
+// telemetry (a tap that did nothing in the last steps before leaving).
+export function whyTheyLeft(r: BoardRound): string {
+  const left = Object.values(r.runs).filter((x) => x.outcome.kind !== "bought");
+  if (!left.length) return "";
+  const tapped = new Set<string>();
+  let byTelemetry = 0;
+  for (const run of left) {
+    const dead = run.findings.filter((f) => (f.kind === "dead_tap" || f.kind === "unanswered_tap" || f.kind === "rage_click") && f.step != null && f.step >= run.outcome.atStep - 3);
+    if (!dead.length) continue;
+    byTelemetry++;
+    for (const f of dead) {
+      const m = /"([^"]{1,40})"/.exec(f.summary);
+      if (m) tapped.add(m[1]);
+    }
+  }
+  const byScreen = left.length - byTelemetry;
+  const parts: string[] = [];
+  if (byScreen) parts.push(`${byScreen} left over something they saw on the screen, in their own words on each tile`);
+  if (byTelemetry)
+    parts.push(`${byTelemetry} left right after taps that did nothing${tapped.size ? ` (${[...tapped].map((t) => `"${t}"`).join(", ")})` : ""}, which only the browser telemetry shows`);
+  return `<p class="why">Why they left: ${esc(parts.join("; "))}.</p>`;
+}
+
 function statCard(view: "before" | "after", r: BoardRound, order: string[], toggle: boolean, pressed: boolean, delta: string): string {
   const bar = order.map((id) => `<i class="${tone(r.runs[id])}"></i>`).join("");
   const tag = toggle ? "button" : "div";
@@ -178,6 +203,7 @@ ${SPRITE}
   </div>
   <dl class="rounds">${roundMeta("Before", before)}${after ? roundMeta("After", after) : ""}</dl>
 </header>
+${whyTheyLeft(before)}
 <section class="stats" aria-label="Results">
 ${statCard("before", before, order, hasAfter, true, "")}
 ${after ? statCard("after", after, order, true, false, delta) : ""}

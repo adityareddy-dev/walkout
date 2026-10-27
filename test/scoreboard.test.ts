@@ -235,3 +235,20 @@ test("screenshots of the grid and an open dialog at 1920x1080", async () => {
   await page.screenshot({ path: DIALOG_SHOT });
   await page.close();
 });
+
+test("why they left splits screen and telemetry causes", async () => {
+  const { whyTheyLeft } = await import("../src/scoreboard/page.ts");
+  const run = (kind: string, atStep: number, findings: unknown[]) => ({ outcome: { kind, reason: "", atStep }, sentence: null, findings, usd: 0, observation: null, hasShots: false, steps: [] });
+  const round = {
+    id: "r", label: "before", shop: "s", build: "b", goal: "g", startedAt: "", finishedAt: "", bought: 1, total: 4, usd: 0,
+    runs: {
+      a: run("gave_up", 7, []),
+      b: run("gave_up", 9, [{ kind: "dead_tap", t: 0, step: 8, summary: 'Tap on button "Add To Cart" did nothing' }]),
+      c: run("gave_up", 9, [{ kind: "dead_tap", t: 0, step: 2, summary: 'Tap on a "Go" did nothing' }]),
+      d: run("bought", 8, [{ kind: "dead_tap", t: 0, step: 7, summary: 'Tap on x "Y" did nothing' }]),
+    },
+  };
+  const html = whyTheyLeft(round as never);
+  assert.match(html, /2 left over something they saw on the screen/);
+  assert.match(html, /1 left right after taps that did nothing \(&quot;Add To Cart&quot;\)/);
+});

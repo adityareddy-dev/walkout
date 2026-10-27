@@ -239,3 +239,5 @@ dialog.detail::backdrop { background: rgba(5, 6, 8, 0.78); }
   .tile::before, .stat-bar i, .icon-dot { forced-color-adjust: none; }
   .state, .badge, .tile { border-color: CanvasText; }
 }
+
+.why { margin: 0 0 16px; font-size: 15px; line-height: 1.45; max-width: 70ch; }

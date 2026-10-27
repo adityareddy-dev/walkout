@@ -3,6 +3,7 @@ import type { Persona } from "./types.ts";
 // Network profiles, throughput in bytes per second. The numbers are the
 // Chrome DevTools presets, written out so a run can be repeated by hand.
 const SLOW_3G = { label: "slow 3G", latencyMs: 400, downloadBps: (400 * 1000) / 8, uploadBps: (400 * 1000) / 8 };
+const BUS_3G = { label: "DevTools Slow 3G", latencyMs: 2000, downloadBps: (400 * 1000) / 8, uploadBps: (400 * 1000) / 8 };
 const FAST_4G = { label: "4G", latencyMs: 60, downloadBps: (9 * 1000 * 1000) / 8, uploadBps: (1.5 * 1000 * 1000) / 8 };
 const SATELLITE = { label: "satellite, 700 ms round trip", latencyMs: 700, downloadBps: (10 * 1000 * 1000) / 8, uploadBps: (2 * 1000 * 1000) / 8 };
 
@@ -36,11 +37,13 @@ export const PERSONAS: Persona[] = [
     card: {
       id: "p01-cheap-android",
       name: "Rosa",
-      life: "Night-shift nurse who shops on a three-year-old budget Android phone during her break.",
-      constraints: ["Phone CPU about four times slower than a laptop", "4G signal", "Taps with her thumb"],
+      life: "Night-shift nurse who shops on a three-year-old budget Android phone on the bus home.",
+      constraints: ["Phone CPU about four times slower than a laptop", "Slow mobile data on the bus", "Taps with her thumb"],
       patience: "Gives a slow page a few seconds. If a button does nothing twice, she assumes the site is broken.",
     },
-    device: { ...phone, cpuThrottle: 4, network: FAST_4G },
+    // The day-one test's Rosa: DevTools Slow 3G (2 s round trip) and 4x CPU,
+    // looking at the screen 3 s after each tap.
+    device: { ...phone, cpuThrottle: 4, network: BUS_3G, glanceMs: 3000 },
     observation: "screenshot",
   },
   {

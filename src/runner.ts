@@ -218,7 +218,8 @@ function trackApi(page: Page) {
   page.on("requestfailed", end);
 }
 
-async function settle(page: Page) {
+async function settle(page: Page, glanceMs?: number) {
+  if (glanceMs) return sleep(glanceMs);
   const t0 = Date.now();
   await sleep(1000);
   await page.waitForLoadState("domcontentloaded", { timeout: SETTLE_CAP_MS }).catch(() => {});
@@ -257,7 +258,7 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
     const compositor = await compositorCtx.newPage();
 
     await page.goto(opts.url, { waitUntil: "domcontentloaded", timeout: 60_000 }).catch(() => {});
-    await settle(page);
+    await settle(page, persona.device.glanceMs);
 
     let prevPng: Buffer | null = null;
     let prevUrl = page.url();
@@ -343,7 +344,7 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
         step.actionError = String(e).split("\n")[0].slice(0, 300);
         memory[memory.length - 1].result = "that did not work, nothing happened";
       }
-      await settle(page);
+      await settle(page, persona.device.glanceMs);
       step.tSettled = Date.now();
       if (await isOrderPlaced(opts.shop, page.url(), await pageText(page))) {
         outcome = { kind: "bought", reason: "order placed", atStep: i };

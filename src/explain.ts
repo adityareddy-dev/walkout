@@ -24,7 +24,7 @@ function findingLine(f: Finding): string {
 export function telemetryExcerpt(run: RunRecord, max = 14): string {
   const last = run.steps.length;
   // Findings near the end of the run matter most, then anything with a code line.
-  const scored = run.findings.map((f) => ({ f, score: (f.step ?? 0) - last + (f.code ? 3 : 0) + (f.kind === "dead_tap" || f.kind === "js_error" ? 1 : 0) }));
+  const scored = run.findings.map((f) => ({ f, score: (f.step ?? 0) - last + (f.code ? 3 : 0) + (f.kind === "dead_tap" || f.kind === "unanswered_tap" || f.kind === "js_error" ? 1 : 0) }));
   scored.sort((a, b) => b.score - a.score);
   const keep = scored.slice(0, max).map((x) => x.f).sort((a, b) => a.t - b.t);
   return keep.length ? keep.map(findingLine).join("\n") : "(no telemetry findings)";

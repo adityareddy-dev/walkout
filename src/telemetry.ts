@@ -6,6 +6,7 @@ import { TraceMap, originalPositionFor } from "@jridgewell/trace-mapping";
 import type { CodeLocation, Finding, RawTelemetry, Step } from "./types.ts";
 
 export const DEAD_TAP_MS = 300;
+export const UNANSWERED_TAP_MS = 1500;
 export const SLOW_INTERACTION_MS = 200;
 export const SLOW_REQUEST_MS = 3000;
 
@@ -100,11 +101,11 @@ export async function deriveFindings(raw: RawTelemetry, steps: Step[]): Promise<
   };
   const findings: Finding[] = [];
 
-  // Dead taps: no fresh DOM change, no focus move, no URL change, no request
+  // Dead taps: no fresh DOM change, no focus move, no URL change, no scroll, no request
   // and no navigation within 300 ms.
   const dead: typeof raw.inputs = [];
   for (const inp of raw.inputs) {
-    if (inp.unloaded || inp.urlChanged || inp.focusMoved || (inp.freshMutations ?? 0) > 0) continue;
+    if (inp.unloaded || inp.urlChanged || inp.scrolled || inp.focusMoved || (inp.freshMutations ?? 0) > 0) continue;
     const end = inp.t + DEAD_TAP_MS;
     if (raw.requests.some((r) => r.t >= inp.t && r.t <= end)) continue;
     if (raw.navigations.some((n) => n.t >= inp.t && n.t <= end)) continue;
@@ -116,6 +117,31 @@ export async function deriveFindings(raw: RawTelemetry, steps: Step[]): Promise<
       step: stepAt(inp.t),
       target: inp.target,
       summary: `${what} ${inp.target || "the page"} did nothing within ${DEAD_TAP_MS} ms: no change on the page, no request.`,
+    });
+  }
+
+  // Unanswered taps: the tap sent a request, so it is not dead by the rule
+  // above, but nothing on the page changed and the answer came late or never.
+  // On a slow phone this is what the shopper sees as a button that does nothing.
+  const runEnd = Math.max(...steps.map((s) => s.tSettled || s.tAct), ...raw.inputs.map((i) => i.t));
+  for (const inp of raw.inputs) {
+    if (inp.unloaded || inp.urlChanged || inp.scrolled || inp.focusMoved || (inp.freshMutations ?? 0) > 0) continue;
+    const sent = raw.requests.filter((r) => r.t >= inp.t && r.t <= inp.t + DEAD_TAP_MS && new URL(r.url).pathname.startsWith("/api/"));
+    if (!sent.length) continue;
+    const pending = sent.filter((r) => r.tEnd === undefined);
+    const waitMs = pending.length ? runEnd - inp.t : Math.max(...sent.map((r) => r.tEnd! - inp.t));
+    if (waitMs < UNANSWERED_TAP_MS) continue;
+    const r = pending[0] ?? sent[0];
+    const path = new URL(r.url).pathname;
+    findings.push({
+      kind: "unanswered_tap",
+      t: inp.t,
+      step: stepAt(inp.t),
+      target: inp.target,
+      durationMs: Math.round(waitMs),
+      summary: pending.length
+        ? `Tap on ${inp.target} sent ${r.method} ${path} and nothing on the page changed; no answer came in the ${(waitMs / 1000).toFixed(1)} s before the shopper moved on.`
+        : `Tap on ${inp.target} sent ${r.method} ${path} and nothing on the page changed until the answer came ${(waitMs / 1000).toFixed(1)} s later.`,
     });
   }
 

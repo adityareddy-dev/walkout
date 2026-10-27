@@ -78,6 +78,7 @@ const BACKGROUND_WINDOW_MS = 1000;
     interactive: boolean;
     background: Set<Node>;
     fresh: number;
+    scrolled: boolean;
     focusBefore: Element | null;
     url: string;
   }
@@ -99,6 +100,9 @@ const BACKGROUND_WINDOW_MS = 1000;
       for (const [n, tn] of recentlyMutated) if (t - tn > BACKGROUND_WINDOW_MS) recentlyMutated.delete(n);
     }
   });
+  // A link to an anchor on the same page answers by scrolling, which changes
+  // nothing in the DOM. That is an answer, not a dead tap.
+  document.addEventListener("scroll", () => { for (const tap of open) tap.scrolled = true; }, { capture: true, passive: true });
   const startObserver = () =>
     observer.observe(document, { subtree: true, childList: true, attributes: true, characterData: true });
   if (document.documentElement) startObserver();
@@ -136,6 +140,7 @@ const BACKGROUND_WINDOW_MS = 1000;
       interactive: looksInteractive(el),
       background,
       fresh: 0,
+      scrolled: false,
       focusBefore: document.activeElement,
       url: location.href,
     };
@@ -158,6 +163,7 @@ const BACKGROUND_WINDOW_MS = 1000;
       freshMutations: tap.fresh,
       focusMoved: document.activeElement !== tap.focusBefore,
       urlChanged: location.href !== tap.url,
+      scrolled: tap.scrolled,
       unloaded: how === "pagehide",
     });
   }

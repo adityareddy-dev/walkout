@@ -23,6 +23,9 @@ export interface PersonaDevice {
   forcedColors?: "active" | "none";
   // CDP Emulation.setCPUThrottlingRate, 1 means no slowdown.
   cpuThrottle: number;
+  // Looks at the screen this long after each action instead of waiting for
+  // the shop's /api/ calls to finish, like an impatient shopper on a slow phone.
+  glanceMs?: number;
   // CDP Network.emulateNetworkConditions. Throughput in bytes per second.
   network?: { latencyMs: number; downloadBps: number; uploadBps: number; label: string };
   // CDP Emulation.setEmulatedVisionDeficiency.
@@ -117,6 +120,7 @@ export interface RawTelemetry {
     freshMutations?: number;
     focusMoved?: boolean;
     urlChanged?: boolean;
+    scrolled?: boolean;
     unloaded?: boolean;
   }[];
   mutations: { t: number; count: number }[];
@@ -170,7 +174,7 @@ export interface CodeLocation {
   sourceColumn?: number;
 }
 
-export type FindingKind = "dead_tap" | "rage_click" | "slow_interaction" | "js_error" | "slow_request" | "failed_request";
+export type FindingKind = "dead_tap" | "unanswered_tap" | "rage_click" | "slow_interaction" | "js_error" | "slow_request" | "failed_request";
 
 export interface Finding {
   kind: FindingKind;
