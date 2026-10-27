@@ -82,7 +82,11 @@ export interface Step {
   title: string;
   screenshot: string | null; // path relative to the run directory
   marked: string | null; // the screenshot the model saw, with numbered marks
+  // The accessibility tree the screen reader persona heard, a path like screenshot.
+  tree?: string | null;
   action: Action;
+  // What the persona noticed after the action, as told to the model next step.
+  result?: string;
   // Where the action landed, in viewport CSS pixels, when it was a pointer action.
   point?: { x: number; y: number };
   targetLabel?: string;

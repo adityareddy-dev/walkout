@@ -228,9 +228,12 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
       const perception: Perception = { url: page.url(), title: await page.title().catch(() => "") };
       let marks: Mark[] = [];
       let marked: string | null = null;
+      let treeFile: string | null = null;
       if (persona.observation === "a11y-tree") {
         const tree = await page.ariaSnapshot({ mode: "ai", timeout: 15_000 }).catch((e) => `(could not read the page: ${e})`);
         perception.tree = tree.length > 15_000 ? tree.slice(0, 15_000) + "\n(the rest of the page is cut off)" : tree;
+        treeFile = `shots/step-${pad(i)}-tree.txt`;
+        writeFileSync(join(dir, treeFile), perception.tree);
       } else if (persona.observation === "keyboard") {
         if (png) perception.png = png;
       } else if (png) {
@@ -245,9 +248,12 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
 
       if (memory.length) {
         const last = memory[memory.length - 1];
-        if (page.url() !== prevUrl) last.result = `the page changed to "${perception.title}"`;
-        else if (prevPng && png && prevPng.equals(png)) last.result = "nothing on the screen changed";
-        else last.result = "the screen changed";
+        if (!last.result) {
+          if (page.url() !== prevUrl) last.result = `the page changed to "${perception.title}"`;
+          else if (prevPng && png && prevPng.equals(png)) last.result = "nothing on the screen changed";
+          else last.result = "the screen changed";
+        }
+        steps[steps.length - 1].result = last.result;
       }
       prevPng = png;
       prevUrl = page.url();
@@ -270,6 +276,7 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
         title: perception.title,
         screenshot: shot,
         marked,
+        tree: treeFile,
         action,
         usage: decision.usage,
       };
@@ -293,6 +300,7 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
         await execute(page, persona, action, marks, step);
       } catch (e) {
         step.actionError = String(e).split("\n")[0].slice(0, 300);
+        memory[memory.length - 1].result = "that did not work, nothing happened";
       }
       await settle(page);
       step.tSettled = Date.now();

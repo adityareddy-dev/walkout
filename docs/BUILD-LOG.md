@@ -2,7 +2,7 @@
 
 Times are America/Chicago. Cost is the Meta Model API spend so far for the whole build, priced from each call's token usage at the list price (`spend/meta.jsonl`). The day-one tests run separately and are added here when they report.
 
-## 2026-10-26 22:25 CDT, repo, personas and the probe (M2 and M4 started)
+## 2026-10-26 22:05 CDT, repo, personas and the probe (M2 and M4 started)
 
 Repo started tonight, after the kickoff (2026-10-26 11:00 CDT). Nothing in it comes from earlier projects.
 
