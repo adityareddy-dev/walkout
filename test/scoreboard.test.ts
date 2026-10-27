@@ -1,17 +1,18 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { cp, mkdtemp, readFile, rm } from "node:fs/promises";
 import { request } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, before, test } from "node:test";
 import { chromium, type Browser, type Page } from "playwright";
-import { buildScoreboard } from "../src/scoreboard/build.ts";
+import { buildScoreboard, loadBoard } from "../src/scoreboard/build.ts";
 import { serveDir } from "../src/scoreboard/serve.ts";
 import type { RunRecord } from "../src/types.ts";
-import { FIXTURE_AFTER, FIXTURE_BEFORE, makeFixture } from "./fixtures/make-fixture.ts";
+import { FIXTURE_AFTER, FIXTURE_BEFORE, FIXTURE_FIX_SUMMARY, makeFixture } from "./fixtures/make-fixture.ts";
 
 const GRID_SHOT = "/tmp/walkout-scoreboard-grid.png";
 const DIALOG_SHOT = "/tmp/walkout-scoreboard-dialog.png";
+const FIX_SHOT = "/tmp/walkout-scoreboard-fix.png";
 
 let root = "";
 let html = "";
@@ -84,6 +85,8 @@ test("board html carries both counts, costs and embedded data", () => {
   assert.match(html, /<script type="application\/json" id="board-data">/);
   assert.doesNotMatch(html, /<(link|script)[^>]+(href|src)="https?:/, "no external assets");
   assert.ok(html.includes("../fixture-before/p01/shots/step-01.png"), "relative screenshot paths");
+  assert.ok(html.includes("&lt;span className=&quot;cart-item-price&quot;&gt;"), "diff is escaped");
+  assert.ok(!html.includes('<span className="cart-item-price">'), "no raw diff markup");
 });
 
 test("before-only board renders with one state per tile", async () => {
@@ -99,6 +102,10 @@ test("before-only board renders with one state per tile", async () => {
   await page.locator('.tile[data-persona="p03"]').click();
   await waitForShot(page);
   assert.equal(await page.locator("dialog .seg").count(), 0, "no round switch without an after round");
+  await page.keyboard.press("Escape");
+  assert.equal(await page.locator(".fix-summary").textContent(), FIXTURE_FIX_SUMMARY);
+  assert.equal(await page.locator(".fix .badge").count(), 0, "no kept chip before the after round");
+  assert.doesNotMatch((await page.locator(".fix-facts").textContent()) ?? "", /after/);
   await page.close();
 });
 
@@ -177,6 +184,44 @@ test("narrow screens use two columns", async () => {
   const columns = await page.locator(".grid").evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(" ").length);
   assert.equal(columns, 2);
   await page.close();
+});
+
+test("fix panel shows the summary, outcome and a closed patch", async () => {
+  const page = await openBoard(1920, 1080);
+  const panel = page.locator("section.fix");
+  assert.equal(await panel.locator("h2").textContent(), "The fix");
+  assert.equal(await panel.locator(".fix-summary").textContent(), FIXTURE_FIX_SUMMARY);
+  assert.equal(await panel.locator(".badge").textContent(), "Kept");
+  const facts = (await panel.locator(".fix-facts").textContent()) ?? "";
+  assert.match(facts, /Bought 4 of 12 before, 11 of 12 after/);
+  assert.match(facts, /Shop tests passed/);
+  assert.equal(await panel.locator(".fix-files code").textContent(), "src/components/CartItems.tsx");
+
+  const details = panel.locator("details.fix-diff");
+  assert.equal(await details.evaluate((d: HTMLDetailsElement) => d.open), false);
+  const added = panel.locator(".diff .add").first();
+  assert.equal(await added.isVisible(), false);
+  await details.locator("summary", { hasText: "Show the patch" }).click();
+  assert.equal(await details.evaluate((d: HTMLDetailsElement) => d.open), true);
+  assert.equal(await added.isVisible(), true);
+  assert.match((await added.textContent()) ?? "", /^\+.*item\.price \* item\.quantity/);
+  assert.match((await panel.locator(".diff .del").first().textContent()) ?? "", /^-/);
+  await panel.screenshot({ path: FIX_SHOT });
+  assert.deepEqual(pageErrors(page), []);
+  await page.close();
+});
+
+test("no fix files means no fix panel", async () => {
+  const bare = await mkdtemp(join(tmpdir(), "walkout-scoreboard-bare-"));
+  try {
+    await cp(join(root, FIXTURE_BEFORE), join(bare, FIXTURE_BEFORE), { recursive: true, filter: (src) => !/fix\.(json|diff)$/.test(src) });
+    const data = await loadBoard({ runsRoot: bare, before: FIXTURE_BEFORE, outDir: join(bare, "board") });
+    assert.equal(data.fix, undefined);
+    const file = await buildScoreboard({ runsRoot: bare, before: FIXTURE_BEFORE, outDir: join(bare, "board") });
+    assert.ok(!(await readFile(file, "utf8")).includes('class="fix"'));
+  } finally {
+    await rm(bare, { recursive: true, force: true });
+  }
 });
 
 test("screenshots of the grid and an open dialog at 1920x1080", async () => {

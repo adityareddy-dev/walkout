@@ -68,11 +68,35 @@ export interface BoardRound {
   runs: Record<string, BoardRun>;
 }
 
+export interface BoardFix {
+  summary: string;
+  files: string[];
+  diff: string;
+  kept: boolean | null;
+  testsPassed: boolean | null;
+  beforeBought?: number;
+  afterBought?: number;
+  branch: string;
+  commit: string;
+}
+
 export interface BoardData {
   title: string;
   before: BoardRound;
   after: BoardRound | null;
   personas: BoardPersona[];
+  fix?: BoardFix;
+}
+
+// fix.json as the demo writes it. The before round's copy lacks the last four fields.
+interface FixFile {
+  proposal?: { summary?: string; files?: string[]; edits?: { file?: string }[] };
+  branch?: string;
+  commit?: string;
+  testsPassed?: boolean | null;
+  beforeBought?: number;
+  afterBought?: number;
+  kept?: boolean;
 }
 
 interface LoadedRun {
@@ -188,6 +212,46 @@ async function loadRound(runsRoot: string, roundId: string, outDir: string) {
   return { round, order: Object.keys(runs), cards };
 }
 
+async function readText(file: string): Promise<string | null> {
+  try {
+    return await readFile(file, "utf8");
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === "ENOENT") return null;
+    throw err;
+  }
+}
+
+function diffFiles(diff: string): string[] {
+  const files: string[] = [];
+  for (const line of diff.split(/\r?\n/)) {
+    const m = /^\+\+\+ b\/(.+)$/.exec(line) ?? /^diff --git a\/.+ b\/(.+)$/.exec(line);
+    if (m && !files.includes(m[1]!)) files.push(m[1]!);
+  }
+  return files;
+}
+
+async function loadFix(runsRoot: string, before: string, after: string | undefined): Promise<BoardFix | undefined> {
+  // A broken fix.json only hides the panel, it should not break the board.
+  const read = (round: string) => readJson<FixFile>(join(runsRoot, round, "fix.json")).catch(() => null);
+  const fix = (after ? await read(after) : null) ?? (await read(before));
+  if (!fix) return undefined;
+  const diff = (await readText(join(runsRoot, before, "fix.diff"))) ?? "";
+  const proposed = [...(fix.proposal?.files ?? []), ...(fix.proposal?.edits ?? []).map((e) => e.file ?? "")].filter(Boolean);
+  const fromDiff = diffFiles(diff);
+  const out: BoardFix = {
+    summary: fix.proposal?.summary ?? "",
+    files: fromDiff.length ? fromDiff : [...new Set(proposed)],
+    diff,
+    kept: typeof fix.kept === "boolean" ? fix.kept : null,
+    testsPassed: typeof fix.testsPassed === "boolean" ? fix.testsPassed : null,
+    branch: fix.branch ?? "",
+    commit: fix.commit ?? "",
+  };
+  if (typeof fix.beforeBought === "number") out.beforeBought = fix.beforeBought;
+  if (typeof fix.afterBought === "number") out.afterBought = fix.afterBought;
+  return out;
+}
+
 export async function loadBoard(opts: BuildOptions): Promise<BoardData> {
   const runsRoot = resolve(opts.runsRoot);
   const outDir = resolve(opts.outDir);
@@ -208,7 +272,10 @@ export async function loadBoard(opts: BuildOptions): Promise<BoardData> {
       device: b?.device ?? a?.device ?? null,
     };
   });
-  return { title: opts.title ?? "Walkout", before: before.round, after: after?.round ?? null, personas };
+  const data: BoardData = { title: opts.title ?? "Walkout", before: before.round, after: after?.round ?? null, personas };
+  const fix = await loadFix(runsRoot, opts.before, opts.after);
+  if (fix) data.fix = fix;
+  return data;
 }
 
 export async function buildScoreboard(opts: BuildOptions): Promise<string> {

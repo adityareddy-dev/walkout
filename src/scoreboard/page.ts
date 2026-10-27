@@ -1,5 +1,5 @@
 import type { OutcomeKind } from "../types.ts";
-import type { BoardData, BoardRound, BoardRun } from "./build.ts";
+import type { BoardData, BoardFix, BoardRound, BoardRun } from "./build.ts";
 
 const OUTCOME_LABEL: Record<OutcomeKind, string> = {
   bought: "Bought",
@@ -76,6 +76,52 @@ function statCard(view: "before" | "after", r: BoardRound, order: string[], togg
 </${tag}>`;
 }
 
+function diffLineClass(line: string): string {
+  if (line.startsWith("+++") || line.startsWith("---") || /^(diff |index |new file|deleted file|similarity|rename )/.test(line)) return "meta";
+  if (line.startsWith("@@")) return "hunk";
+  if (line.startsWith("+")) return "add";
+  if (line.startsWith("-")) return "del";
+  return "ctx";
+}
+
+function renderDiff(diff: string): string {
+  const lines = diff.replace(/\r\n/g, "\n").replace(/\n$/, "").split("\n");
+  return lines.map((l) => `<span class="ln ${diffLineClass(l)}">${esc(l) || " "}</span>`).join("");
+}
+
+function fixPanel(fix: BoardFix, before: BoardRound, after: BoardRound | null): string {
+  const chip =
+    fix.kept === true
+      ? `<span class="badge good"><span class="icon-dot good">${icon("i-good")}</span>Kept</span>`
+      : fix.kept === false
+        ? `<span class="badge none"><span class="icon-dot">${icon("i-none")}</span>Dropped</span>`
+        : "";
+  const facts: string[] = [];
+  if (fix.beforeBought !== undefined && fix.afterBought !== undefined) {
+    const total = after?.total ?? before.total;
+    facts.push(`<li>Bought <b>${fix.beforeBought} of ${before.total}</b> before, <b>${fix.afterBought} of ${total}</b> after</li>`);
+  }
+  const tests = fix.testsPassed === true ? ["good", "i-good", "passed"] : fix.testsPassed === false ? ["bad", "i-bad", "failed"] : ["none", "i-none", "not run"];
+  facts.push(`<li><span class="icon-dot ${tests[0]}">${icon(tests[1]!)}</span>Shop tests ${tests[2]}</li>`);
+  if (fix.branch) {
+    const commit = fix.commit ? ` at <code title="${esc(fix.commit)}">${esc(fix.commit.slice(0, 7))}</code>` : "";
+    facts.push(`<li>Branch <code>${esc(fix.branch)}</code>${commit}</li>`);
+  }
+  const files = fix.files.length
+    ? `<div class="fix-files"><span class="fix-k">Changed ${fix.files.length === 1 ? "file" : "files"}</span>${fix.files.map((f) => `<code>${esc(f)}</code>`).join("")}</div>`
+    : "";
+  const diff = fix.diff.trim()
+    ? `<details class="fix-diff"><summary>Show the patch</summary><pre class="diff"><code>${renderDiff(fix.diff)}</code></pre></details>`
+    : "";
+  return `<section class="fix" aria-labelledby="fix-h">
+  <div class="fix-head"><h2 id="fix-h">The fix</h2>${chip}</div>
+  ${fix.summary ? `<p class="fix-summary">${esc(fix.summary)}</p>` : ""}
+  <ul class="fix-facts">${facts.join("")}</ul>
+  ${files}
+  ${diff}
+</section>`;
+}
+
 function jsonForScript(value: unknown): string {
   return JSON.stringify(value).replace(/</g, "\\u003c").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
 }
@@ -142,6 +188,7 @@ ${note}
 ${tiles}
 </ul>
 </section>
+${data.fix ? fixPanel(data.fix, before, after) : ""}
 </main>
 <dialog id="detail" class="detail" aria-labelledby="d-name"></dialog>
 <script type="application/json" id="board-data">${jsonForScript(data)}</script>

@@ -667,10 +667,75 @@ async function writeRound(root: string, round: string, label: string, build: str
   return summary;
 }
 
+export const FIXTURE_FIX_SUMMARY =
+  "Multiply each cart line's price by its quantity, so the line price and the cart total match what the shopper ordered.";
+
+const FIX_FILE = "src/components/CartItems.tsx";
+
+export const FIXTURE_FIX_DIFF = `diff --git a/${FIX_FILE} b/${FIX_FILE}
+index 3f2a9c1..8d41b07 100644
+--- a/${FIX_FILE}
++++ b/${FIX_FILE}
+@@ -18,12 +18,12 @@ export function CartItems({ items, currency }: CartItemsProps) {
+   return (
+     <ul className="cart-items">
+       {items.map((item) => (
+         <li key={item.sku} className="cart-item">
+           <span className="cart-item-name">{item.name}</span>
+           <span className="cart-item-qty">{item.quantity}</span>
+-          <span className="cart-item-price">{formatPrice(item.price, currency)}</span>
++          <span className="cart-item-price">{formatPrice(item.price * item.quantity, currency)}</span>
+         </li>
+       ))}
+     </ul>
+   );
+ }
+@@ -34,6 +34,6 @@ export function cartTotal(items: CartItem[]): number {
+   let total = 0;
+   for (const item of items) {
+-    total += item.price;
++    total += item.price * item.quantity;
+   }
+   return total;
+ }
+`;
+
+// Mirrors what the demo writes: the before round gets the diff and the fix
+// result, the after round gets the same result plus the outcome fields.
+async function writeFix(root: string, before: RoundSummary, after: RoundSummary): Promise<void> {
+  const result = {
+    proposal: {
+      summary: FIXTURE_FIX_SUMMARY,
+      files: [FIX_FILE],
+      edits: [
+        {
+          file: FIX_FILE,
+          find: "{formatPrice(item.price, currency)}",
+          replace: "{formatPrice(item.price * item.quantity, currency)}",
+        },
+        { file: FIX_FILE, find: "total += item.price;", replace: "total += item.price * item.quantity;" },
+      ],
+    },
+    branch: `walkout/fix-${before.round}`,
+    commit: "8d41b07c2e9f4a1b6d3e5c7f90a1b2c3d4e5f607",
+    failedEdits: [] as { file: string; why: string }[],
+    testsPassed: true,
+    testOutput: "PASS src/components/CartItems.test.tsx\n  cart line price (3 tests)\n\nTests: 14 passed, 14 total\n",
+  };
+  await writeFile(join(root, before.round, "fix.diff"), FIXTURE_FIX_DIFF);
+  await writeFile(join(root, before.round, "fix.json"), JSON.stringify(result, null, 2));
+  const kept = after.bought > before.bought && result.testsPassed !== false;
+  await writeFile(
+    join(root, after.round, "fix.json"),
+    JSON.stringify({ ...result, before: before.round, beforeBought: before.bought, afterBought: after.bought, kept }, null, 2),
+  );
+}
+
 export async function makeFixture(root: string = DEFAULT_FIXTURE_ROOT): Promise<{ before: RoundSummary; after: RoundSummary }> {
   await mkdir(root, { recursive: true });
   const before = await writeRound(root, FIXTURE_BEFORE, "before (fixture data)", "fixture-main-a1b2c3", "2026-10-26T14:00:00.000Z", "before");
   const after = await writeRound(root, FIXTURE_AFTER, "after (fixture data)", "fixture-fix-d4e5f6", "2026-10-26T15:00:00.000Z", "after");
+  await writeFix(root, before, after);
   return { before, after };
 }
 
