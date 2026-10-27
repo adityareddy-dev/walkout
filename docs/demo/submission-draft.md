@@ -1,6 +1,6 @@
 # Submission draft (for the CEO's read, not sent)
 
-Numbers in {braces} are filled from the final recorded round.
+Numbers are from the demo run of 2026-10-26 23:21 CDT. Refresh them from the final recorded round.
 
 ## Name
 
@@ -16,11 +16,11 @@ Shop owners see a sales number, never the moment someone gave up. Walkout sends 
 
 The browser records each run with telemetry (taps that did nothing, taps waiting on a slow request, slow taps traced to the script line, errors). Spark writes one plain sentence per walkout naming the moment and the cause, Muse Wonder writes the patch, the shop is rebuilt and the same twelve go again.
 
-We ran it on the OpenTelemetry Demo at release 2.1.3, which shipped a cart total that ignores quantity (open-telemetry/opentelemetry-demo#1526). {before.bought} of 12 bought. After the patch, {after.bought} of 12. Some causes only show on the screen, like that wrong total, and some only in telemetry, like Add To Cart doing nothing for seconds on a slow phone. Walkout needs both, so it has both.
+We ran it on the OpenTelemetry Demo at release 2.1.3, which shipped a cart total that ignores quantity (open-telemetry/opentelemetry-demo#1526). 2 of 12 bought. After the patch, 9 of 12. Some causes only show on the screen, like that wrong total, and some only in telemetry, like Add To Cart doing nothing for seconds on a slow phone. Walkout needs both, so it has both.
 
 ## How we built it
 
-Playwright runs the browsers with CPU, network, font and locale set per persona. Each step Spark gets the screenshot with a numbered list of what can be tapped and answers with one tool call. It can keep short notes, which is how it remembers the price from the product page. Before each screenshot we wait until the shop's own API calls go quiet, except for the impatient phone shopper, who looks after 3 seconds like a real one would.
+Playwright runs the browsers with CPU, network, font and locale set per persona. Each step Spark gets the screenshot with a numbered list of what can be tapped and answers with one tool call. Its own past thoughts come back to it each step, which is how it remembers the price from the product page. Before each screenshot we wait until the shop's own API calls go quiet, except for the impatient phone shopper, who looks after 3 seconds like a real one would.
 
 Telemetry is the OpenTelemetry web SDK plus our own listeners, injected in an isolated world so it works on shops that already ship their own SDK. Findings are joined to the agent's steps by time.
 
@@ -35,4 +35,4 @@ The Walkout repo was started after the kickoff on 2026-10-26 and all its code is
 
 ## Cost
 
-About {round.usd} USD for a round of twelve shoppers.
+About 0.75 USD for a round of twelve shoppers.

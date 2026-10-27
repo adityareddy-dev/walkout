@@ -74,3 +74,14 @@ The CEO asked for both causes in the story: the wrong total only shows on the sc
 - Keyboard-only (Dev) ran out of steps on 2.1.3, on the patched 2.1.3 and on 3.1.0. On 3.1.0 he paid at step 19 but pressed Enter on what was most likely Continue Shopping, cause he couldn't see where focus was. By hand: both releases set `outline: none` on the shared Button (`src/frontend/components/Button/Button.tsx` line 12) with no focus style to replace it. A keyboard-focused Go Shopping button on 3.1.0 is pixel for pixel the same as an unfocused one (`scripts/focus-check.mjs`). So that walkout is a real second defect, missing focus indicators, on both releases. It is not the cart bug.
 
 Cost so far: 2.7558 USD.
+
+## 2026-10-26 23:33 CDT, second demo run with both causes (M7 live, M8 drafts)
+
+`npm run demo -- --no-shop`, 23:21 to 23:33 CDT, rounds `2026-10-270421-before` and `2026-10-270427-after`.
+
+- Before: 2 of 12 bought, 0.80 USD. Nine left over the wrong total, Rosa left with "the cart stays empty" after Add To Cart went unanswered, and Dev couldn't reach the quantity box. The tablet and desktop shoppers paid $128.93 without noticing, so 2 of 12 missed the defect this time.
+- The scoreboard's line: "9 left over something they saw on the screen ... 1 left right after taps that did nothing ("Add To Cart", ...), which only the browser telemetry shows."
+- The fix: the same quantity patch, kept. After: 9 of 12 bought, 0.70 USD. Still leaving: Rosa (slow Add To Cart, which the fix doesn't touch), Dev (no focus ring) and the colour-blind shopper, who ran out of steps.
+- M8 drafts: `docs/demo/storyboard.md` and `docs/demo/submission-draft.md`, for the CEO's read, not sent.
+
+Cost so far: 4.2825 USD.
