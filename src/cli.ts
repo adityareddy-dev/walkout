@@ -11,7 +11,7 @@ import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
 import { branchWithEdits, pickFiles, proposeFix, type FixProposal } from "./fix.ts";
-import { BUDGET_USD, BudgetError, LEDGER, spentUsd } from "./meta.ts";
+import { BUDGET_USD, BudgetError, LEDGER, spentByRound, spentUsd } from "./meta.ts";
 import { PERSONAS, personaById } from "./personas.ts";
 import { loadRound, printScoreboard, runRound, RUNS } from "./round.ts";
 import { buildScoreboard } from "./scoreboard/build.ts";
@@ -166,6 +166,7 @@ async function demo(shop: Shop) {
 async function main() {
   const cmd = positionals[0] ?? "demo";
   if (cmd === "spend") {
+    for (const [k, r] of spentByRound()) console.log(`${k.padEnd(28)} ${String(r.calls).padStart(4)} calls ${r.usd.toFixed(4)} USD`);
     console.log(`${spentUsd().toFixed(4)} USD of ${BUDGET_USD} USD (${LEDGER})`);
     return;
   }

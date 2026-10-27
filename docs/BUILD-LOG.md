@@ -34,7 +34,7 @@ The day-one tests (ticket EIG-2934, `docs/hackathons/meta-2026/day-one-2026-10-2
 
 The shop is the OpenTelemetry Demo (`shops/otel-demo.json`, `shops/otel-demo/stack.sh`):
 
-- Defect: release 2.1.3. The cart Total ignores quantity, cause `src/frontend/components/CartItems/CartItems.tsx` adds up unit prices without multiplying by quantity. Reported as open-telemetry/opentelemetry-demo#1526, fixed upstream by #2660 (3e7498db). Nothing planted, no feature flag.
+- Defect: release 2.1.3. The cart Total ignores quantity, cause `src/frontend/components/CartItems/CartItems.tsx` adds up unit prices without multiplying by quantity. Reported in April 2024 as https://github.com/open-telemetry/opentelemetry-demo/issues/1526, shipped through release 2.1.3 (tag 2025-09-26), fixed upstream in 3.x by #2660 (3e7498db, merged 2025-10-23). Nothing planted, no feature flag.
 - By hand: open http://localhost:8080/product/OLJCESPC7Z, pick quantity 3, tap Add To Cart. The cart shows Quantity 3, Price $101.96, Shipping $26.97, Total $128.93. The right total is $332.85.
 - Clean: release 3.1.0 on http://localhost:8082, same flow, Total $332.85.
 - Both frontends sit on the 3.1.0 backends, compose project `walkout2934` (`compose.walkout-pair.yaml`). The 2.1.3 frontend has to be on :8080, its image loader only draws the header cart icon on the origin it was built for.
@@ -79,7 +79,7 @@ Cost so far: 2.7558 USD.
 
 `npm run demo -- --no-shop`, 23:21 to 23:33 CDT, rounds `2026-10-270421-before` and `2026-10-270427-after`.
 
-- Before: 2 of 12 bought, 0.80 USD. Nine left over the wrong total, Rosa left with "the cart stays empty" after Add To Cart went unanswered, and Dev couldn't reach the quantity box. The tablet and desktop shoppers paid $128.93 without noticing, so 2 of 12 missed the defect this time.
+- Before: 2 of 12 bought, 0.80 USD. Ten left: eight over the wrong total, Rosa with "the cart stays empty" after Add To Cart went unanswered, and Dev, who couldn't reach the quantity box (2 bought plus 10 left is 12). The scoreboard line below counts Dev with the screen walkouts, cause no tap of his went unanswered, so it says 9 and 1. The tablet and desktop shoppers paid $128.93 without noticing, so 2 of 12 missed the defect this time.
 - The scoreboard's line: "9 left over something they saw on the screen ... 1 left right after taps that did nothing ("Add To Cart", ...), which only the browser telemetry shows."
 - The fix: the same quantity patch, kept. After: 9 of 12 bought, 0.70 USD. Still leaving: Rosa (slow Add To Cart, which the fix doesn't touch), Dev (no focus ring) and the colour-blind shopper, who ran out of steps.
 - M8 drafts: `docs/demo/storyboard.md` and `docs/demo/submission-draft.md`, for the CEO's read, not sent.

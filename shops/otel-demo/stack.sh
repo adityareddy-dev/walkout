@@ -17,7 +17,7 @@ files=(-f "$stack/compose.yaml" -f "$here/compose.walkout-pair.yaml")
 
 setup() {
   if [ ! -d "$src/.git" ]; then
-    git clone -q --depth 1 --branch 2.1.3 "$upstream" "$src"
+    git -c advice.detachedHead=false clone -q --depth 1 --branch 2.1.3 "$upstream" "$src"
   fi
   git -C "$src" rev-parse -q --verify "refs/tags/3.1.0" >/dev/null || git -C "$src" fetch -q --depth 1 origin tag 3.1.0
 }

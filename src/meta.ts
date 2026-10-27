@@ -26,6 +26,22 @@ export const BUDGET_USD = Number(process.env.WALKOUT_BUDGET_USD ?? "20");
 
 export class BudgetError extends Error {}
 
+// Spend per round (the first part of each call's purpose), from the ledger.
+export function spentByRound(): Map<string, { calls: number; usd: number }> {
+  const out = new Map<string, { calls: number; usd: number }>();
+  if (!existsSync(LEDGER)) return out;
+  for (const line of readFileSync(LEDGER, "utf8").split("\n")) {
+    if (!line.trim()) continue;
+    const d = JSON.parse(line);
+    const k = String(d.purpose ?? "").split("/")[0] || "(none)";
+    const r = out.get(k) ?? { calls: 0, usd: 0 };
+    r.calls++;
+    r.usd += Number(d.usd) || 0;
+    out.set(k, r);
+  }
+  return out;
+}
+
 export function spentUsd(): number {
   if (!existsSync(LEDGER)) return 0;
   let total = 0;
