@@ -28,5 +28,6 @@
   "stopCmd": "shops/otel-demo/stack.sh down",
   "fixBuildCmd": "shops/otel-demo/stack.sh fix",
   "fixUrl": "http://localhost:8080/",
-  "unfixCmd": "shops/otel-demo/stack.sh unfix"
+  "unfixCmd": "shops/otel-demo/stack.sh unfix",
+  "buildGate": "the frontend's type check and lint in next build, inside the 2.1.3 frontend image build"
 }

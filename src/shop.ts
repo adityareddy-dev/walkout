@@ -36,6 +36,9 @@ export interface Shop {
   fixUrl: string;
   unfixCmd?: string; // puts the defect build back where the fix was served
   testCmd?: string; // the shop's own tests, run from sourceDir
+  // For a shop without tests: the check inside fixBuildCmd that a patch must
+  // pass, in words for the log.
+  buildGate?: string;
 }
 
 export const ROOT = join(import.meta.dirname, "..");

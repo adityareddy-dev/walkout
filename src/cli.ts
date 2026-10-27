@@ -85,7 +85,22 @@ async function fixFrom(shop: Shop, roundId: string): Promise<FixResult | null> {
     writeFileSync(join(RUNS, roundId, "fix.json"), JSON.stringify(result, null, 2));
     throw new Error(`fix: no edit applied (${failed.map((f) => `${f.edit.file}: ${f.why}`).join("; ")})`);
   }
-  sh(shop.fixBuildCmd, ROOT);
+  // The gate: the shop's own tests when it has them, otherwise whatever check
+  // the shop names in buildGate, which runs inside fixBuildCmd.
+  try {
+    result.testOutput = sh(shop.fixBuildCmd, ROOT).slice(-4000);
+  } catch (e) {
+    const err = e as { stdout?: string; stderr?: string };
+    result.testOutput = `${err.stdout ?? ""}\n${err.stderr ?? ""}`.slice(-4000);
+    result.testsPassed = false;
+    console.log(`gate: the fixed build failed${shop.buildGate ? ` (${shop.buildGate})` : ""}, the patch is dropped.`);
+    writeFileSync(join(RUNS, roundId, "fix.json"), JSON.stringify(result, null, 2));
+    return result;
+  }
+  if (!shop.testCmd && shop.buildGate) {
+    result.testsPassed = true;
+    console.log(`gate: this shop has no test command, so the gate is ${shop.buildGate}. It passed.`);
+  }
   await waitForShop(shop.fixUrl);
   if (shop.testCmd) {
     try {
@@ -129,6 +144,11 @@ async function demo(shop: Shop) {
   }
 
   const fix = await fixFrom(shop, before.round);
+  if (fix?.testsPassed === false && !shop.testCmd) {
+    sh(`git checkout -q ${shop.defect.commit}`, shop.sourceDir);
+    console.log("Fix dropped: it does not build, so there is no after round.");
+    return board(before.round);
+  }
   const f = buildOf(shop, "fix");
   const after = await runRound({ shop, build: f.label, label: "after", url: f.url, personas, maxSteps, concurrency });
   if (shop.unfixCmd) sh(shop.unfixCmd, ROOT);
