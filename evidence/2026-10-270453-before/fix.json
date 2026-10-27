@@ -1,0 +1,23 @@
+{
+  "proposal": {
+    "summary": "The cart total summed only one unit of each product instead of multiplying the unit price by quantity, so it now multiplies price units and nanos by quantity when computing the total.",
+    "files": [
+      "src/frontend/components/Cart/CartDetail.tsx",
+      "src/frontend/pages/cart/index.tsx",
+      "src/frontend/components/CartItems/CartItems.tsx",
+      "src/frontend/components/CartItems/CartItem.tsx"
+    ],
+    "edits": [
+      {
+        "file": "src/frontend/components/CartItems/CartItems.tsx",
+        "find": "    const nanoSum =\n      productList.reduce((acc, { product: { priceUsd: { nanos = 0 } = {} } }) => acc + Number(nanos), 0) +\n        shippingConst?.nanos || 0;\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce((acc, { product: { priceUsd: { units = 0 } = {} } }) => acc + Number(units), 0) +",
+        "replace": "    const nanoSum =\n      productList.reduce(\n        (acc, { quantity, product: { priceUsd: { nanos = 0 } = {} } }) => acc + quantity * Number(nanos),\n        0\n      ) +\n        shippingConst?.nanos || 0;\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce(\n        (acc, { quantity, product: { priceUsd: { units = 0 } = {} } }) => acc + quantity * Number(units),\n        0\n      ) +"
+      }
+    ]
+  },
+  "branch": "walkout/fix-2026-10-270453-before",
+  "commit": "40334acd1bf2e8fce1b63b51e9064aa47067f348",
+  "failedEdits": [],
+  "testsPassed": true,
+  "testOutput": "sha256:f08a5c5ff1d14193e38728763e77822d403fdb1c843d6616b5649f09d9ee107d\nfix image built in 102 s\n"
+}

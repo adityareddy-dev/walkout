@@ -62,9 +62,9 @@ function roundMeta(name: string, r: BoardRound): string {
   return `<dt>${name}</dt><dd>${shop}${build}${extra}</dd>`;
 }
 
-// Why the shoppers of one round left, split by what shows the cause: some
-// causes show only on the screen (a wrong total), others only in the browser
-// telemetry (a tap that did nothing in the last steps before leaving).
+// Why the shoppers of one round left. Their own words show what they saw on
+// the screen (a wrong total). Some also had a tap go unanswered just before
+// leaving, which only the browser telemetry shows. One run can have both.
 export function whyTheyLeft(r: BoardRound): string {
   const left = Object.values(r.runs).filter((x) => x.outcome.kind !== "bought");
   if (!left.length) return "";
@@ -79,12 +79,10 @@ export function whyTheyLeft(r: BoardRound): string {
       if (m) tapped.add(m[1]);
     }
   }
-  const byScreen = left.length - byTelemetry;
-  const parts: string[] = [];
-  if (byScreen) parts.push(`${byScreen} left over something they saw on the screen, in their own words on each tile`);
+  let text = `${left.length} walked out, each says why in their own words on the tile.`;
   if (byTelemetry)
-    parts.push(`${byTelemetry} left right after taps that did nothing${tapped.size ? ` (${[...tapped].map((t) => `"${t}"`).join(", ")})` : ""}, which only the browser telemetry shows`);
-  return `<p class="why">Why they left: ${esc(parts.join("; "))}.</p>`;
+    text += ` ${byTelemetry} of them had a tap go unanswered in their last steps before leaving${tapped.size ? ` (${[...tapped].map((t) => `"${t}"`).join(", ")})` : ""}, which only the browser telemetry shows.`;
+  return `<p class="why">Why they left: ${esc(text)}</p>`;
 }
 
 function statCard(view: "before" | "after", r: BoardRound, order: string[], toggle: boolean, pressed: boolean, delta: string): string {

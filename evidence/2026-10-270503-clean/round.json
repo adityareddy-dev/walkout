@@ -1,0 +1,384 @@
+{
+  "round": "2026-10-270503-clean",
+  "label": "clean",
+  "shop": "otel-demo",
+  "build": "3.1.0",
+  "startedAt": "2026-10-27T05:03:13.442Z",
+  "finishedAt": "2026-10-27T05:08:16.793Z",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "bought": 9,
+  "total": 12,
+  "usd": 0.7706882500000002,
+  "runs": [
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p01-cheap-android",
+      "personaName": "Rosa",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 17
+      },
+      "steps": 17,
+      "startedAt": "2026-10-27T05:03:13.646Z",
+      "durationMs": 114448,
+      "usd": 0.05814899999999999,
+      "findings": [
+        {
+          "kind": "slow_request",
+          "t": 1793077415434,
+          "step": null,
+          "durationMs": 28290,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 28.3 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077415438,
+          "step": null,
+          "durationMs": 28635,
+          "summary": "GET /images/products/TheCometBook.jpg took 28.6 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077415439,
+          "step": null,
+          "durationMs": 31843,
+          "summary": "GET /images/products/RedFlashlight.jpg took 31.8 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077415439,
+          "step": null,
+          "durationMs": 21776,
+          "summary": "GET /images/products/LensCleaningKit.jpg took 21.8 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077415439,
+          "step": null,
+          "durationMs": 17135,
+          "summary": "GET /images/products/NationalParkFoundationExplorascope.jpg took 17.1 s."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793077444851.5999,
+          "step": 6,
+          "target": "div.ProductCard-styled__Image-sc-887ce4c0-1.dLkReV",
+          "summary": "Tap on div.ProductCard-styled__Image-sc-887ce4c0-1.dLkReV did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "unanswered_tap",
+          "t": 1793077460390.9001,
+          "step": 9,
+          "target": "button.Button-sc-3e9ac6d4-0.ProductDetail-styled__AddToCart-sc-fdc3469c-4 \"Add To Cart\"",
+          "durationMs": 2143,
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.ProductDetail-styled__AddToCart-sc-fdc3469c-4 \"Add To Cart\" sent POST /api/cart and nothing on the page changed until the answer came 2.1 s later."
+        },
+        {
+          "kind": "slow_interaction",
+          "t": 1793077465027.9001,
+          "step": 10,
+          "target": "img.CartIcon-styled__Icon-sc-d5c559f5-1.giMmST[aria-label=\"Cart\"]",
+          "durationMs": 232,
+          "code": {
+            "url": "http://localhost:8082/_next/static/chunks/188_i6krcggya.js",
+            "line": 1,
+            "column": 225628,
+            "functionName": "f$"
+          },
+          "summary": "click on img.CartIcon-styled__Icon-sc-d5c559f5-1.giMmST[aria-label=\"Cart\"] took 232 ms to paint (input delay 76, handlers 50, paint 106); longest script 17 ms in f$ /_next/static/chunks/188_i6krcggya.js:1:225628 (DIV#__next.onclick)."
+        },
+        {
+          "kind": "unanswered_tap",
+          "t": 1793077488451.2002,
+          "step": 14,
+          "target": "button.Button-sc-3e9ac6d4-0.ProductDetail-styled__AddToCart-sc-fdc3469c-4 \"Add To Cart\"",
+          "durationMs": 2054,
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.ProductDetail-styled__AddToCart-sc-fdc3469c-4 \"Add To Cart\" sent POST /api/cart and nothing on the page changed until the answer came 2.1 s later."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793077504538.6,
+          "step": 17,
+          "target": "main \"Your shopping cart is empty!Items you ad\"",
+          "summary": "Tap on main \"Your shopping cart is empty!Items you ad\" did nothing within 300 ms: no change on the page, no request."
+        }
+      ],
+      "sentence": "Rosa bought in 17 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p02-slow-3g",
+      "personaName": "Tomasz",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 12
+      },
+      "steps": 12,
+      "startedAt": "2026-10-27T05:03:13.647Z",
+      "durationMs": 64937,
+      "usd": 0.03888675,
+      "findings": [
+        {
+          "kind": "slow_request",
+          "t": 1793077405843,
+          "step": null,
+          "durationMs": 26525,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 26.5 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077405846,
+          "step": null,
+          "durationMs": 26526,
+          "summary": "GET /images/products/RedFlashlight.jpg took 26.5 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077405846,
+          "step": null,
+          "durationMs": 26522,
+          "summary": "GET /images/products/TheCometBook.jpg took 26.5 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077405846,
+          "step": null,
+          "durationMs": 24223,
+          "summary": "GET /images/products/NationalParkFoundationExplorascope.jpg took 24.2 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793077405846,
+          "step": null,
+          "durationMs": 23835,
+          "summary": "GET /images/products/LensCleaningKit.jpg took 23.8 s."
+        }
+      ],
+      "sentence": "Tomasz bought in 12 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p03-large-text",
+      "personaName": "Margaret",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 19
+      },
+      "steps": 19,
+      "startedAt": "2026-10-27T05:03:13.647Z",
+      "durationMs": 70478,
+      "usd": 0.060035000000000005,
+      "findings": [],
+      "sentence": "Margaret bought in 19 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p04-keyboard-only",
+      "personaName": "Dev",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "I tabbed through the hot products many times but could not reach the National Park Foundation Explorascopes to buy them.",
+        "atStep": 25
+      },
+      "steps": 25,
+      "startedAt": "2026-10-27T05:04:18.586Z",
+      "durationMs": 118063,
+      "usd": 0.14252775,
+      "findings": [],
+      "sentence": "At step 25 while trying to tab to the National Park Foundation Explorascopes to buy them, the shopper saw Hot Products showing only other items and left."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p05-screen-reader",
+      "personaName": "Amara",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 4
+      },
+      "steps": 4,
+      "startedAt": "2026-10-27T05:04:24.129Z",
+      "durationMs": 17072,
+      "usd": 0.01706825,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793077468073.4001,
+          "step": 1,
+          "target": "",
+          "durationMs": 256,
+          "code": {
+            "url": "http://localhost:8082/_next/static/chunks/188_i6krcggya.js",
+            "line": 1,
+            "column": 236714,
+            "functionName": "O"
+          },
+          "summary": "click on the page took 256 ms to paint (input delay 17, handlers 9, paint 230); longest script 174 ms in O /_next/static/chunks/188_i6krcggya.js:1:236714 (MessagePort.onmessage)."
+        }
+      ],
+      "sentence": "Amara bought in 4 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p06-spanish",
+      "personaName": "Lucía",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 8
+      },
+      "steps": 8,
+      "startedAt": "2026-10-27T05:04:41.203Z",
+      "durationMs": 38751,
+      "usd": 0.0294955,
+      "findings": [],
+      "sentence": "Lucía bought in 8 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p07-tablet",
+      "personaName": "Hiro",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 9
+      },
+      "steps": 9,
+      "startedAt": "2026-10-27T05:05:08.100Z",
+      "durationMs": 36455,
+      "usd": 0.03803275,
+      "findings": [],
+      "sentence": "Hiro bought in 9 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p08-desktop-mouse",
+      "personaName": "Sam",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "I could not find the cart totals to verify quantity, price, shipping and Total so I will not pay.",
+        "atStep": 20
+      },
+      "steps": 20,
+      "startedAt": "2026-10-27T05:05:19.955Z",
+      "durationMs": 75430,
+      "usd": 0.11016525000000002,
+      "findings": [],
+      "sentence": "Sam left at step 20 in the cart while trying to verify quantity, price, shipping and Total because the screen showed only address and payment fields with no totals, which shows only on the screen."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p09-high-latency",
+      "personaName": "Kai",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 14
+      },
+      "steps": 14,
+      "startedAt": "2026-10-27T05:05:44.563Z",
+      "durationMs": 66821,
+      "usd": 0.06261825000000001,
+      "findings": [],
+      "sentence": "Kai bought in 14 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p10-reduced-motion",
+      "personaName": "Noor",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 12
+      },
+      "steps": 12,
+      "startedAt": "2026-10-27T05:06:16.652Z",
+      "durationMs": 44692,
+      "usd": 0.05272075,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793077581784.5,
+          "step": 1,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "durationMs": 232,
+          "summary": "click on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" took 232 ms to paint (input delay 5, handlers 6, paint 221)."
+        }
+      ],
+      "sentence": "Noor bought in 12 steps."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p11-colour-blind",
+      "personaName": "Ben",
+      "outcome": {
+        "kind": "step_limit",
+        "reason": "still shopping after 25 steps",
+        "atStep": 25
+      },
+      "steps": 25,
+      "startedAt": "2026-10-27T05:06:35.388Z",
+      "durationMs": 95565,
+      "usd": 0.12211775000000002,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793077599082.7998,
+          "step": 1,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "durationMs": 240,
+          "summary": "click on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" took 240 ms to paint (input delay 6, handlers 6, paint 229)."
+        }
+      ],
+      "sentence": "Ben ran out of time at step 25 after spending steps 1 to 21 trying to find the telescopes while the Go Shopping button kept showing the same home page after a slow tap."
+    },
+    {
+      "round": "2026-10-270503-clean",
+      "persona": "p12-low-end-desktop",
+      "personaName": "Grace",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 9
+      },
+      "steps": 9,
+      "startedAt": "2026-10-27T05:06:51.386Z",
+      "durationMs": 44516,
+      "usd": 0.038871249999999996,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793077617293.7,
+          "step": 1,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "durationMs": 288,
+          "code": {
+            "url": "http://localhost:8082/_next/static/chunks/188_i6krcggya.js",
+            "line": 1,
+            "column": 225628,
+            "functionName": "f$"
+          },
+          "summary": "click on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" took 288 ms to paint (input delay 61, handlers 89, paint 138); longest script 54 ms in f$ /_next/static/chunks/188_i6krcggya.js:1:225628 (DIV#__next.onclick)."
+        },
+        {
+          "kind": "slow_interaction",
+          "t": 1793077629192.3,
+          "step": 4,
+          "target": "",
+          "durationMs": 208,
+          "code": {
+            "url": "http://localhost:8082/_next/static/chunks/188_i6krcggya.js",
+            "line": 1,
+            "column": 236714,
+            "functionName": "O"
+          },
+          "summary": "click on the page took 208 ms to paint (input delay 21, handlers 23, paint 164); longest script 41 ms in O /_next/static/chunks/188_i6krcggya.js:1:236714 (MessagePort.onmessage)."
+        }
+      ],
+      "sentence": "Grace bought in 9 steps."
+    }
+  ]
+}

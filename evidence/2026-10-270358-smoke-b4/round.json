@@ -1,0 +1,72 @@
+{
+  "round": "2026-10-270358-smoke-b4",
+  "label": "smoke-b4",
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "startedAt": "2026-10-27T03:58:26.641Z",
+  "finishedAt": "2026-10-27T03:58:56.237Z",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "bought": 0,
+  "total": 2,
+  "usd": 0.065728,
+  "runs": [
+    {
+      "round": "2026-10-270358-smoke-b4",
+      "persona": "p01-cheap-android",
+      "personaName": "Rosa",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total doesn't add up for 3 Explorascopes at $101.96 plus $26.97 shipping.",
+        "atStep": 7
+      },
+      "steps": 7,
+      "startedAt": "2026-10-27T03:58:26.762Z",
+      "durationMs": 27420,
+      "usd": 0.028938750000000006,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793073521485,
+          "step": 4,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073521539,
+          "step": 4,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Rosa gave up at step 7 while checking her cart to pay because the total showed $128.93 for 3 scopes at $101.96 plus $26.97 shipping, and the wrong math showed only on the screen."
+    },
+    {
+      "round": "2026-10-270358-smoke-b4",
+      "persona": "p08-desktop-mouse",
+      "personaName": "Sam",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not equal 3 times $101.96 plus $26.97 shipping, so I will not pay.",
+        "atStep": 6
+      },
+      "steps": 6,
+      "startedAt": "2026-10-27T03:58:26.763Z",
+      "durationMs": 23161,
+      "usd": 0.03678925,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793073518251,
+          "step": 3,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073518252,
+          "step": 3,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Sam left at step 6 while checking the cart before paying because the screen showed 3 at $101.96 plus $26.97 shipping but a $128.93 total, which is wrong on the screen alone."
+    }
+  ]
+}

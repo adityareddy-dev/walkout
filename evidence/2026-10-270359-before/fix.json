@@ -1,0 +1,23 @@
+{
+  "proposal": {
+    "summary": "The cart total summed each product's price only once regardless of quantity, so 3 items at $101.96 plus $26.97 shipping showed $128.93 instead of $332.85; the fix multiplies both units and nanos by quantity when computing the total.",
+    "files": [
+      "src/frontend/components/Cart/CartDetail.tsx",
+      "src/frontend/pages/cart/index.tsx",
+      "src/frontend/components/CartItems/CartItems.tsx",
+      "src/frontend/components/CartItems/CartItem.tsx"
+    ],
+    "edits": [
+      {
+        "file": "src/frontend/components/CartItems/CartItems.tsx",
+        "find": "    const nanoSum =\n      productList.reduce((acc, { product: { priceUsd: { nanos = 0 } = {} } }) => acc + Number(nanos), 0) +\n        shippingConst?.nanos || 0;\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce((acc, { product: { priceUsd: { units = 0 } = {} } }) => acc + Number(units), 0) +",
+        "replace": "    const nanoSum =\n      productList.reduce((acc, { quantity, product: { priceUsd: { nanos = 0 } = {} } }) => acc + Number(nanos) * quantity, 0) +\n        shippingConst?.nanos || 0;\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce((acc, { quantity, product: { priceUsd: { units = 0 } = {} } }) => acc + Number(units) * quantity, 0) +"
+      }
+    ]
+  },
+  "branch": "walkout/fix-2026-10-270359-before",
+  "commit": "0107ab07b1dad82a9d02c008050a5aa1068e08c1",
+  "failedEdits": [],
+  "testsPassed": null,
+  "testOutput": ""
+}

@@ -1,0 +1,318 @@
+{
+  "persona": {
+    "card": {
+      "id": "p05-screen-reader",
+      "name": "Amara",
+      "life": "Law student who is blind and shops with a screen reader. She hears the page's accessibility tree, never sees it.",
+      "constraints": [
+        "No screenshots, only the accessibility tree",
+        "Can only use controls that have a role and a name"
+      ],
+      "patience": "Expert user. Gives up when a control has no name or an important step is not announced."
+    },
+    "device": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "locale": "en-US",
+      "timezoneId": "America/Chicago",
+      "cpuThrottle": 1
+    },
+    "observation": "a11y-tree"
+  },
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "steps": [
+    {
+      "index": 1,
+      "tObserve": 1793074980167,
+      "tObserved": 1793074980439,
+      "tAct": 1793074981245,
+      "tSettled": 1793074983876,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-01.png",
+      "marked": null,
+      "tree": "shots/step-01-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e94",
+        "why": "I found the National Park Foundation Explorascope link, I'll open its product page."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2666,
+        "cachedTokens": 0,
+        "outputTokens": 136,
+        "usd": 0.0039105,
+        "latencyMs": 804
+      },
+      "targetLabel": "e94",
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 2,
+      "tObserve": 1793074983883,
+      "tObserved": 1793074983988,
+      "tAct": 1793074984747,
+      "tSettled": 1793074986062,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-02.png",
+      "marked": null,
+      "tree": "shots/step-02-tree.txt",
+      "action": {
+        "action": "select",
+        "target": "e134",
+        "value": "3",
+        "why": "I see quantity selector with price $101.96, I'll set it to 3."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2471,
+        "cachedTokens": 0,
+        "outputTokens": 175,
+        "usd": 0.0038325,
+        "latencyMs": 757
+      },
+      "targetLabel": "e134",
+      "result": "the screen changed"
+    },
+    {
+      "index": 3,
+      "tObserve": 1793074986068,
+      "tObserved": 1793074986189,
+      "tAct": 1793074986705,
+      "tSettled": 1793074989058,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-03.png",
+      "marked": null,
+      "tree": "shots/step-03-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e136",
+        "why": "I set quantity to 3, now I'll add to cart."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2508,
+        "cachedTokens": 0,
+        "outputTokens": 130,
+        "usd": 0.0036875,
+        "latencyMs": 514
+      },
+      "targetLabel": "e136",
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 4,
+      "tObserve": 1793074989063,
+      "tObserved": 1793074989161,
+      "tAct": 1793074991202,
+      "tSettled": 1793074993538,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-04.png",
+      "marked": null,
+      "tree": "shots/step-04-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e208",
+        "why": "I see quantity 3 with price $101.96 in cart, I need to check the unit price on the product page to verify the total."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3199,
+        "cachedTokens": 0,
+        "outputTokens": 614,
+        "usd": 0.00660825,
+        "latencyMs": 2039
+      },
+      "targetLabel": "e208",
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 5,
+      "tObserve": 1793074993541,
+      "tObserved": 1793074993643,
+      "tAct": 1793074995753,
+      "tSettled": 1793074997822,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-05.png",
+      "marked": null,
+      "tree": "shots/step-05-tree.txt",
+      "action": {
+        "action": "back",
+        "why": "I need to verify the cart totals, so I'll go back to the cart page."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2603,
+        "cachedTokens": 0,
+        "outputTokens": 430,
+        "usd": 0.00508125,
+        "latencyMs": 2108
+      },
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 6,
+      "tObserve": 1793074997824,
+      "tObserved": 1793074997903,
+      "tAct": 1793075001297,
+      "tSettled": 1793075003656,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-06.png",
+      "marked": null,
+      "tree": "shots/step-06-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e406",
+        "why": "I need to confirm the single-item price to check if the cart total adds up for 3."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3293,
+        "cachedTokens": 0,
+        "outputTokens": 813,
+        "usd": 0.0075715,
+        "latencyMs": 3392
+      },
+      "targetLabel": "e406",
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 7,
+      "tObserve": 1793075003659,
+      "tObserved": 1793075003737,
+      "tAct": 1793075005385,
+      "tSettled": 1793075007445,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-07.png",
+      "marked": null,
+      "tree": "shots/step-07-tree.txt",
+      "action": {
+        "action": "back",
+        "why": "I need to get back to the cart to verify quantity, price, shipping and total."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2700,
+        "cachedTokens": 0,
+        "outputTokens": 350,
+        "usd": 0.0048625,
+        "latencyMs": 1647
+      },
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 8,
+      "tObserve": 1793075007453,
+      "tObserved": 1793075007581,
+      "tAct": 1793075009260,
+      "tSettled": 1793075011339,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-08.png",
+      "marked": null,
+      "tree": "shots/step-08-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e604",
+        "why": "I see quantity 3 price 101.96 shipping 26.97 total 128.93 in cart, I need to check the unit price before paying."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3386,
+        "cachedTokens": 0,
+        "outputTokens": 446,
+        "usd": 0.006128,
+        "latencyMs": 1678
+      },
+      "targetLabel": "e604",
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 9,
+      "tObserve": 1793075011351,
+      "tObserved": 1793075011586,
+      "tAct": 1793075013093,
+      "tSettled": 1793075015150,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-09.png",
+      "marked": null,
+      "tree": "shots/step-09-tree.txt",
+      "action": {
+        "action": "back",
+        "why": "I confirmed unit price is $101.96, now I'll return to cart to verify totals don't add up."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2788,
+        "cachedTokens": 0,
+        "outputTokens": 326,
+        "usd": 0.0048705,
+        "latencyMs": 1506
+      },
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 10,
+      "tObserve": 1793075015153,
+      "tObserved": 1793075015259,
+      "tAct": 1793075018177,
+      "tSettled": 1793075018177,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-10.png",
+      "marked": null,
+      "tree": "shots/step-10-tree.txt",
+      "action": {
+        "action": "give_up",
+        "reason": "The cart total of $128.93 does not equal 3 times $101.96 plus $26.97 shipping.",
+        "why": "I see quantity 3 at $101.96 plus $26.97 shipping totals $128.93, so I won't pay."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3471,
+        "cachedTokens": 0,
+        "outputTokens": 773,
+        "usd": 0.007624,
+        "latencyMs": 2913
+      }
+    }
+  ],
+  "outcome": {
+    "kind": "gave_up",
+    "reason": "The cart total of $128.93 does not equal 3 times $101.96 plus $26.97 shipping.",
+    "atStep": 10
+  },
+  "findings": [
+    {
+      "kind": "js_error",
+      "t": 1793074981450,
+      "step": 1,
+      "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "kind": "failed_request",
+      "t": 1793074981450,
+      "step": 1,
+      "summary": "GET /images/products/undefined returned 404."
+    }
+  ],
+  "sentence": "Amara left at step 10 while checking the cart before paying because 3 at $101.96 plus $26.97 shipping showed as $128.93 total, and that wrong math showed only on the screen.",
+  "usd": 0.054176499999999995,
+  "startedAt": "2026-10-27T04:22:57.582Z",
+  "durationMs": 40953
+}

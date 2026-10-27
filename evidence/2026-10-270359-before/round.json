@@ -1,0 +1,538 @@
+{
+  "round": "2026-10-270359-before",
+  "label": "before",
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "startedAt": "2026-10-27T03:59:40.137Z",
+  "finishedAt": "2026-10-27T04:03:01.706Z",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "bought": 1,
+  "total": 12,
+  "usd": 0.6616605,
+  "runs": [
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p01-cheap-android",
+      "personaName": "Rosa",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows 3 at $101.96 plus $26.97 shipping but totals only $128.93, so the math is wrong and I won't pay.",
+        "atStep": 9
+      },
+      "steps": 9,
+      "startedAt": "2026-10-27T03:59:40.211Z",
+      "durationMs": 31556,
+      "usd": 0.03372075,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793073591158.9,
+          "step": 3,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073599860,
+          "step": 6,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073599913,
+          "step": 6,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Rosa left at step 9 while checking her cart before paying because it showed 3 telescopes at $101.96 plus $26.97 shipping totaling only $128.93, and that wrong math was plain on the screen."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p02-slow-3g",
+      "personaName": "Tomasz",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "I added three Explorascopes at $101.96 each but the total shows $128.93 instead of $332.85, so I will not pay.",
+        "atStep": 11
+      },
+      "steps": 11,
+      "startedAt": "2026-10-27T03:59:40.215Z",
+      "durationMs": 76424,
+      "usd": 0.040954500000000005,
+      "findings": [
+        {
+          "kind": "slow_request",
+          "t": 1793073590748,
+          "step": null,
+          "durationMs": 33469,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 33.5 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793073590749,
+          "step": null,
+          "durationMs": 36713,
+          "summary": "GET /images/products/TheCometBook.jpg took 36.7 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793073590752,
+          "step": null,
+          "durationMs": 46305,
+          "summary": "GET /images/products/RedFlashlight.jpg took 46.3 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793073590752,
+          "step": null,
+          "durationMs": 26112,
+          "summary": "GET /images/products/NationalParkFoundationExplorascope.jpg took 26.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793073590752,
+          "step": null,
+          "durationMs": 23806,
+          "summary": "GET /images/products/LensCleaningKit.jpg took 23.8 s."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073601485.7,
+          "step": 3,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073607470.0999,
+          "step": 5,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "rage_click",
+          "t": 1793073607470.0999,
+          "step": 5,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tried button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" 2 times (steps 3, 5), nothing happened any time."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073615761,
+          "step": 8,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073616718,
+          "step": 8,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 11 while checking the cart before paying, Tomasz left because 3 scopes at $101.96 showed a total of $128.93, and that wrong math showed only on the screen."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p03-large-text",
+      "personaName": "Margaret",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not match 3 at $101.96 plus $26.97 shipping, so I will not pay.",
+        "atStep": 17
+      },
+      "steps": 17,
+      "startedAt": "2026-10-27T03:59:40.216Z",
+      "durationMs": 53425,
+      "usd": 0.0612655,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793073610947,
+          "step": 10,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073610948,
+          "step": 10,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 17 while checking her cart before paying, Margaret left because the screen showed 3 at $101.96 plus $26.97 shipping but a total of only $128.93, which was plainly wrong on the screen."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p04-keyboard-only",
+      "personaName": "Dev",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "I could not reach the quantity selector and Add to Cart with the keyboard after tabbing back from the footer.",
+        "atStep": 23
+      },
+      "steps": 23,
+      "startedAt": "2026-10-27T04:00:11.768Z",
+      "durationMs": 89880,
+      "usd": 0.130333,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793073670901,
+          "step": 16,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073670904,
+          "step": 16,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 23 on the product page trying to set quantity and add to cart, the shopper saw only recommendations and the footer banner and could not reach the buying controls with the keyboard."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p05-screen-reader",
+      "personaName": "Amara",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows quantity 3 at $101.96 each plus $26.97 shipping but totals $128.93 instead of $332.85, so the math does not add up.",
+        "atStep": 4
+      },
+      "steps": 4,
+      "startedAt": "2026-10-27T04:00:33.642Z",
+      "durationMs": 13172,
+      "usd": 0.024822,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793073637106,
+          "step": 1,
+          "target": "",
+          "durationMs": 216,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 179694,
+            "functionName": "N"
+          },
+          "summary": "click on the page took 216 ms to paint (input delay 11, handlers 5, paint 200); longest script 10 ms in N /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:179694 (MessagePort.onmessage)."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073637153,
+          "step": 1,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073637153,
+          "step": 1,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "Amara left at step 4 while checking her cart because it showed 3 telescopes at $101.96 plus $26.97 shipping totaling only $128.93, which was plainly wrong on the screen."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p06-spanish",
+      "personaName": "Lucía",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "No pago porque tres piezas de $101.96 más $26.97 de envío no dan $128.93 de total.",
+        "atStep": 7
+      },
+      "steps": 7,
+      "startedAt": "2026-10-27T04:00:46.815Z",
+      "durationMs": 27058,
+      "usd": 0.029934500000000003,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793073661927,
+          "step": 4,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073661952,
+          "step": 4,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 7 while checking her cart before paying, Lucia left because 3 telescopes at $101.96 plus $26.97 shipping showed as $128.93 total, a wrong total shown right on the screen."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p07-tablet",
+      "personaName": "Hiro",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not match 3 times $101.96 plus $26.97 shipping, so I will not pay.",
+        "atStep": 18
+      },
+      "steps": 18,
+      "startedAt": "2026-10-27T04:00:56.645Z",
+      "durationMs": 64848,
+      "usd": 0.09088299999999999,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793073662016.5,
+          "step": 1,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "durationMs": 248,
+          "summary": "click on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 248 ms to paint (input delay 36, handlers 10, paint 202)."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073669372.9001,
+          "step": 3,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073690217.1,
+          "step": 9,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "rage_click",
+          "t": 1793073690217.1,
+          "step": 9,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tried button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" 2 times (steps 3, 9), nothing happened any time."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073711257,
+          "step": 15,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073711278,
+          "step": 15,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 18 while checking the cart before paying, he saw 3 at $101.96 plus $26.97 shipping total only $128.93, which was wrong on the screen alone."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p08-desktop-mouse",
+      "personaName": "Sam",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows 3 items at $101.96 with $26.97 shipping but totals only $128.93 instead of $332.85, so I won't pay.",
+        "atStep": 6
+      },
+      "steps": 6,
+      "startedAt": "2026-10-27T04:01:13.877Z",
+      "durationMs": 22448,
+      "usd": 0.0351645,
+      "findings": [
+        {
+          "kind": "js_error",
+          "t": 1793073684727,
+          "step": 3,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073684727,
+          "step": 3,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "Sam left at step 6 while checking the cart before paying because 3 telescopes at $101.96 plus $26.97 shipping totaled only $128.93 instead of $332.85, a wrong total that showed only on the screen."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p09-high-latency",
+      "personaName": "Kai",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not equal 3 times $101.96 plus $26.97 shipping.",
+        "atStep": 6
+      },
+      "steps": 6,
+      "startedAt": "2026-10-27T04:01:36.344Z",
+      "durationMs": 31544,
+      "usd": 0.0319765,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793073710592,
+          "step": 3,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073711291,
+          "step": 3,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Kai left at step 6 while checking the cart before paying because the total showed $128.93 instead of three times $101.96 plus $26.97 shipping, which was plainly wrong on the screen."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p10-reduced-motion",
+      "personaName": "Noor",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 16
+      },
+      "steps": 16,
+      "startedAt": "2026-10-27T04:01:41.650Z",
+      "durationMs": 56762,
+      "usd": 0.071783,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793073712471.8,
+          "step": 3,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073719247.5,
+          "step": 5,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073726626.3,
+          "step": 7,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "rage_click",
+          "t": 1793073726626.3,
+          "step": 7,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tried button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" 3 times (steps 3, 5, 7), nothing happened any time."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073740042,
+          "step": 11,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073740081,
+          "step": 11,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Noor bought in 16 steps."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p11-colour-blind",
+      "personaName": "Ben",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not match 3 items at $101.96 plus $26.97 shipping, so I will not pay.",
+        "atStep": 16
+      },
+      "steps": 16,
+      "startedAt": "2026-10-27T04:02:01.497Z",
+      "durationMs": 52554,
+      "usd": 0.07763874999999999,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793073731692.5,
+          "step": 3,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073737635.4,
+          "step": 5,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073743781.9,
+          "step": 7,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073750632,
+          "step": 9,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793073757531.5999,
+          "step": 11,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tap on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "rage_click",
+          "t": 1793073757531.5999,
+          "step": 11,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "summary": "Tried button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" 5 times (steps 3, 5, 7, 9, 11), nothing happened any time."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073764128,
+          "step": 13,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793073764130,
+          "step": 13,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 16 while checking his cart before paying, Ben left because the screen showed 3 at $101.96 plus $26.97 shipping as $128.93 total, which was wrong on the screen itself."
+    },
+    {
+      "round": "2026-10-270359-before",
+      "persona": "p12-low-end-desktop",
+      "personaName": "Grace",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows 3 at $101.96 but the total of $128.93 only adds up for one item plus shipping.",
+        "atStep": 6
+      },
+      "steps": 6,
+      "startedAt": "2026-10-27T04:02:07.889Z",
+      "durationMs": 26034,
+      "usd": 0.033184500000000006,
+      "findings": [
+        {
+          "kind": "js_error",
+          "t": 1793073741893,
+          "step": 3,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793073741893,
+          "step": 3,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "Grace left at step 6 in the cart while checking three telescopes because the cart showed 3 at $101.96 plus $26.97 shipping as $128.93, and this wrong total shows only on the screen."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "proposal": {
+    "summary": "Cart total summed each item's unit price once instead of multiplying by quantity, so 3 items showed a wrong total; the fix multiplies price units and nanos by quantity when computing the total.",
+    "files": [
+      "src/frontend/components/Cart/CartDetail.tsx",
+      "src/frontend/pages/cart/index.tsx",
+      "src/frontend/components/CartItems/CartItems.tsx",
+      "src/frontend/components/CartItems/CartItem.tsx"
+    ],
+    "edits": [
+      {
+        "file": "src/frontend/components/CartItems/CartItems.tsx",
+        "find": "  const total = useMemo<Money>(() => {\n    const nanoSum =\n      productList.reduce((acc, { product: { priceUsd: { nanos = 0 } = {} } }) => acc + Number(nanos), 0) +\n        shippingConst?.nanos || 0;\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce((acc, { product: { priceUsd: { units = 0 } = {} } }) => acc + Number(units), 0) +\n        (shippingConst?.units || 0) + nanoExceed;",
+        "replace": "  const total = useMemo<Money>(() => {\n    const nanoSum =\n      productList.reduce(\n        (acc, { quantity, product: { priceUsd: { nanos = 0 } = {} } }) => acc + Number(nanos) * quantity,\n        0\n      ) +\n        shippingConst?.nanos || 0;\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce(\n        (acc, { quantity, product: { priceUsd: { units = 0 } = {} } }) => acc + Number(units) * quantity,\n        0\n      ) +\n        (shippingConst?.units || 0) + nanoExceed;"
+      }
+    ]
+  },
+  "branch": "walkout/fix-2026-10-270421-before",
+  "commit": "8de40a629a0a6e1fb72172d713d887bf7450d561",
+  "failedEdits": [],
+  "testsPassed": null,
+  "testOutput": "",
+  "before": "2026-10-270421-before",
+  "beforeBought": 2,
+  "afterBought": 9,
+  "kept": true
+}

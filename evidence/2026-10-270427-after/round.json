@@ -1,0 +1,490 @@
+{
+  "round": "2026-10-270427-after",
+  "label": "after",
+  "shop": "otel-demo",
+  "build": "2.1.3 + fix",
+  "startedAt": "2026-10-27T04:27:54.440Z",
+  "finishedAt": "2026-10-27T04:32:54.985Z",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "bought": 9,
+  "total": 12,
+  "usd": 0.7027902500000002,
+  "runs": [
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p01-cheap-android",
+      "personaName": "Rosa",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "I added three Explorascopes twice but the cart stays empty so I can't buy them.",
+        "atStep": 20
+      },
+      "steps": 20,
+      "startedAt": "2026-10-27T04:27:54.758Z",
+      "durationMs": 118408,
+      "usd": 0.07069850000000001,
+      "findings": [
+        {
+          "kind": "slow_request",
+          "t": 1793075293122,
+          "step": null,
+          "durationMs": 28119,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 28.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075293123,
+          "step": null,
+          "durationMs": 32103,
+          "summary": "GET /images/products/RedFlashlight.jpg took 32.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075293123,
+          "step": null,
+          "durationMs": 28681,
+          "summary": "GET /images/products/TheCometBook.jpg took 28.7 s."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793075317059.6,
+          "step": 6,
+          "target": "div.sc-e8cdbf93-1.fsbWgk",
+          "summary": "Tap on div.sc-e8cdbf93-1.fsbWgk did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793075319792,
+          "step": 6,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075322535,
+          "step": 7,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "unanswered_tap",
+          "t": 1793075325172.7,
+          "step": 8,
+          "target": "button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\"",
+          "durationMs": 6785,
+          "summary": "Tap on button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\" sent POST /api/cart and nothing on the page changed until the answer came 6.8 s later."
+        },
+        {
+          "kind": "unanswered_tap",
+          "t": 1793075329106.2,
+          "step": 9,
+          "target": "button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\"",
+          "durationMs": 5007,
+          "summary": "Tap on button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\" sent POST /api/cart and nothing on the page changed until the answer came 5.0 s later."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075347063,
+          "step": 12,
+          "durationMs": 27023,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 27.0 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075347079,
+          "step": 12,
+          "durationMs": 28442,
+          "summary": "GET /images/products/TheCometBook.jpg took 28.4 s."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793075362587,
+          "step": 16,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "Rosa gave up at step 20 in the cart while trying to buy three scopes because the screen said Your shopping cart is empty after her Add To Cart taps sat with no change for about six and five seconds."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p02-slow-3g",
+      "personaName": "Tomasz",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 11
+      },
+      "steps": 11,
+      "startedAt": "2026-10-27T04:27:54.758Z",
+      "durationMs": 92675,
+      "usd": 0.037963750000000004,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793075300333.7,
+          "step": 5,
+          "target": "div.sc-e8cdbf93-1.eKIFhw",
+          "summary": "Tap on div.sc-e8cdbf93-1.eKIFhw did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793075309978,
+          "step": 6,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075310460,
+          "step": 6,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075311304,
+          "step": 7,
+          "durationMs": 34000,
+          "summary": "GET /images/products/RedFlashlight.jpg took 34.0 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075311307,
+          "step": 7,
+          "durationMs": 32740,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 32.7 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075317567,
+          "step": 8,
+          "durationMs": 38119,
+          "summary": "GET /images/products/RedFlashlight.jpg took 38.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075317801,
+          "step": 8,
+          "durationMs": 34102,
+          "summary": "GET /images/products/SolarFilter.jpg took 34.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793075317803,
+          "step": 8,
+          "durationMs": 28583,
+          "summary": "GET /api/recommendations?productIds=OLJCESPC7Z&sessionId=8ac81895-1089-4a14-9ce4-ff0755d7fbe0&currencyCode=USD took 28.6 s."
+        }
+      ],
+      "sentence": "Tomasz bought in 11 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p03-large-text",
+      "personaName": "Margaret",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 19
+      },
+      "steps": 19,
+      "startedAt": "2026-10-27T04:27:54.758Z",
+      "durationMs": 63004,
+      "usd": 0.05968275,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075308710,
+          "step": 10,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075308711,
+          "step": 10,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Margaret bought in 19 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p04-keyboard-only",
+      "personaName": "Dev",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "I could not reach the quantity selector and Add to Cart using only the keyboard so I cannot buy the three telescopes.",
+        "atStep": 25
+      },
+      "steps": 25,
+      "startedAt": "2026-10-27T04:28:57.771Z",
+      "durationMs": 101919,
+      "usd": 0.14109374999999996,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075412551,
+          "step": 20,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075412557,
+          "step": 20,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "On the product page at step 25 while trying to pick three telescopes to add to the cart, the shopper could not reach the quantity box and Add to Cart with the keyboard and stayed stuck in the suggestions below."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p05-screen-reader",
+      "personaName": "Amara",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 4
+      },
+      "steps": 4,
+      "startedAt": "2026-10-27T04:29:27.434Z",
+      "durationMs": 15283,
+      "usd": 0.017500500000000002,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075371032,
+          "step": 1,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075371036,
+          "step": 1,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Amara bought in 4 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p06-spanish",
+      "personaName": "Lucía",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 8
+      },
+      "steps": 8,
+      "startedAt": "2026-10-27T04:29:42.718Z",
+      "durationMs": 33930,
+      "usd": 0.027255,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075396774,
+          "step": 4,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075396776,
+          "step": 4,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Lucía bought in 8 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p07-tablet",
+      "personaName": "Hiro",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 7
+      },
+      "steps": 7,
+      "startedAt": "2026-10-27T04:29:53.167Z",
+      "durationMs": 29570,
+      "usd": 0.030066749999999996,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075405455,
+          "step": 3,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075405512,
+          "step": 3,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Hiro bought in 7 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p08-desktop-mouse",
+      "personaName": "Sam",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 10
+      },
+      "steps": 10,
+      "startedAt": "2026-10-27T04:30:16.649Z",
+      "durationMs": 41077,
+      "usd": 0.04997825,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075436987,
+          "step": 5,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075436988,
+          "step": 5,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Sam bought in 10 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p09-high-latency",
+      "personaName": "Kai",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 10
+      },
+      "steps": 10,
+      "startedAt": "2026-10-27T04:30:22.739Z",
+      "durationMs": 48419,
+      "usd": 0.043126,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075444094,
+          "step": 5,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075444787,
+          "step": 5,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Kai bought in 10 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p10-reduced-motion",
+      "personaName": "Noor",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 14
+      },
+      "steps": 14,
+      "startedAt": "2026-10-27T04:30:39.692Z",
+      "durationMs": 53364,
+      "usd": 0.060366500000000003,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793075472799,
+          "step": 9,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075472810,
+          "step": 9,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Noor bought in 14 steps."
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p11-colour-blind",
+      "personaName": "Ben",
+      "outcome": {
+        "kind": "step_limit",
+        "reason": "still shopping after 25 steps",
+        "atStep": 25
+      },
+      "steps": 25,
+      "startedAt": "2026-10-27T04:30:57.731Z",
+      "durationMs": 109872,
+      "usd": 0.13067425,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793075461728.4,
+          "step": 1,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "durationMs": 224,
+          "summary": "click on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 224 ms to paint (input delay 5, handlers 4, paint 215)."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075507738,
+          "step": 14,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793075507738,
+          "step": 14,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": ""
+    },
+    {
+      "round": "2026-10-270427-after",
+      "persona": "p12-low-end-desktop",
+      "personaName": "Grace",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 8
+      },
+      "steps": 8,
+      "startedAt": "2026-10-27T04:31:11.159Z",
+      "durationMs": 34967,
+      "usd": 0.03438425,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793075485603.5999,
+          "step": 3,
+          "target": "",
+          "durationMs": 224,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 179694,
+            "functionName": "N"
+          },
+          "summary": "click on the page took 224 ms to paint (input delay 8, handlers 19, paint 197); longest script 53 ms in N /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:179694 (MessagePort.onmessage)."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793075485777,
+          "step": 3,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793075485777,
+          "step": 3,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "Grace bought in 8 steps."
+    }
+  ]
+}

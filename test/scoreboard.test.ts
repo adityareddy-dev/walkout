@@ -236,7 +236,7 @@ test("screenshots of the grid and an open dialog at 1920x1080", async () => {
   await page.close();
 });
 
-test("why they left splits screen and telemetry causes", async () => {
+test("why they left names the unanswered taps before a walkout", async () => {
   const { whyTheyLeft } = await import("../src/scoreboard/page.ts");
   const run = (kind: string, atStep: number, findings: unknown[]) => ({ outcome: { kind, reason: "", atStep }, sentence: null, findings, usd: 0, observation: null, hasShots: false, steps: [] });
   const round = {
@@ -249,6 +249,6 @@ test("why they left splits screen and telemetry causes", async () => {
     },
   };
   const html = whyTheyLeft(round as never);
-  assert.match(html, /2 left over something they saw on the screen/);
-  assert.match(html, /1 left right after taps that did nothing \(&quot;Add To Cart&quot;\)/);
+  assert.match(html, /3 walked out, each says why/);
+  assert.match(html, /1 of them had a tap go unanswered in their last steps before leaving \(&quot;Add To Cart&quot;\)/);
 });

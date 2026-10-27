@@ -1,0 +1,231 @@
+{
+  "persona": {
+    "card": {
+      "id": "p12-low-end-desktop",
+      "name": "Grace",
+      "life": "Student on an old hand-me-down desktop that takes ages to do anything.",
+      "constraints": [
+        "CPU about six times slower than a new laptop",
+        "Small 1366 by 768 screen"
+      ],
+      "patience": "Waits for slow pages, gives up when clicks seem to be ignored."
+    },
+    "device": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "locale": "en-US",
+      "timezoneId": "America/Chicago",
+      "cpuThrottle": 6
+    },
+    "observation": "screenshot"
+  },
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "steps": [
+    {
+      "index": 1,
+      "tObserve": 1793073732332,
+      "tObserved": 1793073732803,
+      "tAct": 1793073733701,
+      "tSettled": 1793073735409,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-01.png",
+      "marked": "shots/step-01-marked.png",
+      "tree": null,
+      "action": {
+        "action": "click",
+        "target": "3",
+        "why": "I need to buy telescopes, so I'll start shopping."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2544,
+        "cachedTokens": 0,
+        "outputTokens": 122,
+        "usd": 0.0036985,
+        "latencyMs": 897
+      },
+      "targetLabel": "link \"Go Shopping\"",
+      "point": {
+        "x": 180,
+        "y": 632
+      },
+      "result": "the page changed to \"Otel Demo - Home\""
+    },
+    {
+      "index": 2,
+      "tObserve": 1793073735420,
+      "tObserved": 1793073736494,
+      "tAct": 1793073738000,
+      "tSettled": 1793073739719,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-02.png",
+      "marked": "shots/step-02-marked.png",
+      "tree": null,
+      "action": {
+        "action": "scroll",
+        "direction": "down",
+        "why": "I don't see the Explorascopes I need, so I'll scroll to look for more products."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2607,
+        "cachedTokens": 0,
+        "outputTokens": 313,
+        "usd": 0.004589,
+        "latencyMs": 1504
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 3,
+      "tObserve": 1793073739726,
+      "tObserved": 1793073740366,
+      "tAct": 1793073741619,
+      "tSettled": 1793073744092,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-03.png",
+      "marked": "shots/step-03-marked.png",
+      "tree": null,
+      "action": {
+        "action": "click",
+        "target": "7",
+        "why": "I found the National Park Foundation Explorascope, so I'll open it."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2647,
+        "cachedTokens": 0,
+        "outputTokens": 260,
+        "usd": 0.00441375,
+        "latencyMs": 1252
+      },
+      "targetLabel": "link \"National Park Foundation Explorascope $ 101.96\"",
+      "point": {
+        "x": 311,
+        "y": 767
+      },
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 4,
+      "tObserve": 1793073744105,
+      "tObserved": 1793073744298,
+      "tAct": 1793073745418,
+      "tSettled": 1793073746847,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-04.png",
+      "marked": "shots/step-04-marked.png",
+      "tree": null,
+      "action": {
+        "action": "select",
+        "target": "3",
+        "value": "3",
+        "why": "I need three for my kids, so I'll set quantity to 3."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2696,
+        "cachedTokens": 0,
+        "outputTokens": 168,
+        "usd": 0.004084,
+        "latencyMs": 1120
+      },
+      "targetLabel": "dropdown \"1\", choices: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+      "point": {
+        "x": 664,
+        "y": 570
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 5,
+      "tObserve": 1793073746855,
+      "tObserved": 1793073747123,
+      "tAct": 1793073747913,
+      "tSettled": 1793073751071,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-05.png",
+      "marked": "shots/step-05-marked.png",
+      "tree": null,
+      "action": {
+        "action": "click",
+        "target": "4",
+        "why": "I set quantity to 3 at $101.96 each, so now I'll add to cart."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2730,
+        "cachedTokens": 0,
+        "outputTokens": 141,
+        "usd": 0.00401175,
+        "latencyMs": 789
+      },
+      "targetLabel": "button \"Add To Cart\"",
+      "point": {
+        "x": 724,
+        "y": 639
+      },
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 6,
+      "tObserve": 1793073751074,
+      "tObserved": 1793073751257,
+      "tAct": 1793073753583,
+      "tSettled": 1793073753583,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-06.png",
+      "marked": "shots/step-06-marked.png",
+      "tree": null,
+      "action": {
+        "action": "give_up",
+        "reason": "The cart shows 3 at $101.96 but the total of $128.93 only adds up for one item plus shipping.",
+        "why": "I see 3 items at $101.96 plus $26.97 shipping totals $128.93 which does not add up, so I will leave."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2733,
+        "cachedTokens": 0,
+        "outputTokens": 548,
+        "usd": 0.00574525,
+        "latencyMs": 2324
+      }
+    }
+  ],
+  "outcome": {
+    "kind": "gave_up",
+    "reason": "The cart shows 3 at $101.96 but the total of $128.93 only adds up for one item plus shipping.",
+    "atStep": 6
+  },
+  "findings": [
+    {
+      "kind": "js_error",
+      "t": 1793073741893,
+      "step": 3,
+      "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "kind": "failed_request",
+      "t": 1793073741893,
+      "step": 3,
+      "summary": "GET /images/products/undefined returned 404."
+    }
+  ],
+  "sentence": "Grace left at step 6 in the cart while checking three telescopes because the cart showed 3 at $101.96 plus $26.97 shipping as $128.93, and this wrong total shows only on the screen.",
+  "usd": 0.026542250000000003,
+  "startedAt": "2026-10-27T04:02:07.889Z",
+  "durationMs": 26034
+}

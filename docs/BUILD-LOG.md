@@ -85,3 +85,23 @@ Cost so far: 2.7558 USD.
 - M8 drafts: `docs/demo/storyboard.md` and `docs/demo/submission-draft.md`, for the CEO's read, not sent.
 
 Cost so far: 4.2825 USD.
+
+## 2026-10-27 00:15 CDT, the final run and checkable evidence (M9, the CEO's changes)
+
+One complete run, same twelve personas, at commit e54f08b, 2026-10-26 23:53 to 2026-10-27 00:08 CDT. Every number in the README, the storyboard and the submission draft comes from it.
+
+- Before, `2026-10-270453-before` (2.1.3): 2 of 12 bought (Amara, screen reader, and Sam, desktop, who paid $128.93 without noticing). 10 left: nine over the wrong total (Rosa, Tomasz, Margaret, Lucía, Hiro, Kai, Noor, Ben, Grace) and Dev, keyboard only, who never reached the quantity box. 2 + 9 + 1 = 12. 0.71 USD with the sentences and the fix calls.
+- Fix: the same quantity patch in `CartItems.tsx`. Gate printed: "this shop has no test command, so the gate is the frontend's type check and lint in next build, inside the 2.1.3 frontend image build. It passed."
+- After, `2026-10-270458-after` (2.1.3 with the patch): 8 of 12 bought. 4 left: Rosa (Add To Cart unanswered for 6.4 s and 3.5 s, then 10.4 s and 7.6 s, she tapped twice each time, saw an empty cart and then six telescopes), Margaret (200 percent zoom, ran out of steps scrolling the cart), Hiro (tablet, couldn't find the telescope after a slow Go Shopping tap) and Dev. 8 + 4 = 12. 0.69 USD.
+- Clean, `2026-10-270503-clean` (3.1.0): 9 of 12 bought. Nobody called the right total wrong. 3 left: Dev, Sam ("could not find the cart totals to verify") and Ben (ran out of steps). 9 + 3 = 12. 0.77 USD.
+- The scoreboard line now reads "10 walked out, each says why in their own words on the tile. 2 of them had a tap go unanswered in their last steps before leaving". It no longer splits screen and telemetry walkouts into exclusive counts. Rosa's before run had both, an unanswered Add To Cart at step 9 and the wrong total at step 11.
+
+Evidence:
+
+- `spend/meta.jsonl` is now committed with every call, 1,000+ lines. Before this it had only the first 8, cause later commits staged files by name and left the ledger out. `npx tsx src/cli.ts spend` adds it up per round.
+- `evidence/<round>/` has `round.json`, each shopper's `run.json` (every step, the model's usage per step, findings, sentence) and the fix's `fix.json` and `fix.diff` for every round tonight (`scripts/save-evidence.sh`). Screenshots and raw telemetry stay in `runs/` on the VPS, about 300 MB.
+
+Setup on a fresh machine: `shops/otel-demo/stack.sh setup` (also run by `up` and so by `npm run demo`) shallow-clones the demo at tag 2.1.3 into `shops/otel-demo/src` and archives tag 3.1.0 into `shops/otel-demo/stack`. No local paths. Images come from the registries when missing. I tested setup in a fresh clone of this repo (1.3 s, tag commit 91356a39). The full `up` on a clean machine wasn't tested, cause the stack here is already up under the same project name.
+
+The shop has no tests, so the fix gate for this shop is the frontend type check and lint that `next build` runs inside the image build ("Linting and checking validity of types" in the build log). A patch that fails it is dropped and there is no after round.
+Cost so far: 6.4560 USD.

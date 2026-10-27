@@ -1,0 +1,397 @@
+{
+  "round": "2026-10-270409-clean",
+  "label": "clean",
+  "shop": "otel-demo",
+  "build": "3.1.0",
+  "startedAt": "2026-10-27T04:09:54.156Z",
+  "finishedAt": "2026-10-27T04:13:54.038Z",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "bought": 11,
+  "total": 12,
+  "usd": 0.7501114999999998,
+  "runs": [
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p01-cheap-android",
+      "personaName": "Rosa",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 8
+      },
+      "steps": 8,
+      "startedAt": "2026-10-27T04:09:54.359Z",
+      "durationMs": 32482,
+      "usd": 0.024763,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793074201182.4001,
+          "step": 1,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "durationMs": 232,
+          "code": {
+            "url": "http://localhost:8082/_next/static/chunks/188_i6krcggya.js",
+            "line": 1,
+            "column": 225721,
+            "functionName": "fW"
+          },
+          "summary": "click on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" took 232 ms to paint (input delay 153, handlers 5, paint 74); longest script 41 ms in fW /_next/static/chunks/188_i6krcggya.js:1:225721 (DIV#__next.onpointerover)."
+        }
+      ],
+      "sentence": "Rosa bought in 8 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p02-slow-3g",
+      "personaName": "Tomasz",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 12
+      },
+      "steps": 12,
+      "startedAt": "2026-10-27T04:09:54.360Z",
+      "durationMs": 60646,
+      "usd": 0.040285749999999995,
+      "findings": [
+        {
+          "kind": "slow_request",
+          "t": 1793074206677,
+          "step": null,
+          "durationMs": 26142,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 26.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793074206678,
+          "step": null,
+          "durationMs": 26141,
+          "summary": "GET /images/products/TheCometBook.jpg took 26.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793074206682,
+          "step": null,
+          "durationMs": 26139,
+          "summary": "GET /images/products/RedFlashlight.jpg took 26.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793074206682,
+          "step": null,
+          "durationMs": 24535,
+          "summary": "GET /images/products/NationalParkFoundationExplorascope.jpg took 24.5 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793074206682,
+          "step": null,
+          "durationMs": 23884,
+          "summary": "GET /images/products/LensCleaningKit.jpg took 23.9 s."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793074215954.5,
+          "step": 3,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793074221663.2,
+          "step": 5,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "rage_click",
+          "t": 1793074221663.2,
+          "step": 5,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tried button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" 2 times (steps 3, 5), nothing happened any time."
+        }
+      ],
+      "sentence": "Tomasz bought in 12 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p03-large-text",
+      "personaName": "Margaret",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 19
+      },
+      "steps": 19,
+      "startedAt": "2026-10-27T04:09:54.360Z",
+      "durationMs": 59305,
+      "usd": 0.058833250000000004,
+      "findings": [],
+      "sentence": "Margaret bought in 19 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p04-keyboard-only",
+      "personaName": "Dev",
+      "outcome": {
+        "kind": "step_limit",
+        "reason": "still shopping after 25 steps",
+        "atStep": 25
+      },
+      "steps": 25,
+      "startedAt": "2026-10-27T04:10:26.843Z",
+      "durationMs": 106365,
+      "usd": 0.15219975000000002,
+      "findings": [],
+      "sentence": "At step 25 while trying to confirm the order after paying, the shopper saw only the home page with no confirmation and no visible keyboard focus, as shown on the screen."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p05-screen-reader",
+      "personaName": "Amara",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 4
+      },
+      "steps": 4,
+      "startedAt": "2026-10-27T04:10:53.669Z",
+      "durationMs": 17007,
+      "usd": 0.017589999999999998,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793074257644.3,
+          "step": 1,
+          "target": "",
+          "durationMs": 208,
+          "code": {
+            "url": "http://localhost:8082/_next/static/chunks/188_i6krcggya.js",
+            "line": 1,
+            "column": 236714,
+            "functionName": "O"
+          },
+          "summary": "click on the page took 208 ms to paint (input delay 10, handlers 15, paint 183); longest script 7 ms in O /_next/static/chunks/188_i6krcggya.js:1:236714 (MessagePort.onmessage)."
+        }
+      ],
+      "sentence": "Amara bought in 4 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p06-spanish",
+      "personaName": "Lucía",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 14
+      },
+      "steps": 14,
+      "startedAt": "2026-10-27T04:10:55.024Z",
+      "durationMs": 52270,
+      "usd": 0.05090075,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793074268908.8,
+          "step": 3,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        }
+      ],
+      "sentence": "Lucía bought in 14 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p07-tablet",
+      "personaName": "Hiro",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 23
+      },
+      "steps": 23,
+      "startedAt": "2026-10-27T04:11:10.679Z",
+      "durationMs": 84051,
+      "usd": 0.10775975000000002,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793074289348.1,
+          "step": 5,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793074323177.7002,
+          "step": 15,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "rage_click",
+          "t": 1793074323177.7002,
+          "step": 15,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tried button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" 2 times (steps 5, 15), nothing happened any time."
+        }
+      ],
+      "sentence": "Hiro bought in 23 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p08-desktop-mouse",
+      "personaName": "Sam",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 14
+      },
+      "steps": 14,
+      "startedAt": "2026-10-27T04:11:47.297Z",
+      "durationMs": 49411,
+      "usd": 0.0702635,
+      "findings": [],
+      "sentence": "Sam bought in 14 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p09-high-latency",
+      "personaName": "Kai",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 10
+      },
+      "steps": 10,
+      "startedAt": "2026-10-27T04:12:13.212Z",
+      "durationMs": 48197,
+      "usd": 0.04389049999999999,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793074349148.6,
+          "step": 3,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        }
+      ],
+      "sentence": "Kai bought in 10 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p10-reduced-motion",
+      "personaName": "Noor",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 10
+      },
+      "steps": 10,
+      "startedAt": "2026-10-27T04:12:34.735Z",
+      "durationMs": 35150,
+      "usd": 0.04206725,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793074364420.9,
+          "step": 3,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        }
+      ],
+      "sentence": "Noor bought in 10 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p11-colour-blind",
+      "personaName": "Ben",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 22
+      },
+      "steps": 22,
+      "startedAt": "2026-10-27T04:12:36.723Z",
+      "durationMs": 74209,
+      "usd": 0.09799775000000002,
+      "findings": [
+        {
+          "kind": "dead_tap",
+          "t": 1793074367490.7,
+          "step": 3,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793074373958,
+          "step": 5,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793074380407.2,
+          "step": 7,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793074386569.5,
+          "step": 9,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793074392658.8,
+          "step": 11,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tap on button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "rage_click",
+          "t": 1793074392658.8,
+          "step": 11,
+          "target": "button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\"",
+          "summary": "Tried button.Button-sc-3e9ac6d4-0.Banner-styled__GoShoppingButton-sc-69914fa1-5 \"Go Shopping\" 5 times (steps 3, 5, 7, 9, 11), nothing happened any time."
+        }
+      ],
+      "sentence": "Ben bought in 22 steps."
+    },
+    {
+      "round": "2026-10-270409-clean",
+      "persona": "p12-low-end-desktop",
+      "personaName": "Grace",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 10
+      },
+      "steps": 10,
+      "startedAt": "2026-10-27T04:13:01.413Z",
+      "durationMs": 40512,
+      "usd": 0.04356025,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793074401430.5,
+          "step": 5,
+          "target": "",
+          "durationMs": 208,
+          "code": {
+            "url": "http://localhost:8082/_next/static/chunks/188_i6krcggya.js",
+            "line": 1,
+            "column": 236714,
+            "functionName": "O"
+          },
+          "summary": "click on the page took 208 ms to paint (input delay 4, handlers 21, paint 183); longest script 37 ms in O /_next/static/chunks/188_i6krcggya.js:1:236714 (MessagePort.onmessage)."
+        }
+      ],
+      "sentence": "Grace bought in 10 steps."
+    }
+  ]
+}

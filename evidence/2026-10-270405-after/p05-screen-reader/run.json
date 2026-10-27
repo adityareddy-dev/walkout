@@ -1,0 +1,164 @@
+{
+  "persona": {
+    "card": {
+      "id": "p05-screen-reader",
+      "name": "Amara",
+      "life": "Law student who is blind and shops with a screen reader. She hears the page's accessibility tree, never sees it.",
+      "constraints": [
+        "No screenshots, only the accessibility tree",
+        "Can only use controls that have a role and a name"
+      ],
+      "patience": "Expert user. Gives up when a control has no name or an important step is not announced."
+    },
+    "device": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "locale": "en-US",
+      "timezoneId": "America/Chicago",
+      "cpuThrottle": 1
+    },
+    "observation": "a11y-tree"
+  },
+  "shop": "otel-demo",
+  "build": "2.1.3 + fix",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "steps": [
+    {
+      "index": 1,
+      "tObserve": 1793073992207,
+      "tObserved": 1793073992406,
+      "tAct": 1793073993054,
+      "tSettled": 1793073995165,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-01.png",
+      "marked": null,
+      "tree": "shots/step-01-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e94",
+        "why": "I see the National Park Foundation Explorascope in Hot Products, so I'll open it to buy three."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2667,
+        "cachedTokens": 0,
+        "outputTokens": 146,
+        "usd": 0.00395425,
+        "latencyMs": 647
+      },
+      "targetLabel": "e94",
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 2,
+      "tObserve": 1793073995169,
+      "tObserved": 1793073995247,
+      "tAct": 1793073996013,
+      "tSettled": 1793073997329,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-02.png",
+      "marked": null,
+      "tree": "shots/step-02-tree.txt",
+      "action": {
+        "action": "select",
+        "target": "e134",
+        "value": "3",
+        "why": "I need three, so I'll set the quantity to 3."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2481,
+        "cachedTokens": 0,
+        "outputTokens": 174,
+        "usd": 0.00384075,
+        "latencyMs": 766
+      },
+      "targetLabel": "e134",
+      "result": "the screen changed"
+    },
+    {
+      "index": 3,
+      "tObserve": 1793073997333,
+      "tObserved": 1793073997415,
+      "tAct": 1793073997996,
+      "tSettled": 1793074000331,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-03.png",
+      "marked": null,
+      "tree": "shots/step-03-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e136",
+        "why": "I set quantity to 3, price $101.96 each, now I'll add to cart.",
+        "note": "Explorascope $101.96 each, qty 3 selected"
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2513,
+        "cachedTokens": 0,
+        "outputTokens": 141,
+        "usd": 0.0037405,
+        "latencyMs": 580
+      },
+      "targetLabel": "e136",
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 4,
+      "tObserve": 1793074000336,
+      "tObserved": 1793074000475,
+      "tAct": 1793074002269,
+      "tSettled": 1793074005904,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-04.png",
+      "marked": null,
+      "tree": "shots/step-04-tree.txt",
+      "action": {
+        "action": "click",
+        "target": "e266",
+        "why": "I see quantity 3, price $101.96 each, shipping $26.97, total $332.85 which adds up (101.96*3+26.97=332.85), so I'll place the order."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3227,
+        "cachedTokens": 0,
+        "outputTokens": 525,
+        "usd": 0.006265,
+        "latencyMs": 1790
+      },
+      "targetLabel": "e266"
+    }
+  ],
+  "outcome": {
+    "kind": "bought",
+    "reason": "order placed",
+    "atStep": 4
+  },
+  "findings": [
+    {
+      "kind": "failed_request",
+      "t": 1793073993108,
+      "step": 1,
+      "summary": "GET /images/products/undefined returned 404."
+    },
+    {
+      "kind": "js_error",
+      "t": 1793073993113,
+      "step": 1,
+      "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "sentence": "Amara bought in 4 steps.",
+  "usd": 0.0178005,
+  "startedAt": "2026-10-27T04:06:29.619Z",
+  "durationMs": 16736
+}
