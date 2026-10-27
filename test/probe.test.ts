@@ -33,12 +33,13 @@ for (const id of ["p08", "p01", "p05"]) {
     const server = await serveFixture(join(import.meta.dirname, "fixtures", "taps"));
     const browser = await chromium.launch();
     try {
-      const shop = { id: "fixture", name: "Tap fixture", url: server.url, goal: "test", successText: "your order is placed" } as Shop;
+      const shop = { id: "fixture", name: "Tap fixture", goal: "test", successText: "your order is placed" } as Shop;
       const rec = await runPersona(browser, personaById(id), {
         round: "test",
         roundDir: mkdtempSync(join(tmpdir(), "walkout-probe-")),
         shop,
         build: "fixture",
+        url: server.url,
         probePath: PROBE,
         maxSteps: PLAN.length,
         decideFn: scripted,

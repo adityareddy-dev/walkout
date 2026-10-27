@@ -17,3 +17,13 @@ The newest OpenTelemetry JS packages (core 3.0, instrumentations 0.300) don't in
 `test/probe.test.ts` drives a small test page (`test/fixtures/taps`, a test page, not the shop) with a scripted shopper and checks dead taps, repeated taps, the slow tap's script line and an error's line, for a mouse, a touch and a screen reader persona. No model calls.
 
 Cost so far: 0.00 USD.
+
+## 2026-10-26 22:14 CDT, the shopper's loop, live (M3)
+
+Each step the model gets the persona card, the goal, the last eight things it did with what happened after each, and what that person can perceive: a screenshot with numbered marks for the pointer shoppers, a plain screenshot for the keyboard shopper, the accessibility tree with refs for the screen reader shopper. It answers with one `act` tool call (click, type, press, scroll, wait, back, give up, done). Mark labels use only text a sighted person can see, never aria-label. An order counts only when the shop shows it, not when the model says so.
+
+First live calls, on the test page: Muse Spark 1.3 took the screenshot and answered with tool calls on the first try for all three kinds of shopper. A desktop step is about 2,700 input and 150 to 370 output tokens, about 0.004 USD and 1.5 to 2.4 s. A screen reader step is about 1,200 input tokens. So a 25-step run costs at most about 0.10 USD and a round of twelve about 1 USD.
+
+Also in: the walkout sentence (M5, `src/explain.ts`), the fix step (M6, `src/fix.ts`: Spark picks the files, Wonder writes exact find and replace edits, they go on a branch of the shop's source), the round runner with a spend check before each round, and the CLI.
+
+Cost so far: 0.03 USD.

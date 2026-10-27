@@ -6,30 +6,35 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 export interface ShopBuild {
-  // Label shown on the scoreboard, usually the commit.
+  // Label shown on the scoreboard, usually the release or commit.
   label: string;
   commit: string;
+  url: string; // where shoppers start on this build
 }
 
 export interface Shop {
   id: string;
   name: string;
   upstream: string; // repository URL
-  url: string; // where shoppers start
   goal: string;
   // An order counts as placed when the page URL matches successUrl or the
   // visible text matches successText (regular expressions, case-insensitive).
   successUrl?: string;
   successText?: string;
-  defect: ShopBuild & { issue: string; summary: string };
+  defect: ShopBuild & { issue: string; summary: string; reproduce: string };
   clean: ShopBuild;
-  // Shell commands, run from the shop's source checkout.
+  // The shop's source at the defect commit, relative to the repo root. The
+  // fix step patches it on a branch.
   sourceDir: string;
-  startCmd: string;
-  stopCmd: string;
-  testCmd?: string;
   // Source files the fix step may read and patch, relative to sourceDir.
   sourceGlobs: string[];
+  // Shell commands, run from the repo root. startCmd brings up the defect and
+  // clean builds, fixBuildCmd builds the patched source and serves it at fixUrl.
+  startCmd: string;
+  stopCmd: string;
+  fixBuildCmd: string;
+  fixUrl: string;
+  testCmd?: string; // the shop's own tests, run from sourceDir
 }
 
 export const ROOT = join(import.meta.dirname, "..");

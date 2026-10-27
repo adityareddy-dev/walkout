@@ -17,6 +17,7 @@ export interface RunOptions {
   roundDir: string;
   shop: Shop;
   build: string;
+  url: string; // where this build's shop starts
   probePath: string;
   maxSteps: number;
   decideFn?: typeof decide; // swapped out in tests
@@ -215,7 +216,7 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
     compositorCtx = await browser.newContext({ viewport: { width: vw, height: vh }, deviceScaleFactor: 1 });
     const compositor = await compositorCtx.newPage();
 
-    await page.goto(opts.shop.url, { waitUntil: "domcontentloaded", timeout: 60_000 }).catch(() => {});
+    await page.goto(opts.url, { waitUntil: "domcontentloaded", timeout: 60_000 }).catch(() => {});
     await settle(page);
 
     let prevPng: Buffer | null = null;
