@@ -61,3 +61,16 @@ Changes to the loop from set B:
 - Scoreboard for before and after: `runs/board/index.html`.
 
 Cost so far: 2.4377 USD.
+
+## 2026-10-26 23:25 CDT, the walkouts only telemetry sees, and the keyboard check
+
+The CEO asked for both causes in the story: the wrong total only shows on the screen, the slow-phone walkouts are what telemetry ties to taps.
+
+- With the `/api/`-quiet wait nobody saw the slow-phone failures, cause every screenshot came after the page caught up. Real shoppers on slow phones don't wait for that. Rosa now matches the day-one Rosa (DevTools Slow 3G with a 2 s round trip, 4x CPU) and looks at the screen 3 s after each tap (`glanceMs`). The other eleven keep the `/api/`-quiet wait.
+- The M4 dead-tap rule counted any request as an answer, so an Add To Cart that sends `POST /api/cart` and then shows nothing for seconds never counted. New finding `unanswered_tap`: the tap sent an `/api/` request, nothing on the page changed, and the answer took over 1.5 s or never came.
+- Also fixed: a link to an anchor on the same page (Go Shopping, `href="#hot-products"`) answers by scrolling, which changes no DOM. The probe called that a dead tap in most runs on both shops. A scroll now counts as an answer.
+- Rosa x5 on the defect shop (rounds `rosa-x5-a` to `e`, 0.26 USD): Add To Cart went unanswered in 5 of 5 runs, for 2.0 to 8.9 s. Two runs walked out over it ("I tapped Add To Cart twice and nothing happened, so the site seems broken"), one because the cart never loaded, and two over the wrong total. In one of those the double tap had put six in the cart, the day-one 6-in-cart walkout again.
+- Scoreboard: a "Why they left" line splits the walkouts into the ones who left over something on the screen and the ones who left right after taps that did nothing, which only telemetry shows. `scripts/rederive.ts` recomputes findings from saved telemetry without model calls.
+- Keyboard-only (Dev) ran out of steps on 2.1.3, on the patched 2.1.3 and on 3.1.0. On 3.1.0 he paid at step 19 but pressed Enter on what was most likely Continue Shopping, cause he couldn't see where focus was. By hand: both releases set `outline: none` on the shared Button (`src/frontend/components/Button/Button.tsx` line 12) with no focus style to replace it. A keyboard-focused Go Shopping button on 3.1.0 is pixel for pixel the same as an unfocused one (`tmp/focus-check.mjs`). So that walkout is a real second defect, missing focus indicators, on both releases. It is not the cart bug.
+
+Cost so far: 2.7558 USD.
