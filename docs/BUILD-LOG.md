@@ -56,3 +56,8 @@ Changes to the loop from set B:
 - The keyboard-only shopper never reached the quantity box and Add To Cart: 23 steps of Tab, then gave up. Worth checking by hand before it goes in the story.
 - The reduced-motion shopper paid $128.93 for three without noticing. One of twelve missed the defect.
 - The fix (M6): Spark picked four cart files, Wonder wrote the patch in one call (0.033 USD). It multiplies units and nanos by quantity in `CartItems.tsx`, the same shape as upstream #2660. It went on branch `walkout/fix-2026-10-270359-before` of the 2.1.3 source. The frontend image rebuilt in about 75 s with the npm layer cached, and the patched shop was serving on :8080 2 min 10 s after the patch came back.
+- After, on the patched 2.1.3 (round `2026-10-270405-after`): 11 of 12 bought, 0.73 USD. The fix is kept. The keyboard-only shopper still ran out of steps.
+- Clean 3.1.0 (round `2026-10-270409-clean`, 23:09 to 23:13 CDT): 11 of 12 bought, 0.75 USD. No shopper flagged a right total, so no false alarms. The keyboard-only shopper ran out of steps here too, so that one is not the cart defect.
+- Scoreboard for before and after: `runs/board/index.html`.
+
+Cost so far: 2.4377 USD.
