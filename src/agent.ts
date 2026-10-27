@@ -24,9 +24,9 @@ export interface Memory {
 }
 
 const ACTIONS: Record<Persona["observation"], string[]> = {
-  screenshot: ["click", "type", "scroll", "wait", "back", "give_up", "done"],
+  screenshot: ["click", "select", "type", "scroll", "wait", "back", "give_up", "done"],
   keyboard: ["press", "type", "wait", "back", "give_up", "done"],
-  "a11y-tree": ["click", "type", "press", "wait", "back", "give_up", "done"],
+  "a11y-tree": ["click", "select", "type", "press", "wait", "back", "give_up", "done"],
 };
 
 function actTool(persona: Persona): Tool {
@@ -43,9 +43,10 @@ function actTool(persona: Persona): Tool {
             type: "string",
             description:
               persona.observation === "a11y-tree"
-                ? "For click and type: the ref of the element in the accessibility tree, like e12."
-                : "For click and type: the number on the mark, like 7.",
+                ? "For click, select and type: the ref of the element in the accessibility tree, like e12."
+                : "For click, select and type: the number on the mark, like 7.",
           },
+          value: { type: "string", description: "For select: the choice to pick in the dropdown, as written in its list of choices." },
           text: { type: "string", description: "For type: the text to type." },
           submit: { type: "boolean", description: "For type: press Enter after typing." },
           key: { type: "string", description: "For press: Tab, Shift+Tab, Enter, Space, ArrowDown, ArrowUp, Escape, PageDown." },
@@ -53,6 +54,7 @@ function actTool(persona: Persona): Tool {
           direction: { type: "string", enum: ["up", "down"], description: "For scroll." },
           reason: { type: "string", description: "For give_up: why you are leaving the shop, in one sentence." },
           why: { type: "string", description: "One short first-person line: what you see and why you do this." },
+          note: { type: "string", description: "Optional: anything on this screen you want to remember later, like prices." },
         },
         required: ["action", "why"],
       },
@@ -76,6 +78,7 @@ function systemPrompt(persona: Persona, goal: string): string {
     `Your patience: ${c.patience}`,
     `Your goal on this shop: ${goal}`,
     how[persona.observation],
+    "You can add a short note to any action to remember what you saw, like prices. Your notes come back to you with your steps.",
     "Behave as this real person would, with their patience. Use only what is on the screen now and what you remember doing. If a control does not respond, you may try again, but a real person soon assumes the site is broken and leaves. When you would leave, use give_up with the reason in one plain sentence. Use done only when the shop shows that your order is placed.",
     "Call the act tool exactly once. If you cannot call tools, reply with only a JSON object with the same fields.",
   ].join("\n\n");
@@ -83,16 +86,17 @@ function systemPrompt(persona: Persona, goal: string): string {
 
 function memoryText(memory: Memory[]): string {
   if (!memory.length) return "You just opened the shop.";
-  const last = memory.slice(-8);
+  const last = memory.slice(-12);
   return (
     "What you did so far:\n" +
     last
       .map((m) => {
         const a = m.action as Record<string, unknown>;
-        const what = [a.action, a.target && `target ${a.target}`, a.key && `key ${a.key}${a.times ? ` x${a.times}` : ""}`, a.text && `"${a.text}"`, a.direction]
+        const what = [a.action, a.target && `target ${a.target}`, a.key && `key ${a.key}${a.times ? ` x${a.times}` : ""}`, a.value && `choice "${a.value}"`, a.text && `"${a.text}"`, a.direction]
           .filter(Boolean)
           .join(" ");
-        return `${m.step}. ${what}: ${m.result}`;
+        const note = a.note ? ` (your note: ${a.note})` : "";
+        return `${m.step}. ${what}. You thought: ${a.why ?? ""}. Then: ${m.result}${note}`;
       })
       .join("\n")
   );
@@ -140,6 +144,12 @@ export async function decide(
 
 function normalise(o: Record<string, unknown>, persona: Persona): Action {
   const why = String(o.why ?? o.reason ?? "").slice(0, 300);
+  const note = o.note ? String(o.note).slice(0, 200) : undefined;
+  const a = normaliseKind(o, persona, why);
+  return note ? ({ ...a, note } as Action) : a;
+}
+
+function normaliseKind(o: Record<string, unknown>, persona: Persona, why: string): Action {
   const allowed = ACTIONS[persona.observation];
   const kind = String(o.action ?? "");
   if (!allowed.includes(kind)) {
@@ -149,6 +159,8 @@ function normalise(o: Record<string, unknown>, persona: Persona): Action {
   switch (kind) {
     case "click":
       return target ? { action: "click", target, why } : { action: "wait", why: "(click without a target) " + why };
+    case "select":
+      return target && o.value != null ? { action: "select", target, value: String(o.value), why } : { action: "wait", why: "(select without a target or choice) " + why };
     case "type":
       return { action: "type", target, text: String(o.text ?? ""), submit: Boolean(o.submit), why };
     case "press": {

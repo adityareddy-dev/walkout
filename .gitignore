@@ -4,3 +4,4 @@ runs/
 shops/*/src/
 .env
 tmp/
+shops/*/stack/

@@ -12,8 +12,8 @@ export const EXPLAIN_MODEL = process.env.WALKOUT_EXPLAIN_MODEL ?? "muse-spark-1.
 function stepLine(run: RunRecord, i: number): string {
   const s = run.steps[i];
   const a = s.action as Record<string, unknown>;
-  const what = [a.action, s.targetLabel && `on ${s.targetLabel}`, a.key && `key ${a.key}`, a.text && `"${a.text}"`, a.direction].filter(Boolean).join(" ");
-  return `${s.index}. [${s.title}] ${what}. Thought: ${a.why ?? ""}${a.reason ? ` Reason: ${a.reason}` : ""}${s.result ? `. Then: ${s.result}` : ""}${s.actionError ? `. Browser: ${s.actionError}` : ""}`;
+  const what = [a.action, s.targetLabel && `on ${s.targetLabel}`, a.key && `key ${a.key}`, a.value && `choice "${a.value}"`, a.text && `"${a.text}"`, a.direction].filter(Boolean).join(" ");
+  return `${s.index}. [${s.title}] ${what}. Thought: ${a.why ?? ""}${a.reason ? ` Reason: ${a.reason}` : ""}${a.note ? ` Note: ${a.note}` : ""}${s.result ? `. Then: ${s.result}` : ""}${s.actionError ? `. Browser: ${s.actionError}` : ""}`;
 }
 
 function findingLine(f: Finding): string {
@@ -57,7 +57,7 @@ export async function explainWalkout(run: RunRecord, runDir: string, purpose: st
     {
       role: "system",
       content:
-        "You explain to a shop owner why one customer left without buying. Write exactly one plain sentence of at most 40 words. Name the moment (the step and what the shopper was trying to do) and the cause, using the telemetry when it shows one. If a finding gives a code location, name the file and line. No jargon a shop owner would not know, no advice, no preamble, no quotes around the sentence.",
+        "You explain to a shop owner why one customer left without buying. Write exactly one plain sentence of at most 40 words. Name the moment (the step and what the shopper was trying to do), what they saw on the screen that made them leave, and the cause behind it when the telemetry shows one (a tap that did nothing, a slow tap, an error). If a finding gives a code location, name the file and line. Some causes show only on the screen, like a wrong price; say so plainly then. No jargon a shop owner would not know, no advice, no preamble, no quotes around the sentence.",
     },
     { role: "user", content: parts },
   ];

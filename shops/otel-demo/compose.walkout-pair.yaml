@@ -1,0 +1,24 @@
+# Two shops on the same 3.1.0 backends.
+# :8080 serves the 2.1.3 release frontend, the last release before fix
+# 3e7498d (#2660), so the defect shop sits at the origin it was built for.
+# :8082 serves the fixed 3.1.0 frontend (its image loader uses relative URLs
+# since 7c337ba, so the port does not change what it shows).
+services:
+  frontend:
+    image: ghcr.io/open-telemetry/demo:2.1.3-frontend
+  frontend-clean:
+    extends: { file: compose.yaml, service: frontend }
+    image: ghcr.io/open-telemetry/demo:3.1.0-frontend
+    container_name: frontend-clean
+    environment:
+      - OTEL_SERVICE_NAME=frontend-clean
+  frontend-proxy-clean:
+    extends: { file: compose.yaml, service: frontend-proxy }
+    container_name: frontend-proxy-clean
+    ports: !override
+      - "8082:${ENVOY_PORT}"
+    environment:
+      - FRONTEND_HOST=frontend-clean
+    depends_on: !override
+      frontend-clean:
+        condition: service_started

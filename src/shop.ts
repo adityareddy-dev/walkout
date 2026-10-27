@@ -34,6 +34,7 @@ export interface Shop {
   stopCmd: string;
   fixBuildCmd: string;
   fixUrl: string;
+  unfixCmd?: string; // puts the defect build back where the fix was served
   testCmd?: string; // the shop's own tests, run from sourceDir
 }
 

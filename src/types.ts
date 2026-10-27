@@ -35,15 +35,17 @@ export interface Persona {
   observation: Observation;
 }
 
-export type Action =
+export type Action = (
   | { action: "click"; target: string; why: string }
+  | { action: "select"; target: string; value: string; why: string }
   | { action: "type"; target: string | null; text: string; submit?: boolean; why: string }
   | { action: "press"; key: string; times?: number; why: string }
   | { action: "scroll"; direction: "up" | "down"; why: string }
   | { action: "wait"; why: string }
   | { action: "back"; why: string }
   | { action: "give_up"; reason: string; why?: string }
-  | { action: "done"; why: string };
+  | { action: "done"; why: string }
+) & { note?: string };
 
 export interface RunRecord {
   persona: Persona;

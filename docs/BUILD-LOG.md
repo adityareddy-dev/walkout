@@ -27,3 +27,22 @@ First live calls, on the test page: Muse Spark 1.3 took the screenshot and answe
 Also in: the walkout sentence (M5, `src/explain.ts`), the fix step (M6, `src/fix.ts`: Spark picks the files, Wonder writes exact find and replace edits, they go on a branch of the shop's source), the round runner with a spend check before each round, and the CLI.
 
 Cost so far: 0.03 USD.
+
+## 2026-10-26 22:50 CDT, the day-one result and the shop (M0 read, M1)
+
+The day-one tests (ticket EIG-2934, `docs/hackathons/meta-2026/day-one-2026-10-26.md` in the company repo) passed and the CEO accepted them at 22:52 CDT. The loop that passed is set B: screenshot plus the numbered element list, one prompt line about noting what you saw (with an optional `note` field in the tool), and a wait before each screenshot. Spark 1.3 caught the wrong total in 5 of 5 defect runs and passed 5 of 5 clean runs, at about 1.3 cents a run. That is the loop here now.
+
+The shop is the OpenTelemetry Demo (`shops/otel-demo.json`, `shops/otel-demo/stack.sh`):
+
+- Defect: release 2.1.3. The cart Total ignores quantity, cause `src/frontend/components/CartItems/CartItems.tsx` adds up unit prices without multiplying by quantity. Reported as open-telemetry/opentelemetry-demo#1526, fixed upstream by #2660 (3e7498db). Nothing planted, no feature flag.
+- By hand: open http://localhost:8080/product/OLJCESPC7Z, pick quantity 3, tap Add To Cart. The cart shows Quantity 3, Price $101.96, Shipping $26.97, Total $128.93. The right total is $332.85.
+- Clean: release 3.1.0 on http://localhost:8082, same flow, Total $332.85.
+- Both frontends sit on the 3.1.0 backends, compose project `walkout2934` (`compose.walkout-pair.yaml`). The 2.1.3 frontend has to be on :8080, its image loader only draws the header cart icon on the origin it was built for.
+- Fix builds: the 2.1.3 frontend image builds from source on this VPS in 3 min 2 s cold (npm ci and next build, 4 cores). `stack.sh fix` builds the patched source and serves it on :8080 in place of the release image, `stack.sh unfix` puts the release back. The 2.1.3 frontend has no unit tests. Its check is next build's type check and lint inside the image build, so a patch that doesn't compile is never served.
+
+Changes to the loop from set B:
+
+- The wait before each screenshot ends when the shop's own `/api/` calls go quiet (none in flight, none started for 1.5 s), cap 30 s. The day-one wait always ran to its 30 s cap, cause the shop's telemetry and polling never let the whole network go quiet. Now a wait is 1.3 to 2.6 s on the cheap phone.
+- A `select` action. A native dropdown never shows in a headless screenshot, so tapping the quantity box showed nothing and the first smoke run tapped it until it ran out of steps.
+- The shopper's own past thoughts come back with its steps (the day-one loop had them too). Without them the second smoke run read "$128.93 which is right" and then scrolled between the total and the form for twelve steps.
+- Marks in screen pixels. The 2.1.3 checkout form is wider than a 412 px phone, so Chrome zooms the page out to about 0.75, and every mark below the fold was drawn on the field above its own (the Place Order mark sat on the card number field). Marks and taps now use `visualViewport`. The day-one doc had warned about this zoom for raw points.

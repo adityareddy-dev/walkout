@@ -31,6 +31,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 // touch it on its way into the page.
 const SCAN_MARKS = String.raw`(() => {
   const W = innerWidth, H = innerHeight;
+  const vv = window.visualViewport || { scale: 1, offsetLeft: 0, offsetTop: 0 };
   const sel = 'a[href],button,input:not([type=hidden]),select,textarea,summary,[role=button],[role=link],[role=menuitem],[role=tab],[role=checkbox],[role=radio],[role=option],[role=combobox],[role=textbox],[role=switch],[onclick],[tabindex]:not([tabindex="-1"]),[contenteditable=""],[contenteditable=true]';
   const picked = [];
   const seen = new Set();
@@ -74,22 +75,29 @@ const SCAN_MARKS = String.raw`(() => {
     if (!name && 'value' in el && tag === 'input' && !['checkbox', 'radio'].includes(type)) name = txt(el.value);
     if (!name) name = txt(el.getAttribute('placeholder'));
     if (!name && el.querySelector && el.querySelector('img,svg')) name = '(image or icon, no text)';
-    return kind + (name ? ' "' + name.slice(0, 60) + '"' : ' (no visible text)');
+    const opts = tag === 'select' ? ', choices: ' + Array.from(el.options).slice(0, 12).map((o) => txt(o.text)).join(', ') : '';
+    return kind + (name ? ' "' + name.slice(0, 60) + '"' : ' (no visible text)') + opts;
   };
   return picked.map((p, i) => ({
     id: String(i + 1),
     label: label(p.el),
     x: Math.round(p.cx),
     y: Math.round(p.cy),
-    box: [Math.round(p.r.left), Math.round(p.r.top), Math.round(p.r.width), Math.round(p.r.height)],
+    // The screenshot shows the visual viewport. When a page is wider than the
+    // phone, Chrome zooms it out, so layout pixels and screen pixels differ.
+    sx: Math.round((p.cx - vv.offsetLeft) * vv.scale),
+    sy: Math.round((p.cy - vv.offsetTop) * vv.scale),
+    box: [Math.round((p.r.left - vv.offsetLeft) * vv.scale), Math.round((p.r.top - vv.offsetTop) * vv.scale), Math.round(p.r.width * vv.scale), Math.round(p.r.height * vv.scale)],
   }));
 })()`;
 
 interface Mark {
   id: string;
   label: string;
-  x: number;
+  x: number; // centre in layout pixels, for elementFromPoint
   y: number;
+  sx: number; // centre in screen pixels, as on the screenshot
+  sy: number;
   box: [number, number, number, number];
 }
 
@@ -177,6 +185,7 @@ async function dressContext(browser: Browser, persona: Persona, probePath: strin
   page.on("framenavigated", (f) => {
     if (f === page.mainFrame()) raw.navigations.push({ t: Date.now(), url: f.url() });
   });
+  trackApi(page);
   page.on("pageerror", (e) => raw.errors.push({ t: Date.now(), message: e.message, stack: e.stack, source: "pageerror" }));
   page.on("console", (m) => {
     if (m.type() === "error") raw.errors.push({ t: Date.now(), message: m.text().slice(0, 500), source: "console" });
@@ -184,9 +193,40 @@ async function dressContext(browser: Browser, persona: Persona, probePath: strin
   return { ctx, page };
 }
 
+// The wait before each screenshot ends when the shop's own /api/ calls have
+// gone quiet: none in flight and none started for QUIET_MS, capped at 30 s.
+// The shop's telemetry and polling never let the whole network go quiet, so
+// only /api/ counts. On a slow phone the cart briefly reads "empty" until its
+// /api/cart answer lands; a screenshot taken before that misleads the shopper.
+const QUIET_MS = 1500;
+const SETTLE_CAP_MS = 30_000;
+const apiTraffic = new WeakMap<Page, { inflight: Set<unknown>; last: number }>();
+
+function trackApi(page: Page) {
+  const t = { inflight: new Set<unknown>(), last: Date.now() };
+  apiTraffic.set(page, t);
+  const isApi = (url: string) => new URL(url).pathname.startsWith("/api/");
+  page.on("request", (r) => {
+    if (!isApi(r.url())) return;
+    t.inflight.add(r);
+    t.last = Date.now();
+  });
+  const end = (r: { url(): string }) => {
+    if (t.inflight.delete(r)) t.last = Date.now();
+  };
+  page.on("requestfinished", end);
+  page.on("requestfailed", end);
+}
+
 async function settle(page: Page) {
-  await sleep(1200);
-  await page.waitForLoadState("domcontentloaded", { timeout: 20_000 }).catch(() => {});
+  const t0 = Date.now();
+  await sleep(1000);
+  await page.waitForLoadState("domcontentloaded", { timeout: SETTLE_CAP_MS }).catch(() => {});
+  const t = apiTraffic.get(page);
+  while (t && Date.now() - t0 < SETTLE_CAP_MS) {
+    if (t.inflight.size === 0 && Date.now() - t.last >= QUIET_MS) break;
+    await sleep(250);
+  }
   await sleep(300);
 }
 
@@ -355,6 +395,20 @@ async function execute(page: Page, persona: Persona, action: Action, marks: Mark
       await page.mouse.click(x, y);
     }
   };
+  // Tap the element under the mark through Playwright, which turns it into a
+  // touch or mouse event at the element's on-screen point whatever the zoom.
+  const tapMark = async (m: Mark) => {
+    step.point = { x: m.sx, y: m.sy };
+    const el = (await page.evaluateHandle(([x, y]) => document.elementFromPoint(x, y), [m.x, m.y])).asElement();
+    try {
+      if (!el) throw new Error("nothing under the mark");
+      if (touch) await el.tap({ timeout: 4000 });
+      else await el.click({ timeout: 4000 });
+    } catch {
+      await pointAt(m.sx, m.sy);
+    }
+    step.point = { x: m.sx, y: m.sy };
+  };
   const byRef = async (ref: string) => {
     const loc = page.getByRef(ref);
     step.targetLabel = ref;
@@ -376,7 +430,23 @@ async function execute(page: Page, persona: Persona, action: Action, marks: Mark
       const m = marks.find((x) => x.id === action.target);
       if (!m) throw new Error(`no mark ${action.target} on the screen`);
       step.targetLabel = m.label;
-      await pointAt(m.x, m.y);
+      await tapMark(m);
+      return;
+    }
+    case "select": {
+      // A native picker never shows up in a screenshot, so choosing from a
+      // dropdown is its own action, done on the element under the mark.
+      if (persona.observation === "a11y-tree") {
+        await (await byRef(action.target)).selectOption({ label: action.value }, { timeout: 4000 });
+        return;
+      }
+      const m = marks.find((x) => x.id === action.target);
+      if (!m) throw new Error(`no mark ${action.target} on the screen`);
+      step.targetLabel = m.label;
+      step.point = { x: m.x, y: m.y };
+      const el = (await page.evaluateHandle(([x, y]) => document.elementFromPoint(x, y)?.closest("select") ?? null, [m.x, m.y])).asElement();
+      if (!el) throw new Error(`mark ${action.target} is not a dropdown`);
+      await el.selectOption({ label: action.value }, { timeout: 4000 }).catch(() => el.selectOption(action.value, { timeout: 4000 }));
       return;
     }
     case "type": {
@@ -388,7 +458,7 @@ async function execute(page: Page, persona: Persona, action: Action, marks: Mark
           const m = marks.find((x) => x.id === action.target);
           if (!m) throw new Error(`no mark ${action.target} on the screen`);
           step.targetLabel = m.label;
-          await pointAt(m.x, m.y);
+          await tapMark(m);
           await sleep(200);
         }
       }

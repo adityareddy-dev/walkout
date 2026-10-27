@@ -1,0 +1,32 @@
+{
+  "id": "otel-demo",
+  "name": "OpenTelemetry Demo (Astronomy Shop)",
+  "upstream": "https://github.com/open-telemetry/opentelemetry-demo",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "successUrl": "/checkout/[0-9a-f-]{8,}",
+  "successText": "Your order is complete",
+  "defect": {
+    "label": "2.1.3",
+    "commit": "2.1.3",
+    "url": "http://localhost:8080/",
+    "issue": "https://github.com/open-telemetry/opentelemetry-demo/issues/1526",
+    "summary": "The cart Total ignores quantity: src/frontend/components/CartItems/CartItems.tsx adds up each line's unit price without multiplying by quantity. Shipped through release 2.1.3, fixed upstream by 3e7498db (#2660).",
+    "reproduce": "Open http://localhost:8080/product/OLJCESPC7Z, choose quantity 3, tap Add To Cart. The cart shows Quantity 3, Price $101.96, Shipping $26.97 and Total $128.93 instead of $332.85."
+  },
+  "clean": {
+    "label": "3.1.0",
+    "commit": "3.1.0",
+    "url": "http://localhost:8082/"
+  },
+  "sourceDir": "shops/otel-demo/src",
+  "sourceGlobs": [
+    "src/frontend/components/CartItems/*.tsx",
+    "src/frontend/components/Cart/*.tsx",
+    "src/frontend/pages/cart/*.tsx"
+  ],
+  "startCmd": "shops/otel-demo/stack.sh up",
+  "stopCmd": "shops/otel-demo/stack.sh down",
+  "fixBuildCmd": "shops/otel-demo/stack.sh fix",
+  "fixUrl": "http://localhost:8080/",
+  "unfixCmd": "shops/otel-demo/stack.sh unfix"
+}

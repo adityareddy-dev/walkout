@@ -131,6 +131,7 @@ async function demo(shop: Shop) {
   const fix = await fixFrom(shop, before.round);
   const f = buildOf(shop, "fix");
   const after = await runRound({ shop, build: f.label, label: "after", url: f.url, personas, maxSteps, concurrency });
+  if (shop.unfixCmd) sh(shop.unfixCmd, ROOT);
   const kept = after.bought > before.bought && fix?.testsPassed !== false;
   if (fix) {
     writeFileSync(join(RUNS, after.round, "fix.json"), JSON.stringify({ ...fix, before: before.round, beforeBought: before.bought, afterBought: after.bought, kept }, null, 2));
