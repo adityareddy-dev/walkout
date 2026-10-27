@@ -1,0 +1,10 @@
+import { chromium } from "playwright";
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1280, height: 800 } });
+await p.goto("http://localhost:8082/", { waitUntil: "networkidle" }).catch(() => {});
+const btn = p.getByRole("button", { name: "Go Shopping" }).first();
+const style = () => btn.evaluate((e) => { const c = getComputedStyle(e); return { outline: c.outlineStyle + " " + c.outlineWidth, shadow: c.boxShadow, bg: c.backgroundColor, focused: document.activeElement === e || e.contains(document.activeElement) }; });
+const before = await style(); const r1 = await btn.screenshot();
+for (let i = 0; i < 12 && !(await style()).focused; i++) await p.keyboard.press("Tab");
+const after = await style(); const r2 = await btn.screenshot();
+console.log(JSON.stringify({ before, after, samePixels: r1.equals(r2) }));
+await b.close();
