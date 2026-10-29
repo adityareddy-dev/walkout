@@ -28,9 +28,16 @@ jobs:
           for p in 8080 8082; do curl -sf -o /dev/null -w "$p %{http_code} %{time_total}s\n" http://localhost:$p/product/OLJCESPC7Z; done
           curl -sf http://localhost:8080/api/products/OLJCESPC7Z | head -c 200; echo
       - name: fix build gate
-        run: time shops/otel-demo/stack.sh fix
+        run: |
+          time shops/otel-demo/stack.sh fix
+          for i in $(seq 1 60); do curl -sf -o /dev/null http://localhost:8080/ && break; sleep 2; done
+          curl -sf -o /dev/null -w "8080 fix build %{http_code}\n" http://localhost:8080/
       - name: back to the release and down
-        run: shops/otel-demo/stack.sh unfix && curl -sf -o /dev/null -w "8080 %{http_code}\n" http://localhost:8080/ && shops/otel-demo/stack.sh down
+        run: |
+          shops/otel-demo/stack.sh unfix
+          for i in $(seq 1 60); do curl -sf -o /dev/null http://localhost:8080/ && break; sleep 2; done
+          curl -sf -o /dev/null -w "8080 release %{http_code}\n" http://localhost:8080/
+          shops/otel-demo/stack.sh down
       - if: always()
         run: |
           docker ps -a --format '{{.Names}}\t{{.Status}}' | sort
