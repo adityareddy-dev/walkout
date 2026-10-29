@@ -1,0 +1,37 @@
+name: fresh machine
+on:
+  push:
+    branches: [fresh-machine]
+jobs:
+  fresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - name: machine
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          docker image prune -af >/dev/null
+          nproc; free -h; df -h /; docker version --format 'docker {{.Server.Version}}'; docker compose version
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: npm run typecheck
+      - run: npm test
+      - name: shops up
+        run: time npm run shop
+      - name: both shops answer
+        run: |
+          for i in $(seq 1 60); do curl -sf -o /dev/null http://localhost:8080/ && curl -sf -o /dev/null http://localhost:8082/ && break; sleep 5; done
+          for p in 8080 8082; do curl -sf -o /dev/null -w "$p %{http_code} %{time_total}s\n" http://localhost:$p/product/OLJCESPC7Z; done
+          curl -sf http://localhost:8080/api/products/OLJCESPC7Z | head -c 200; echo
+      - name: fix build gate
+        run: time shops/otel-demo/stack.sh fix
+      - name: back to the release and down
+        run: shops/otel-demo/stack.sh unfix && curl -sf -o /dev/null -w "8080 %{http_code}\n" http://localhost:8080/ && shops/otel-demo/stack.sh down
+      - if: always()
+        run: |
+          docker ps -a --format '{{.Names}}\t{{.Status}}' | sort
+          free -h; df -h /
