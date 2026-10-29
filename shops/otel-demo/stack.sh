@@ -41,6 +41,16 @@ ENV
 
 up_ok() { curl -sf -o /dev/null http://localhost:8080/ && curl -sf -o /dev/null http://localhost:8082/; }
 
+wait_ready() {
+  local port=$1
+  for ((i=0; i<120; i++)); do
+    if curl --max-time 5 -sf -o /dev/null "http://localhost:$port/"; then return; fi
+    sleep 2
+  done
+  echo "shop on :$port did not become ready" >&2
+  return 1
+}
+
 case "${1:-up}" in
   setup)
     setup
@@ -50,7 +60,9 @@ case "${1:-up}" in
     up_ok && { echo "shops already up on :8080 and :8082"; exit 0; }
     prepare
     docker compose -p $project "${files[@]}" up -d --no-build --pull missing
-    docker stop load-generator >/dev/null 2>&1 || true ;;
+    docker stop load-generator >/dev/null 2>&1 || true
+    wait_ready 8080
+    wait_ready 8082 ;;
   down)
     prepare
     docker compose -p $project "${files[@]}" down ;;
@@ -59,9 +71,11 @@ case "${1:-up}" in
     t0=$(date +%s)
     (cd "$here/src" && docker build -q -f src/frontend/Dockerfile -t walkout/otel-demo-frontend:2.1.3-fix .)
     echo "fix image built in $(( $(date +%s) - t0 )) s"
-    docker compose -p $project "${files[@]}" -f "$here/compose.walkout-fix.yaml" up -d --no-deps --no-build --pull never frontend ;;
+    docker compose -p $project "${files[@]}" -f "$here/compose.walkout-fix.yaml" up -d --no-deps --no-build --pull never frontend
+    wait_ready 8080 ;;
   unfix)
     prepare
-    docker compose -p $project "${files[@]}" up -d --no-deps --no-build --pull missing frontend ;;
+    docker compose -p $project "${files[@]}" up -d --no-deps --no-build --pull missing frontend
+    wait_ready 8080 ;;
   *) echo "usage: stack.sh setup|up|down|fix|unfix" >&2; exit 2 ;;
 esac

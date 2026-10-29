@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "pretest": "npm run build:probe",
     "test": "node --import tsx --test test/*.test.ts",
+    "test:shop": "tsx scripts/shop-smoke.ts",
     "shop": "tsx src/cli.ts shop",
     "run": "tsx src/cli.ts run",
     "scoreboard": "tsx src/cli.ts scoreboard",
