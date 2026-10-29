@@ -1,4 +1,4 @@
-# Walkout, three-minute storyboard (draft for the CEO's read)
+# Walkout, three-minute storyboard (draft)
 
 Every number and quote here comes from one run, `npm run demo` plus a clean round at commit e54f08b, 2026-10-26 23:53 to 2026-10-27 00:08 CDT: rounds `2026-10-270453-before`, `2026-10-270458-after` and `2026-10-270503-clean`. Their records are in `evidence/`. Everything on screen is a real run on the OpenTelemetry Demo, nothing staged. Voiceover in quotes.
 

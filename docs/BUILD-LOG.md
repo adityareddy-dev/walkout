@@ -30,7 +30,7 @@ Cost so far: 0.03 USD.
 
 ## 2026-10-26 22:50 CDT, the day-one result and the shop (M0 read, M1)
 
-The day-one tests (ticket EIG-2934, `docs/hackathons/meta-2026/day-one-2026-10-26.md` in the company repo) passed and the CEO accepted them at 22:52 CDT. The loop that passed is set B: screenshot plus the numbered element list, one prompt line about noting what you saw (with an optional `note` field in the tool), and a wait before each screenshot. Spark 1.3 caught the wrong total in 5 of 5 defect runs and passed 5 of 5 clean runs, at about 1.3 cents a run. That is the loop here now.
+The day-one tests passed and were signed off at 22:52 CDT. The loop that passed is set B: screenshot plus the numbered element list, one prompt line about noting what you saw (with an optional `note` field in the tool), and a wait before each screenshot. Spark 1.3 caught the wrong total in 5 of 5 defect runs and passed 5 of 5 clean runs, at about 1.3 cents a run. That is the loop here now.
 
 The shop is the OpenTelemetry Demo (`shops/otel-demo.json`, `shops/otel-demo/stack.sh`):
 
@@ -64,7 +64,7 @@ Cost so far: 2.4377 USD.
 
 ## 2026-10-26 23:25 CDT, the walkouts only telemetry sees, and the keyboard check
 
-The CEO asked for both causes in the story: the wrong total only shows on the screen, the slow-phone walkouts are what telemetry ties to taps.
+Both causes go in the story: the wrong total only shows on the screen, the slow-phone walkouts are what telemetry ties to taps.
 
 - With the `/api/`-quiet wait nobody saw the slow-phone failures, cause every screenshot came after the page caught up. Real shoppers on slow phones don't wait for that. Rosa now matches the day-one Rosa (DevTools Slow 3G with a 2 s round trip, 4x CPU) and looks at the screen 3 s after each tap (`glanceMs`). The other eleven keep the `/api/`-quiet wait.
 - The M4 dead-tap rule counted any request as an answer, so an Add To Cart that sends `POST /api/cart` and then shows nothing for seconds never counted. New finding `unanswered_tap`: the tap sent an `/api/` request, nothing on the page changed, and the answer took over 1.5 s or never came.
@@ -82,11 +82,11 @@ Cost so far: 2.7558 USD.
 - Before: 2 of 12 bought, 0.80 USD. Ten left: eight over the wrong total, Rosa with "the cart stays empty" after Add To Cart went unanswered, and Dev, who couldn't reach the quantity box (2 bought plus 10 left is 12). The scoreboard line below counts Dev with the screen walkouts, cause no tap of his went unanswered, so it says 9 and 1. The tablet and desktop shoppers paid $128.93 without noticing, so 2 of 12 missed the defect this time.
 - The scoreboard's line: "9 left over something they saw on the screen ... 1 left right after taps that did nothing ("Add To Cart", ...), which only the browser telemetry shows."
 - The fix: the same quantity patch, kept. After: 9 of 12 bought, 0.70 USD. Still leaving: Rosa (slow Add To Cart, which the fix doesn't touch), Dev (no focus ring) and the colour-blind shopper, who ran out of steps.
-- M8 drafts: `docs/demo/storyboard.md` and `docs/demo/submission-draft.md`, for the CEO's read, not sent.
+- M8 drafts: `docs/demo/storyboard.md` and `docs/demo/submission-draft.md`, not sent yet.
 
 Cost so far: 4.2825 USD.
 
-## 2026-10-27 00:15 CDT, the final run and checkable evidence (M9, the CEO's changes)
+## 2026-10-27 00:15 CDT, the final run and checkable evidence (M9)
 
 One complete run, same twelve personas, at commit e54f08b, 2026-10-26 23:53 to 2026-10-27 00:08 CDT. Every number in the README, the storyboard and the submission draft comes from it.
 

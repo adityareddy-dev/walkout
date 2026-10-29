@@ -1,4 +1,4 @@
-# Submission draft (for the CEO's read, not sent)
+# Submission draft (not sent yet)
 
 Every number is from one run at commit e54f08b, 2026-10-26 23:53 to 2026-10-27 00:08 CDT: rounds `2026-10-270453-before`, `2026-10-270458-after` and `2026-10-270503-clean` (records in `evidence/`).
 
