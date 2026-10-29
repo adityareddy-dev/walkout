@@ -105,3 +105,11 @@ Setup on a fresh machine: `shops/otel-demo/stack.sh setup` (also run by `up` and
 
 The shop has no tests, so the fix gate for this shop is the frontend type check and lint that `next build` runs inside the image build ("Linting and checking validity of types" in the build log). A patch that fails it is dropped and there is no after round.
 Cost so far: 6.4560 USD.
+
+## 2026-10-29 14:55 CDT, a fresh machine
+
+On a clean GitHub runner (ubuntu-24.04, 2 cores, 7.7 GB, nothing cached), from a fresh clone of main at `50556c8` plus the workflow: `npm install`, the Playwright browser, typecheck and the tests (17 of 17) pass, `npm run shop` gets both shops up in 1 min 56 s and both answer on :8080 and :8082, `stack.sh fix` builds the frontend image in 2 min 58 s and serves it, and `stack.sh unfix` puts the release back. The workflow is `.github/workflows/fresh-machine.yml` on the `fresh-machine` branch, run https://github.com/adityareddy-dev/walkout/actions/runs/40943154352.
+
+Before this, `npm test` failed on a fresh clone, cause the probe tests load `dist/probe.js` and nothing built it. `pretest` builds it now.
+
+The shoppers and the fix call the Meta API, so they didn't run there (no key on the runner). The fresh-checkout demo run on 2026-10-28 (`1351ddb`) covers that part.
