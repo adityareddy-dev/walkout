@@ -1,9 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { applyEdits, evidence } from "../src/fix.ts";
+import { applyEdits, evidence, withImports } from "../src/fix.ts";
 import { PERSONAS } from "../src/personas.ts";
 import type { RunRecord } from "../src/types.ts";
 
@@ -45,4 +45,29 @@ test("evidence counts a finding once per shopper and lists the walkout sentences
   assert.match(text, /2x dead_tap: button\.add/);
   assert.match(text, /shopper 1 left at the cart/);
   assert.doesNotMatch(text, /shopper 2/);
+});
+
+test("withImports adds the shop files a picked file imports, in import order", () => {
+  const dir = mkdtempSync(join(tmpdir(), "walkout-imports-"));
+  mkdirSync(join(dir, "components/Cart"), { recursive: true });
+  mkdirSync(join(dir, "components/CartItems"), { recursive: true });
+  writeFileSync(
+    join(dir, "components/Cart/CartDetail.tsx"),
+    "import { useRouter } from 'next/router';\nimport CartItems from '../CartItems';\nimport * as S from './Cart.styled';\n",
+  );
+  writeFileSync(join(dir, "components/CartItems/index.ts"), "export { default } from './CartItems';\n");
+  const all = ["components/Cart/CartDetail.tsx", "components/Cart/Cart.styled.ts", "components/CartItems/index.ts", "components/CartItems/CartItems.tsx"];
+  assert.deepEqual(withImports(dir, ["components/Cart/CartDetail.tsx"], all), [
+    "components/Cart/CartDetail.tsx",
+    "components/CartItems/index.ts",
+    "components/CartItems/CartItems.tsx",
+    "components/Cart/Cart.styled.ts",
+  ]);
+});
+
+test("withImports finds a component folder's own file when its index is not a shop file", () => {
+  const dir = mkdtempSync(join(tmpdir(), "walkout-imports-"));
+  mkdirSync(join(dir, "Cart"), { recursive: true });
+  writeFileSync(join(dir, "Cart/CartDetail.tsx"), "import CartItems from '../CartItems';\n");
+  assert.deepEqual(withImports(dir, ["Cart/CartDetail.tsx"], ["Cart/CartDetail.tsx", "CartItems/CartItems.tsx"]), ["Cart/CartDetail.tsx", "CartItems/CartItems.tsx"]);
 });

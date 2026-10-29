@@ -4,7 +4,7 @@
 // run again. The patch stays only if more of them buy and the tests pass.
 
 import { globSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { basename, dirname, join, normalize } from "node:path";
 import { chat, parseJsonObject, priceOf, type Message } from "./meta.ts";
 import { sh, type Shop } from "./shop.ts";
 import { codeText } from "./telemetry.ts";
@@ -65,7 +65,32 @@ export async function pickFiles(shop: Shop, runs: RunRecord[], purpose: string):
   const res = await chat({ model: PICK_MODEL, messages, maxTokens: 1500, reasoningEffort: "low", purpose, estimateUsd: priceOf(PICK_MODEL, 20_000, 1500) });
   const obj = parseJsonObject(res.text) ?? {};
   const picked = Array.isArray(obj.files) ? obj.files.map(String).filter((f) => all.includes(f)) : [];
-  return picked.slice(0, 8);
+  return withImports(shop.sourceDir, picked.slice(0, 8), all);
+}
+
+// The picked files plus the shop files they import, so the patch can land
+// where the bug is and not around it (a cart page without the component that
+// sums the cart).
+export function withImports(sourceDir: string, picked: string[], all: string[], max = 12): string[] {
+  const out = [...picked];
+  const local = (f: string): string[] => {
+    const text = readFileSync(join(sourceDir, f), "utf8");
+    const found: string[] = [];
+    for (const m of text.matchAll(/^(?:import|export)[^;]*?from\s+['"](\.[^'"]+)['"]/gm)) {
+      const base = normalize(join(dirname(f), m[1]));
+      const hit = ["", ".tsx", ".ts", "/index.tsx", "/index.ts", `/${basename(base)}.tsx`, `/${basename(base)}.ts`].map((x) => base + x).find((c) => all.includes(c));
+      if (hit) found.push(hit);
+    }
+    return found;
+  };
+  const add = (f: string) => {
+    if (out.includes(f)) return;
+    out.push(f);
+    // An index file only re-exports, so the file behind it is the one to read.
+    if (/(^|\/)index\.tsx?$/.test(f)) for (const g of local(f)) add(g);
+  };
+  for (const f of picked) for (const g of local(f)) add(g);
+  return out.slice(0, max);
 }
 
 export async function proposeFix(shop: Shop, runs: RunRecord[], files: string[], purpose: string): Promise<FixProposal> {
