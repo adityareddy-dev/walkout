@@ -4,7 +4,7 @@
 // run again. The patch stays only if more of them buy and the tests pass.
 
 import { globSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, dirname, join, normalize } from "node:path";
+import { join, posix } from "node:path";
 import { chat, parseJsonObject, priceOf, type Message } from "./meta.ts";
 import { sh, type Shop } from "./shop.ts";
 import { codeText } from "./telemetry.ts";
@@ -48,7 +48,7 @@ export function evidence(runs: RunRecord[]): string {
 
 export function sourceFiles(shop: Shop): string[] {
   const files = new Set<string>();
-  for (const g of shop.sourceGlobs) for (const f of globSync(g, { cwd: shop.sourceDir })) files.add(f);
+  for (const g of shop.sourceGlobs) for (const f of globSync(g, { cwd: shop.sourceDir })) files.add(f.replaceAll("\\", "/"));
   return [...files].sort();
 }
 
@@ -77,8 +77,8 @@ export function withImports(sourceDir: string, picked: string[], all: string[], 
     const text = readFileSync(join(sourceDir, f), "utf8");
     const found: string[] = [];
     for (const m of text.matchAll(/^(?:import|export)[^;]*?from\s+['"](\.[^'"]+)['"]/gm)) {
-      const base = normalize(join(dirname(f), m[1]));
-      const hit = ["", ".tsx", ".ts", "/index.tsx", "/index.ts", `/${basename(base)}.tsx`, `/${basename(base)}.ts`].map((x) => base + x).find((c) => all.includes(c));
+      const base = posix.normalize(posix.join(posix.dirname(f), m[1]));
+      const hit = ["", ".tsx", ".ts", "/index.tsx", "/index.ts", `/${posix.basename(base)}.tsx`, `/${posix.basename(base)}.ts`].map((x) => base + x).find((c) => all.includes(c));
       if (hit) found.push(hit);
     }
     return found;

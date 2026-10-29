@@ -59,6 +59,8 @@ export function sh(cmd: string, cwd: string, opts: { quiet?: boolean; timeoutMs?
   if (!opts.quiet) console.log(`$ ${cmd}`);
   return execSync(cmd, {
     cwd,
+    // The shop commands are shell scripts, so Windows runs them in Git Bash.
+    shell: process.platform === "win32" ? "bash" : undefined,
     encoding: "utf8",
     stdio: ["ignore", "pipe", "pipe"],
     timeout: opts.timeoutMs ?? 30 * 60_000,
