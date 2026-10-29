@@ -11,6 +11,7 @@
   "scripts": {
     "build:probe": "node scripts/build-probe.mjs",
     "typecheck": "tsc --noEmit",
+    "pretest": "npm run build:probe",
     "test": "node --import tsx --test test/*.test.ts",
     "shop": "tsx src/cli.ts shop",
     "run": "tsx src/cli.ts run",
