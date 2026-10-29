@@ -4,19 +4,73 @@ Twelve shoppers with different lives go through a real shop in a real browser: a
 
 The shop is the OpenTelemetry Demo at release 2.1.3, which shipped a cart total that ignores quantity ([issue 1526](https://github.com/open-telemetry/opentelemetry-demo/issues/1526)). Release 3.1.0 is the clean build.
 
-The browser records where each shopper gave up. The model writes one sentence per walkout and a patch, the shop gets rebuilt and the same twelve go again. The shop has no tests, so a patch only counts if the frontend's type check passes in the image build.
+The browser records where each shopper gave up. The model writes one sentence per walkout and a patch, the shop gets rebuilt and the same twelve go again. The frontend has no `npm test` script, so the patch gate is its type check and lint in the image build.
 
 ## Setup
 
-You need Node 22, Docker and a Meta API key in `META_API_KEY`.
+You need Node 22 or newer, Git, Docker with Compose v2 and a running Docker daemon. New shopper rounds also need a Meta API key in `META_API_KEY` and use paid API calls. The saved results and browser checks below make no model calls.
 
 ```
-npm install
+npm ci
 npx playwright install chromium
-npm run demo
+npm run typecheck
+npm test
 ```
 
-The first `npm run demo` clones the shop at 2.1.3 into `shops/otel-demo/src`, gets the 3.1.0 compose files and starts both shops (2.1.3 on :8080, 3.1.0 on :8082). `shops/otel-demo/stack.sh down` stops them.
+On Linux, Playwright may also need system libraries, installed with `npx playwright install --with-deps chromium`.
+
+## Check the real shop without model calls
+
+Run these on the server:
+
+```sh
+docker info
+docker compose version
+npm run shop
+npm run test:shop -- defect
+npm run test:shop -- clean
+```
+
+The first `npm run shop` clones the shop at 2.1.3 into `shops/otel-demo/src`, gets the 3.1.0 compose files and starts both shops (2.1.3 on :8080, 3.1.0 on :8082). Startup waits until both frontends answer. Keep those ports free. The browser checks open the real shop on desktop and phone layouts, add three telescopes, check the total and complete checkout on the clean build using the demo's sample card.
+
+To check the saved patch and return to the original release, from the repo root:
+
+```sh
+git -C shops/otel-demo/src apply "$PWD/evidence/2026-10-270453-before/fix.diff"
+shops/otel-demo/stack.sh fix
+npm run test:shop -- fix
+shops/otel-demo/stack.sh unfix
+npm run test:shop -- defect
+git -C shops/otel-demo/src apply -R "$PWD/evidence/2026-10-270453-before/fix.diff"
+```
+
+Apply the saved patch to an unchanged 2.1.3 source checkout. It is the actual patch from the recorded round. `fix` rebuilds it with the frontend's type check and lint, then waits for the frontend to answer. `unfix` restores the original release image and also waits. Screenshots and Playwright traces go to `runs/smoke/`. The `fresh machine` GitHub workflow runs all of these checks from a clean clone and saves the browser artifacts.
+
+`shops/otel-demo/stack.sh down` stops both shops.
+
+## Run new shoppers
+
+With the API key configured on the server and API spend approved:
+
+```sh
+npm run demo -- --serve
+```
+
+This builds the probe, starts the shops, runs the before round, proposes and builds the patch, runs the after round, restores the release image and serves the scoreboard at http://127.0.0.1:4173/board/. `Ctrl+C` stops the scoreboard server. Stop the shops separately with `shops/otel-demo/stack.sh down`.
+
+The model results vary between rounds. The measured before/after counts in the recording script refer to the saved October 27 run.
+
+## Open the saved recording results
+
+No Docker, API key or new API spend is needed for this command:
+
+```sh
+WALKOUT_RUNS=evidence npm run scoreboard -- --before 2026-10-270453-before --after 2026-10-270458-after --serve
+```
+
+Open http://127.0.0.1:4173/board/. It shows the actual 2-of-12 and 8-of-12 results, shopper decisions, telemetry and patch. The clone contains step records but no replay screenshots, so each shopper opens as text steps. Original screenshot replays need the corresponding `runs/` directories from the machine that ran the shoppers. Do not replace them with later shop screenshots.
+
+The [three-minute recording script](docs/demo/recording-script.md) follows the saved results and the real-shop browser checks. The original [storyboard](docs/demo/storyboard.md) describes the screenshot version.
 
 Every model call is logged in `spend/meta.jsonl` and `npx tsx src/cli.ts spend` adds it up per round.
 

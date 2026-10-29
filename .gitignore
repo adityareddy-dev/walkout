@@ -5,3 +5,4 @@ shops/*/src/
 .env
 tmp/
 shops/*/stack/
+evidence/board/
