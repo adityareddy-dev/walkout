@@ -123,7 +123,7 @@ function emptyTelemetry(): RawTelemetry {
   return { inputs: [], mutations: [], requests: [], navigations: [], eventTimings: [], loafs: [], vitals: [], errors: [], spans: [] };
 }
 
-async function dressContext(browser: Browser, persona: Persona, probePath: string, raw: RawTelemetry) {
+export async function dressContext(browser: Browser, persona: Persona, probePath: string, raw: RawTelemetry) {
   const d = persona.device;
   const ctx = await browser.newContext({
     viewport: d.viewport,
@@ -148,6 +148,13 @@ async function dressContext(browser: Browser, persona: Persona, probePath: strin
       else if (kind === "span") raw.spans.push(e as RawTelemetry["spans"][number]);
     }
   });
+  await ctx.addInitScript({
+    content: `window.__walkoutConfig = ${JSON.stringify({
+      tracesEndpoint: process.env.WALKOUT_OTLP_TRACES_ENDPOINT,
+      persona: persona.card.name,
+      run: process.env.WALKOUT_TRACE_RUN,
+    })}`,
+  });
   await ctx.addInitScript({ path: probePath });
   const page = await ctx.newPage();
   const cdp = await ctx.newCDPSession(page);
@@ -165,6 +172,7 @@ async function dressContext(browser: Browser, persona: Persona, probePath: strin
 
   const open = new Map<object, RawTelemetry["requests"][number]>();
   page.on("request", (req) => {
+    if (req.url() === process.env.WALKOUT_OTLP_TRACES_ENDPOINT) return;
     if (req.url().startsWith("data:") || req.url().startsWith("blob:")) return;
     const r = { t: Date.now(), url: req.url(), method: req.method(), type: req.resourceType() };
     open.set(req, r);
@@ -353,6 +361,7 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
       }
     }
     if (!outcome) outcome = { kind: "step_limit", reason: `still shopping after ${opts.maxSteps} steps`, atStep: opts.maxSteps };
+    await page.evaluate("window.__walkoutFlush?.()").catch(() => {});
     await page.evaluate("window.__walkoutDrain ? window.__walkoutEmit(window.__walkoutDrain()) : null").catch(() => {});
     await sleep(300);
   } catch (e) {

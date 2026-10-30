@@ -1,0 +1,39 @@
+# Optional OTLP destination. The browser sends to this Collector without a key.
+receivers:
+  host_metrics:
+    root_path: /
+exporters:
+  otlp_http/bronto:
+    traces_endpoint: https://ingestion.eu.bronto.io/v1/traces
+    logs_endpoint: https://ingestion.eu.bronto.io/v1/logs
+    compression: none
+    headers:
+      x-bronto-api-key: ${file:/run/secrets/bronto-ingest-key}
+      # Datasets route logs only. Traces are found by service and namespace.
+      x-bronto-dataset: walkout
+processors:
+  resource/walkout:
+    attributes:
+      - { key: service.namespace, value: walkout, action: upsert }
+  batch/bronto:
+    timeout: 1s
+service:
+  pipelines:
+    traces:
+      processors: [memory_limiter, resource/walkout, transform/sanitize_spans, gen_ai_normalizer, transform/redact_sensitive_data, redaction, batch/bronto]
+      exporters: [debug, span_metrics, otlp_http/bronto]
+    logs:
+      processors: [memory_limiter, resource/walkout, transform/sanitize_logs, batch/bronto]
+      exporters: [debug, otlp_http/bronto]
+    metrics:
+      receivers: [otlp, span_metrics]
+      processors: [memory_limiter]
+    profiles:
+      processors: [memory_limiter, filter/sanitize_profiles]
+  telemetry:
+    metrics:
+      level: none
+      readers: []
+    logs:
+      level: info
+      processors: []

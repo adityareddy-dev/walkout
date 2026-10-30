@@ -75,3 +75,38 @@ The [three-minute recording script](docs/demo/recording-script.md) follows the s
 Every model call is logged in `spend/meta.jsonl` and `npx tsx src/cli.ts spend` adds it up per round.
 
 MIT licence.
+
+### Optional OTLP backend
+
+The probe still keeps spans in memory. To also send them to an OTLP/HTTP
+Collector, set `WALKOUT_OTLP_TRACES_ENDPOINT` to its full `/v1/traces` URL.
+The Collector needs to allow the shop's browser origin through CORS.
+The browser never receives a backend API key. Same-origin fetches carry W3C
+`traceparent`, and a fetch made during a tap is a child of that tap. The probe
+uses explicit contexts so it does not replace the shop's global SDK or wrap
+its event handlers. Asynchronous work after the event dispatch starts a
+separate trace.
+
+For the demo's optional Bronto destination, put an ingestion key in a file
+outside this checkout, owned by your user with mode `0600`, then run:
+
+```sh
+WALKOUT_BRONTO_KEY_FILE=/absolute/path/to/ingest-key npm run shop
+npm run build:probe
+WALKOUT_OTLP_TRACES_ENDPOINT=http://127.0.0.1:14318/v1/traces \
+  node --import tsx scripts/rosa-trace.ts http://localhost:8080 runs/rosa-phone phone
+```
+
+That last command uses Rosa's existing phone, CPU and network settings, with
+scripted browser actions and no model calls. An `unthrottled` final argument
+keeps the phone layout and removes CPU/network throttling for comparison.
+A `journey` argument starts at the home page before opening the product.
+Screenshots, trace IDs, request timing and local spans are saved in the output
+folder. These checks are separate from the saved model results.
+
+Bronto receives traces and demo application logs. `walkout` is the log dataset.
+Traces are found through their trace ID and the `walkout` service namespace.
+The optional Collector overlay keeps the demo's local exporters and sensitive
+attribute processors. It does not export server filesystem, Docker or host
+metrics to Bronto. To return to the default Collector, stop the shop and start
+it again with `WALKOUT_BRONTO_KEY_FILE` unset.

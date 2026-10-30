@@ -5,11 +5,13 @@
 // Everything is buffered and handed to the runner through window.__walkoutEmit.
 
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
-import { SimpleSpanProcessor, type ReadableSpan, type SpanExporter } from "@opentelemetry/sdk-trace-base";
-import { ExportResultCode, type ExportResult } from "@opentelemetry/core";
+import { BatchSpanProcessor, SimpleSpanProcessor, type ReadableSpan, type SpanExporter, type SpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { ExportResultCode, W3CTraceContextPropagator, isTracingSuppressed, type ExportResult } from "@opentelemetry/core";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { DocumentLoadInstrumentation } from "@opentelemetry/instrumentation-document-load";
-import { FetchInstrumentation } from "@opentelemetry/instrumentation-fetch";
+import { context, ROOT_CONTEXT, SpanKind, SpanStatusCode, trace, type Span } from "@opentelemetry/api";
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+import { resourceFromAttributes } from "@opentelemetry/resources";
 import { onCLS, onINP, onLCP, type INPMetricWithAttribution } from "web-vitals/attribution";
 
 type Emit = (batch: unknown[]) => void;
@@ -18,6 +20,8 @@ declare global {
     __walkoutEmit?: Emit;
     __walkoutDrain?: () => unknown[];
     __walkoutProbe?: boolean;
+    __walkoutConfig?: { tracesEndpoint?: string; persona?: string; run?: string };
+    __walkoutFlush?: () => Promise<void>;
   }
 }
 
@@ -83,6 +87,9 @@ const BACKGROUND_WINDOW_MS = 1000;
     url: string;
   }
   const open: OpenTap[] = [];
+  const tapSpans = new WeakMap<Event, Span>();
+  const spansByTap = new WeakMap<OpenTap, Span>();
+  let tracer: ReturnType<WebTracerProvider["getTracer"]> | undefined;
 
   const observer = new MutationObserver((records) => {
     const t = now();
@@ -144,6 +151,13 @@ const BACKGROUND_WINDOW_MS = 1000;
       focusBefore: document.activeElement,
       url: location.href,
     };
+    if (tracer) {
+      const span = tracer.startSpan(`tap ${tap.target}`, {
+        attributes: { "ui.target": tap.target, "ui.event": type },
+      }, ROOT_CONTEXT);
+      tapSpans.set(ev, span);
+      spansByTap.set(tap, span);
+    }
     open.push(tap);
     setTimeout(() => closeTap(tap, "timer"), RESPONSE_WINDOW_MS);
   }
@@ -152,6 +166,7 @@ const BACKGROUND_WINDOW_MS = 1000;
     const i = open.indexOf(tap);
     if (i < 0) return;
     open.splice(i, 1);
+    spansByTap.get(tap)?.end();
     push("input", {
       t: tap.t,
       type: tap.type,
@@ -188,7 +203,7 @@ const BACKGROUND_WINDOW_MS = 1000;
       const k = (ev as KeyboardEvent).key;
       if (k === "Enter" || k === " ") {
         const el = document.activeElement;
-        if (el && el !== document.body && !isFormField(el)) openTap("key", { target: el } as unknown as Event, { key: k });
+        if (el && el !== document.body && !isFormField(el)) openTap("key", ev, { key: k });
       }
     },
     true,
@@ -304,14 +319,64 @@ const BACKGROUND_WINDOW_MS = 1000;
     }
   }
   try {
-    const provider = new WebTracerProvider({ spanProcessors: [new SimpleSpanProcessor(new BufferExporter())] });
-    registerInstrumentations({
-      tracerProvider: provider,
-      instrumentations: [
-        new DocumentLoadInstrumentation(),
-        new FetchInstrumentation({ propagateTraceHeaderCorsUrls: [], clearTimingResources: false }),
-      ],
+    const config = window.__walkoutConfig ?? {};
+    const processors: SpanProcessor[] = [new SimpleSpanProcessor(new BufferExporter())];
+    if (config.tracesEndpoint) processors.push(new BatchSpanProcessor(new OTLPTraceExporter({
+      url: config.tracesEndpoint,
+    }), { scheduledDelayMillis: 500 }));
+    const provider = new WebTracerProvider({
+      resource: resourceFromAttributes({
+        "service.name": "walkout-browser",
+        "service.namespace": "walkout",
+        ...(config.persona ? { "walkout.persona": config.persona } : {}),
+        ...(config.run ? { "walkout.run": config.run } : {}),
+      }),
+      spanProcessors: processors,
     });
+    tracer = provider.getTracer("walkout-probe");
+    addEventListener("pagehide", () => { void provider.forceFlush(); });
+    window.__walkoutFlush = async () => { closeOpenTaps("flush"); await provider.forceFlush(); flush(); };
+    registerInstrumentations({ tracerProvider: provider, instrumentations: [new DocumentLoadInstrumentation()] });
+
+    // Explicit contexts keep this SDK private. Do not register global context
+    // managers or wrap shop event handlers, which would hide its source from
+    // Chrome's long-animation-frame attribution. window.event identifies only
+    // a fetch made during the actual tap dispatch, never unrelated later polls.
+    const originalFetch = window.fetch;
+    const propagator = new W3CTraceContextPropagator();
+    window.fetch = function(input, init) {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      if (url.href === config.tracesEndpoint || /\/(?:otlp\/)?v1\/(traces|metrics|logs)$/.test(url.pathname) || isTracingSuppressed(context.active())) return originalFetch.call(this, input, init);
+      const parent = window.event && tapSpans.get(window.event);
+      const span = tracer!.startSpan(init?.method ?? (input instanceof Request ? input.method : "GET"), {
+        kind: SpanKind.CLIENT,
+        attributes: { "http.request.method": init?.method ?? (input instanceof Request ? input.method : "GET"), "url.full": url.href },
+      }, parent ? trace.setSpan(ROOT_CONTEXT, parent) : ROOT_CONTEXT);
+      // Same-origin only. A shop can pass its server context on to its services
+      // without adding CORS requirements to third-party requests.
+      if (url.origin === location.origin) {
+        const headers = new Headers(init?.headers ?? (input instanceof Request ? input.headers : undefined));
+        propagator.inject(trace.setSpan(ROOT_CONTEXT, span), headers, { set: (h, k, v) => h.set(k, String(v)) });
+        init = { ...init, headers };
+      }
+      const finish = () => span.end();
+      const fail = (e: unknown) => { span.setStatus({ code: SpanStatusCode.ERROR, message: String(e) }); finish(); };
+      try {
+        return originalFetch.call(this, input, init).then(response => {
+          span.setAttribute("http.response.status_code", response.status);
+          if (response.status >= 400) span.setStatus({ code: SpanStatusCode.ERROR });
+          // Drain a clone, preserving the response and streaming API for the shop.
+          try {
+            const reader = response.clone().body?.getReader();
+            const drain = async () => {
+              if (reader) while (!(await reader.read()).done) { /* no buffering */ }
+            };
+            void drain().then(finish, fail);
+          } catch (e) { fail(e); }
+          return response;
+        }, e => { fail(e); throw e; });
+      } catch (e) { fail(e); throw e; }
+    };
   } catch (e) {
     push("error", { t: now(), message: "walkout probe: " + String(e), source: "window" });
   }

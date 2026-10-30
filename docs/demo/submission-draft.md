@@ -26,7 +26,9 @@ Playwright runs the browsers with CPU, network, font and locale set per persona.
 
 The shop has no tests, so a patch only counts if the frontend's type check passes when the image rebuilds.
 
-Telemetry is the OpenTelemetry web SDK plus our own listeners, injected in an isolated world so it works on shops that already ship their own SDK. Findings are joined to the agent's steps by time.
+Telemetry is the OpenTelemetry web SDK plus our own listeners, using a private provider so it works on shops that already ship their own SDK. Findings are joined to the agent's steps by time.
+
+Telemetry goes over OTLP to any backend, we used Bronto.
 
 ## Meta models used
 

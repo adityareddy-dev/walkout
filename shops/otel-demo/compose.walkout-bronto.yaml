@@ -1,0 +1,13 @@
+# Use with WALKOUT_BRONTO_KEY_FILE=/absolute/path/to/a/mode-600-key.
+services:
+  otel-collector:
+    command:
+      - --config=/etc/otelcol-config.yml
+      - --config=/etc/otelcol-bronto.yaml
+      - --feature-gates=service.profilesSupport
+    ports: !override
+      - "127.0.0.1:14318:4318"
+    volumes: !override
+      - ./src/otel-collector/otelcol-config.yml:/etc/otelcol-config.yml:ro
+      - ../otelcol-bronto.yaml:/etc/otelcol-bronto.yaml:ro
+      - ${WALKOUT_BRONTO_KEY_FILE:?set the protected ingestion key file}:/run/secrets/bronto-ingest-key:ro

@@ -2,7 +2,7 @@
 
 This version uses the saved model run from October 27, 2026, rather than claiming a fresh live model run. Results are in `evidence/2026-10-270453-before`, `evidence/2026-10-270458-after` and `evidence/2026-10-270503-clean`. It needs no new model spend. The shop screenshots come from the separate real-browser checks, not from a model replay.
 
-Before recording, open the saved scoreboard with the README command. Open the desktop cart screenshots from the green fresh-machine run's `shop-browser-checks` artifact in separate tabs: `defect/desktop-cart.png`, `fix/desktop-cart.png` and `clean/desktop-order.png`. Keep the scoreboard on Before, with Rosa's tile ready. The clone has text steps, not the original replay screenshots. No live tile grid or terminal rebuild is needed in this version.
+Before recording, have the October 30 Bronto screenshot bundle ready, including `rosa-saved-actions/bronto-waterfall.png`. Open the saved scoreboard with the README command. Open the desktop cart screenshots from the green fresh-machine run's `shop-browser-checks` artifact in separate tabs: `defect/desktop-cart.png`, `fix/desktop-cart.png` and `clean/desktop-order.png`. Keep the scoreboard on Before, with Rosa's tile ready. The clone has text steps, not the original replay screenshots. No live tile grid or terminal rebuild is needed in this version.
 
 ## 0:00 to 0:25
 
@@ -16,11 +16,17 @@ Switch to the saved scoreboard. Show Before, then open Rosa and scroll to her la
 
 “These are the results of our saved run. Each shopper has a different setup. A cheap phone, slow internet, large text, keyboard only, Spanish. Muse Spark looks at the screen and chooses one action at a time. Rosa needs three telescopes for her kids. She sees the wrong total and leaves. Here are her actual decisions and the sentence explaining why.”
 
-## 0:55 to 1:25
+## 0:55 to 1:15
 
 Switch Rosa to After. Point at the unanswered Add To Cart findings and their step numbers. Keep the recorded text steps visible.
 
-“A screenshot tells us the total looks wrong. Browser telemetry tells us what happened behind a tap. Even after the total is fixed, Rosa taps Add To Cart and gets no visible answer for seconds. She tries again. The cart briefly looks empty, then has six telescopes. Her record connects the tap, the slow request and the decision to leave.”
+“A screenshot tells us the total looks wrong. Browser telemetry tells us what happened behind a tap. In the saved run, Rosa taps Add To Cart and gets no visible answer for seconds. She tries again. Her record connects the tap, the slow request and the decision to leave.”
+
+## 1:15 to 1:25
+
+Show `rosa-saved-actions/bronto-waterfall.png` from the separate October 30 browser check. The 11.3 s browser POST, 41 ms frontend and 3.58 ms cart AddItem are visible in the same trace. This is a new scripted check with Rosa's device profile, not the historical 10.4 s request or a new model round.
+
+“The phone waited eleven seconds. Bronto shows 41 milliseconds in the frontend, four in cart. The wait happened around the server, not inside it.”
 
 ## 1:25 to 1:55
 

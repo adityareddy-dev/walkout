@@ -14,6 +14,9 @@ src=$here/src
 stack=$here/stack
 project=walkout2934
 files=(-f "$stack/compose.yaml" -f "$here/compose.walkout-pair.yaml")
+if [ -n "${WALKOUT_BRONTO_KEY_FILE:-}" ]; then
+  files+=(-f "$here/compose.walkout-bronto.yaml")
+fi
 
 setup() {
   if [ ! -d "$src/.git" ]; then
@@ -57,7 +60,9 @@ case "${1:-up}" in
     prepare ;;
   up)
     setup
-    up_ok && { echo "shops already up on :8080 and :8082"; exit 0; }
+    if [ -z "${WALKOUT_BRONTO_KEY_FILE:-}" ] && up_ok; then
+      echo "shops already up on :8080 and :8082"; exit 0
+    fi
     prepare
     docker compose -p $project "${files[@]}" up -d --no-build --pull missing
     docker stop load-generator >/dev/null 2>&1 || true
