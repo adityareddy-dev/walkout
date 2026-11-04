@@ -10,7 +10,7 @@
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
-import { branchWithEdits, pickFiles, proposeFix, type FixProposal } from "./fix.ts";
+import { branchWithEdits, pickFiles, proposeFix, reviewProposal, REVIEW_MODEL, type FixReview, type FixProposal } from "./fix.ts";
 import { BUDGET_USD, BudgetError, LEDGER, spentByRound, spentUsd } from "./meta.ts";
 import { PERSONAS, personaById } from "./personas.ts";
 import { loadRound, printScoreboard, runRound, RUNS } from "./round.ts";
@@ -56,6 +56,8 @@ async function shopUp(shop: Shop) {
 
 interface FixResult {
   proposal: FixProposal;
+  review?: FixReview;
+  reviewDropped?: boolean;
   branch: string;
   commit: string;
   failedEdits: { file: string; why: string }[];
@@ -68,13 +70,32 @@ async function fixFrom(shop: Shop, roundId: string): Promise<FixResult | null> {
   if (runs.every((r) => r.outcome.kind === "bought")) return null;
   const files = await pickFiles(shop, runs, `${roundId}/fix/pick`);
   console.log(`fix: reading ${files.join(", ")}`);
-  const proposal = await proposeFix(shop, runs, files, `${roundId}/fix/patch`);
+  let proposal = await proposeFix(shop, runs, files, `${roundId}/fix/patch`);
   console.log(`fix: ${proposal.summary}`);
+  let review: FixReview | undefined;
+  let reviewDropped = false;
+  if (process.env.WALKOUT_NO_REVIEW !== "1") {
+    const checked = await reviewProposal(shop, runs, files, proposal, roundId, (r) => {
+      console.log(r.verdict === "approve" ? `review (${REVIEW_MODEL}): approve` : "review: revise");
+      for (const reason of r.reasons) console.log(reason);
+    });
+    proposal = checked.proposal;
+    review = checked.review;
+    reviewDropped = !checked.accepted;
+    writeFileSync(join(RUNS, roundId, "review.json"), JSON.stringify(review, null, 2));
+  }
   const branch = `walkout/fix-${roundId}`;
+  if (reviewDropped) {
+    const result: FixResult = { proposal, review, reviewDropped, branch, commit: "", failedEdits: [], testsPassed: false, testOutput: "Review requested revision." };
+    console.log("review: the patch is dropped before the gate.");
+    writeFileSync(join(RUNS, roundId, "fix.json"), JSON.stringify(result, null, 2));
+    return result;
+  }
   const { commit, diff, failed } = branchWithEdits(shop, branch, proposal);
   writeFileSync(join(RUNS, roundId, "fix.diff"), diff);
   const result: FixResult = {
     proposal,
+    ...(review ? { review } : {}),
     branch,
     commit,
     failedEdits: failed.map((f) => ({ file: f.edit.file, why: f.why })),
@@ -144,9 +165,9 @@ async function demo(shop: Shop) {
   }
 
   const fix = await fixFrom(shop, before.round);
-  if (fix?.testsPassed === false && !shop.testCmd) {
+  if (fix?.reviewDropped || (fix?.testsPassed === false && !shop.testCmd)) {
     sh(`git checkout -q ${shop.defect.commit}`, shop.sourceDir);
-    console.log("Fix dropped: it does not build, so there is no after round.");
+    console.log(fix?.reviewDropped ? "Fix dropped by review, so there is no after round." : "Fix dropped: it does not build, so there is no after round.");
     return board(before.round);
   }
   const f = buildOf(shop, "fix");
@@ -190,7 +211,7 @@ async function main() {
   if (cmd === "fix") {
     if (!values.round) throw new Error("--round <round id> is required");
     const r = await fixFrom(shop, values.round);
-    console.log(r ? `fix on ${r.branch} at ${r.commit}, tests ${r.testsPassed}` : "nobody walked out");
+    console.log(r?.reviewDropped ? "fix: patch dropped before the gate" : r ? `fix on ${r.branch} at ${r.commit}, tests ${r.testsPassed}` : "nobody walked out");
     return;
   }
   if (cmd === "demo") return demo(shop);

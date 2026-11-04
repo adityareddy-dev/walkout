@@ -8,7 +8,13 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 for r in "$@"; do
   mkdir -p "evidence/$r"
-  for f in round.json fix.json fix.diff; do [ -f "runs/$r/$f" ] && cp "runs/$r/$f" "evidence/$r/"; done
+  for f in round.json fix.json fix.diff review.json; do [ -f "runs/$r/$f" ] && cp "runs/$r/$f" "evidence/$r/"; done
+  if [ -f "runs/$r/review.json" ]; then
+    mkdir -p "evidence/$r/fix"
+    for f in fix.json fix.diff review.json; do
+      if [ -f "runs/$r/$f" ]; then cp "runs/$r/$f" "evidence/$r/fix/"; fi
+    done
+  fi
   for d in runs/$r/*/; do
     [ -f "$d/run.json" ] || continue
     mkdir -p "evidence/$r/$(basename "$d")"

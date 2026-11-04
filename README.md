@@ -4,7 +4,7 @@ Twelve shoppers with different lives go through a real shop in a real browser: a
 
 The shop is the OpenTelemetry Demo at release 2.1.3, which shipped a cart total that ignores quantity ([issue 1526](https://github.com/open-telemetry/opentelemetry-demo/issues/1526)). Release 3.1.0 is the clean build.
 
-The browser records where each shopper gave up. The model writes one sentence per walkout and a patch, the shop gets rebuilt and the same twelve go again. The frontend has no `npm test` script, so the patch gate is its type check and lint in the image build.
+The browser records where each shopper gave up. The model writes one sentence per walkout and a patch, the shop gets rebuilt and the same twelve go again. Spark picks the source files, Wonder writes the patch and reviews it before the rebuild gate, then the same shoppers watch the change live. The frontend has no `npm test` script, so the patch gate is its type check and lint in the image build.
 
 ## Setup
 
@@ -110,3 +110,10 @@ The optional Collector overlay keeps the demo's local exporters and sensitive
 attribute processors. It does not export server filesystem, Docker or host
 metrics to Bronto. To return to the default Collector, stop the shop and start
 it again with `WALKOUT_BRONTO_KEY_FILE` unset.
+
+### Fix configuration
+
+- `WALKOUT_PICK_MODEL`: file selection model (default `muse-spark-1.3`).
+- `WALKOUT_FIX_MODEL`: patch model (default `muse-wonder-1.0`).
+- `WALKOUT_REVIEW_MODEL`: review model (default `muse-wonder-1.0`).
+- `WALKOUT_NO_REVIEW=1`: skip review and use the original fix pipeline.

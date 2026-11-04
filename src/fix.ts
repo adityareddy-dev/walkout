@@ -11,6 +11,7 @@ import { codeText } from "./telemetry.ts";
 import type { RunRecord } from "./types.ts";
 
 export const PICK_MODEL = process.env.WALKOUT_PICK_MODEL ?? "muse-spark-1.3";
+export const REVIEW_MODEL = process.env.WALKOUT_REVIEW_MODEL ?? "muse-wonder-1.0";
 export const FIX_MODEL = process.env.WALKOUT_FIX_MODEL ?? "muse-wonder-1.0";
 
 export interface Edit {
@@ -77,7 +78,7 @@ export function withImports(sourceDir: string, picked: string[], all: string[], 
     const text = readFileSync(join(sourceDir, f), "utf8");
     const found: string[] = [];
     for (const m of text.matchAll(/^(?:import|export)[^;]*?from\s+['"](\.[^'"]+)['"]/gm)) {
-      const base = normalize(join(dirname(f), m[1]));
+      const base = normalize(join(dirname(f), m[1])).replace(/\\/g, "/");
       const hit = ["", ".tsx", ".ts", "/index.tsx", "/index.ts", `/${basename(base)}.tsx`, `/${basename(base)}.ts`].map((x) => base + x).find((c) => all.includes(c));
       if (hit) found.push(hit);
     }
@@ -93,7 +94,7 @@ export function withImports(sourceDir: string, picked: string[], all: string[], 
   return out.slice(0, max);
 }
 
-export async function proposeFix(shop: Shop, runs: RunRecord[], files: string[], purpose: string): Promise<FixProposal> {
+export async function proposeFix(shop: Shop, runs: RunRecord[], files: string[], purpose: string, notes?: string[]): Promise<FixProposal> {
   const bodies = files
     .map((f) => {
       const text = readFileSync(join(shop.sourceDir, f), "utf8");
@@ -110,12 +111,72 @@ export async function proposeFix(shop: Shop, runs: RunRecord[], files: string[],
     },
     { role: "user", content: `${evidence(runs)}\n\nShop: ${shop.name}, goal of the shoppers: ${shop.goal}\n\nSource:\n${bodies}` },
   ];
+  if (notes?.length) messages.push({ role: "user", content: `Review feedback to address:\n${notes.join("\n")}` });
   const res = await chat({ model: FIX_MODEL, messages, maxTokens: 8000, reasoningEffort: "medium", purpose, estimateUsd: priceOf(FIX_MODEL, 60_000, 8000) });
   const obj = parseJsonObject(res.text) ?? {};
   const edits = Array.isArray(obj.edits)
     ? obj.edits.map((e: Record<string, unknown>) => ({ file: String(e.file ?? ""), find: String(e.find ?? ""), replace: String(e.replace ?? "") }))
     : [];
   return { summary: String(obj.summary ?? "").trim(), files, edits };
+}
+
+export interface FixReview {
+  verdict: "approve" | "revise";
+  reasons: string[];
+  edits?: Edit[];
+}
+
+export async function reviewFix(shop: Shop, runs: RunRecord[], files: string[], proposal: FixProposal, purpose: string): Promise<FixReview> {
+  const edits = proposal.edits.map((edit) => {
+    let source: string;
+    try {
+      source = readFileSync(join(shop.sourceDir, edit.file), "utf8");
+    } catch {
+      return { ...edit, matches: 0, context: "File does not exist." };
+    }
+    const positions: number[] = [];
+    if (edit.find) {
+      for (let at = source.indexOf(edit.find); at >= 0; at = source.indexOf(edit.find, at + 1)) positions.push(at);
+    }
+    const lines = source.split("\n");
+    const context = positions.map((at) => {
+      const start = source.slice(0, at).split("\n").length - 1;
+      const end = start + edit.find.split("\n").length;
+      return lines.slice(Math.max(0, start - 20), end + 20).join("\n");
+    });
+    return { ...edit, matches: positions.length, context };
+  });
+  const messages: Message[] = [
+    { role: "system", content: [
+      "Review this shop patch before its rebuild gate. Check: does it address the walkout sentences and top telemetry findings; is it the smallest change that does; does it break anything visible in the surrounding code; does every find string still match the file exactly once?",
+      'Reply only as JSON: {"verdict":"approve" or "revise","reasons":[plain sentences, at most five],"edits":[optional corrected edits with file, find, replace]}. On revise, include a complete replacement edit list only when the correction is small. Find strings must match the original files exactly once.',
+    ].join("\n") },
+    { role: "user", content: `${evidence(runs)}\n\nShop: ${shop.name}, goal: ${shop.goal}\nPicked files: ${files.join(", ")}\nProposal: ${proposal.summary}\nEdits (exact find and replace text, with 20 surrounding lines):\n${JSON.stringify(edits, null, 2)}` },
+  ];
+  const res = await chat({ model: REVIEW_MODEL, messages, reasoningEffort: "medium", maxTokens: 6000, purpose, estimateUsd: priceOf(REVIEW_MODEL, 60_000, 6000) });
+  const obj = parseJsonObject(res.text);
+  if (!obj || !["approve", "revise"].includes(String(obj.verdict)) || !Array.isArray(obj.reasons) || !obj.reasons.every((r) => typeof r === "string")) {
+    throw new Error("fix review: invalid verdict or reasons");
+  }
+  const corrected = Array.isArray(obj.edits) && obj.edits.length && obj.edits.every((e) => e && typeof e.file === "string" && typeof e.find === "string" && e.find && typeof e.replace === "string")
+    ? obj.edits as Edit[] : undefined;
+  return { verdict: obj.verdict as FixReview["verdict"], reasons: obj.reasons.slice(0, 5) as string[], ...(obj.verdict === "revise" && corrected ? { edits: corrected } : {}) };
+}
+
+// Shared by the CLI and tests; no branch or build is touched until review finishes.
+export async function reviewProposal(shop: Shop, runs: RunRecord[], files: string[], proposal: FixProposal, roundId: string, report: (review: FixReview) => void): Promise<{ proposal: FixProposal; review: FixReview; accepted: boolean }> {
+  let review = await reviewFix(shop, runs, files, proposal, `${roundId}/fix/review`);
+  report(review);
+  let retried = false;
+  if (review.verdict === "revise" && !review.edits) {
+    retried = true;
+    proposal = await proposeFix(shop, runs, files, `${roundId}/fix/patch`, review.reasons);
+    review = await reviewFix(shop, runs, files, proposal, `${roundId}/fix/review`);
+    report(review);
+  }
+  const accepted = review.verdict === "approve" || (!retried && !!review.edits);
+  if (review.edits) proposal = { ...proposal, edits: review.edits };
+  return { proposal, review, accepted };
 }
 
 export function applyEdits(sourceDir: string, edits: Edit[]): { applied: Edit[]; failed: { edit: Edit; why: string }[] } {

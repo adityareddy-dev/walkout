@@ -113,3 +113,11 @@ On a clean GitHub runner (ubuntu-24.04, 2 cores, 7.7 GB, nothing cached), from a
 Before this, `npm test` failed on a fresh clone, cause the probe tests load `dist/probe.js` and nothing built it. `pretest` builds it now.
 
 The shoppers and the fix call the Meta API, so they didn't run there (no key on the runner). The fresh-checkout demo run on 2026-10-28 (`1351ddb`) covers that part.
+
+## 2026-11-04, Wonder reviews the patch (America/Chicago)
+
+Spark still picks the source files and Wonder writes the fix. Now Wonder reviews it before anything goes on a branch or through the rebuild gate. It gets the same walkout sentences and telemetry, the proposal, and the exact edits with twenty lines of surrounding code. The terminal prints its verdict and reasons. A small correction replaces the edits; otherwise the fixer gets one more try with the review reasons, and another revise drops the patch before the gate. The review is saved with the fix records and copied into evidence.
+
+Why Wonder: the [Meta model docs](https://dev.meta.ai/docs/models) say it “makes and verifies changes across many files in real repositories”. The review uses `muse-wonder-1.0` on Model API, medium reasoning. `WALKOUT_REVIEW_MODEL` changes the reviewer; `WALKOUT_NO_REVIEW=1` keeps the old flow.
+
+The added cost is one Wonder call per fix, about 60k input tokens, roughly 0.25 to 0.40 USD. A retry adds another patch call and review call. No paid calls were made for this change.

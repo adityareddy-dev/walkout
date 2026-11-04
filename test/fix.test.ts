@@ -3,7 +3,11 @@ import assert from "node:assert/strict";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { applyEdits, evidence, withImports } from "../src/fix.ts";
+import { loadShop } from "../src/shop.ts";
+import type { ChatRequest } from "../src/meta.ts";
+process.env.WALKOUT_LEDGER = join(mkdtempSync(join(tmpdir(), "walkout-review-ledger-")), "meta.jsonl");
+process.env.META_API_KEY = "test-key";
+const { applyEdits, evidence, withImports, reviewFix, reviewProposal, REVIEW_MODEL } = await import("../src/fix.ts");
 import { PERSONAS } from "../src/personas.ts";
 import type { RunRecord } from "../src/types.ts";
 
@@ -70,4 +74,82 @@ test("withImports finds a component folder's own file when its index is not a sh
   mkdirSync(join(dir, "Cart"), { recursive: true });
   writeFileSync(join(dir, "Cart/CartDetail.tsx"), "import CartItems from '../CartItems';\n");
   assert.deepEqual(withImports(dir, ["Cart/CartDetail.tsx"], ["Cart/CartDetail.tsx", "CartItems/CartItems.tsx"]), ["Cart/CartDetail.tsx", "CartItems/CartItems.tsx"]);
+});
+
+function reviewFixture() {
+  const shop = loadShop("otel-demo");
+  shop.sourceDir = mkdtempSync(join(tmpdir(), "walkout-review-"));
+  const before = Array.from({ length: 25 }, (_, i) => `// before ${i}`);
+  const after = Array.from({ length: 25 }, (_, i) => `// after ${i}`);
+  writeFileSync(join(shop.sourceDir, "cart.ts"), [...before, "const total = price;", ...after].join("\n"));
+  const edit = { file: "cart.ts", find: "const total = price;", replace: "const total = price * quantity;" };
+  return { shop, edit, proposal: { summary: "Count each item.", files: ["cart.ts"], edits: [edit] } };
+}
+
+function mockReplies(t: import("node:test").TestContext, replies: unknown[]) {
+  const requests: (Record<string, unknown> & { messages: ChatRequest["messages"] })[] = [];
+  t.mock.method(globalThis, "fetch", async (_url: unknown, init: RequestInit) => {
+    requests.push(JSON.parse(String(init.body)));
+    assert.ok(replies.length, "unexpected model call");
+    return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(replies.shift()) } }], usage: { prompt_tokens: 0, completion_tokens: 0 } }), { status: 200 });
+  });
+  return requests;
+}
+
+test("reviewFix approves with exact edits and twenty lines of surrounding context", async (t) => {
+  const { shop, proposal } = reviewFixture();
+  const requests = mockReplies(t, [{ verdict: "approve", reasons: ["The total now counts quantity."] }]);
+  const review = await reviewFix(shop, [], proposal.files, proposal, "round/fix/review");
+  assert.equal(review.verdict, "approve");
+  assert.equal(requests[0].model, REVIEW_MODEL);
+  assert.equal(requests[0].reasoning_effort, "medium");
+  assert.equal(requests[0].max_tokens, 6000);
+  const content = String(requests[0].messages[1].content);
+  assert.match(content, /Count each item/);
+  const edits = JSON.parse(content.slice(content.indexOf('[\n')));
+  assert.equal(edits[0].find, proposal.edits[0].find);
+  assert.equal(edits[0].replace, proposal.edits[0].replace);
+  assert.equal(edits[0].matches, 1);
+  assert.equal(edits[0].context[0].split("\n").length, 41);
+  assert.match(edits[0].context[0], /^\/\/ before 5/);
+  assert.match(edits[0].context[0], /\/\/ after 19$/);
+});
+
+test("reviewProposal uses corrected edits on revise", async (t) => {
+  const { shop, proposal, edit } = reviewFixture();
+  const corrected = { ...edit, replace: "const total = price * item.quantity;" };
+  const requests = mockReplies(t, [{ verdict: "revise", reasons: ["Use the item quantity."], edits: [corrected] }]);
+  const checked = await reviewProposal(shop, [], proposal.files, proposal, "round", () => {});
+  assert.equal(checked.accepted, true);
+  assert.deepEqual(checked.proposal.edits, [corrected]);
+  assert.equal(requests.length, 1);
+  applyEdits(shop.sourceDir, checked.proposal.edits);
+  assert.match(readFileSync(join(shop.sourceDir, "cart.ts"), "utf8"), /price \* item.quantity/);
+});
+
+test("reviewProposal retries with review reasons then approves", async (t) => {
+  const { shop, proposal, edit } = reviewFixture();
+  const requests = mockReplies(t, [
+    { verdict: "revise", reasons: ["Count the item quantity."] },
+    { summary: "Count quantity.", edits: [edit] },
+    { verdict: "approve", reasons: ["The quantity is included."] },
+  ]);
+  const verdicts: string[] = [];
+  const checked = await reviewProposal(shop, [], proposal.files, proposal, "round", (r) => verdicts.push(r.verdict));
+  assert.equal(checked.accepted, true);
+  assert.deepEqual(verdicts, ["revise", "approve"]);
+  assert.match(String(requests[1].messages.at(-1)?.content), /Count the item quantity/);
+  assert.equal(requests.length, 3);
+});
+
+test("reviewProposal drops a second revise before applying edits", async (t) => {
+  const { shop, proposal, edit } = reviewFixture();
+  mockReplies(t, [
+    { verdict: "revise", reasons: ["Try again."] },
+    { summary: "Another try.", edits: [edit] },
+    { verdict: "revise", reasons: ["Still incorrect."], edits: [edit] },
+  ]);
+  const checked = await reviewProposal(shop, [], proposal.files, proposal, "round", () => {});
+  assert.equal(checked.accepted, false);
+  assert.match(readFileSync(join(shop.sourceDir, "cart.ts"), "utf8"), /const total = price;/);
 });

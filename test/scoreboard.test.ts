@@ -149,7 +149,10 @@ test("grid, detail dialog, replay and Escape", async () => {
   await waitForShot(page);
   assert.equal(await dialog.locator(".counter").textContent(), "Step 1 of 8");
 
-  await page.keyboard.press("Escape");
+  await Promise.all([
+    dialog.evaluate((d) => new Promise<void>((resolve) => d.addEventListener("close", () => resolve(), { once: true }))),
+    page.keyboard.press("Escape"),
+  ]);
   assert.equal(await dialog.evaluate((d: HTMLDialogElement) => d.open), false);
   assert.equal(await tile.evaluate((el) => el === document.activeElement), true, "focus returns to the tile");
 

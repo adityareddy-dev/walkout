@@ -8,7 +8,7 @@ export async function serveFixture(root: string): Promise<{ url: string; close: 
   const server = createServer(async (req, res) => {
     const path = normalize(decodeURIComponent(new URL(req.url ?? "/", "http://x").pathname)).replace(/^(\.\.[/\\])+/, "");
     try {
-      const file = join(root, path === "/" ? "index.html" : path);
+      const file = join(root, path === "/" || path === "\\" ? "index.html" : path);
       const body = await readFile(file);
       res.writeHead(200, { "Content-Type": TYPES[extname(file)] ?? "application/octet-stream" });
       res.end(body);
