@@ -67,7 +67,7 @@ The demo video is one continuous recording of the whole loop on my server, no cu
 - `evidence/2026-11-040825-before`: 12 shoppers on 2.1.3, 1 of 12 bought. Eight of the eleven who left wrote the same cause, the cart total does not add up. Rosa's cart button did nothing on her phone, Grace never found the shop, Dev hit the step limit on the keyboard.
 - `evidence/2026-11-040825-before/fix.diff` and `review.json`: Spark picked the files, Wonder wrote the patch (`CartItems.tsx`, price times quantity in both sums) and approved it with four reasons. The 2.1.3 frontend image rebuilt with its type check and lint in 117 s.
 - `evidence/2026-11-040830-after`: the same 12 on 2.1.3 plus the patch, 11 of 12 bought. Dev, keyboard only, still could not reach the quantity and Add To Cart controls, which the patch did not touch.
-- The night's Meta API calls are in `spend/meta.jsonl`, 12.96 USD for every take, about 1.6 USD for the two rounds in the video.
+- The night's Meta API calls are in `spend/meta.jsonl`: 4.62 USD for every take of the night, about 1.6 USD for the two rounds in the video, and 12.96 USD for the whole project since Oct 27.
 
 ```sh
 WALKOUT_RUNS=evidence npm run scoreboard -- --before 2026-11-040825-before --after 2026-11-040830-after --serve
