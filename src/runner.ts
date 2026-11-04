@@ -316,6 +316,16 @@ export async function runPersona(browser: Browser, persona: Persona, opts: RunOp
         decision = await decideFn(persona, opts.shop.goal, perception, memory, i, opts.maxSteps, `${opts.round}/${persona.card.id}/step-${pad(i)}-retry`);
       }
       const action: Action = decision.action;
+      if (process.env.WALKOUT_STEP_LOG !== "0") {
+        const what = action.action === "click" || action.action === "select" ? `${action.action} "${action.target}"`
+          : action.action === "type" ? `type "${action.text}"${action.target ? ` into "${action.target}"` : ""}`
+          : action.action === "press" ? `press ${action.key}${action.times && action.times > 1 ? ` x${action.times}` : ""}`
+          : action.action === "scroll" ? `scroll ${action.direction}`
+          : action.action === "give_up" ? `give up: ${action.reason}`
+          : action.action;
+        const why = "why" in action && action.why ? ` (${action.why})` : "";
+        console.log(`  ${persona.card.id} step ${pad(i)}: ${what}${why}`);
+      }
       const step: Step = {
         index: i,
         tObserve,
