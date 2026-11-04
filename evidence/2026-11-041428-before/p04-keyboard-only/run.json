@@ -1,0 +1,756 @@
+{
+  "persona": {
+    "card": {
+      "id": "p04-keyboard-only",
+      "name": "Dev",
+      "life": "Software tester with a wrist injury who uses only the keyboard: Tab, Shift+Tab, Enter, Space and arrows.",
+      "constraints": [
+        "No mouse, no touch",
+        "Needs to see where focus is",
+        "Can type into the focused field"
+      ],
+      "patience": "Will tab through a long page, but gives up if focus disappears or a control cannot be reached."
+    },
+    "device": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "locale": "en-US",
+      "timezoneId": "America/Chicago",
+      "cpuThrottle": 1
+    },
+    "observation": "keyboard"
+  },
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "steps": [
+    {
+      "index": 1,
+      "tObserve": 1793802512055,
+      "tObserved": 1793802512768,
+      "tAct": 1793802515611,
+      "tSettled": 1793802517348,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-01.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see home with Go Shopping button, need to tab to it to start shopping.",
+        "times": 3
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2835,
+        "cachedTokens": 0,
+        "outputTokens": 207,
+        "usd": 0.0044235,
+        "latencyMs": 2837
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 2,
+      "tObserve": 1793802517413,
+      "tObserved": 1793802517754,
+      "tAct": 1793802519989,
+      "tSettled": 1793802521468,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-02.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Enter",
+        "why": "Go Shopping button is focused, I need to enter the store."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2869,
+        "cachedTokens": 0,
+        "outputTokens": 120,
+        "usd": 0.00409625,
+        "latencyMs": 2226
+      },
+      "result": "the page changed to \"Otel Demo - Home\""
+    },
+    {
+      "index": 3,
+      "tObserve": 1793802521472,
+      "tObserved": 1793802521759,
+      "tAct": 1793802527109,
+      "tSettled": 1793802529796,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-03.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I don't see my product in hot products, I need to tab to find navigation or search.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2907,
+        "cachedTokens": 0,
+        "outputTokens": 420,
+        "usd": 0.00541875,
+        "latencyMs": 5345
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 4,
+      "tObserve": 1793802529812,
+      "tObserved": 1793802530179,
+      "tAct": 1793802536044,
+      "tSettled": 1793802538252,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-04.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see hot products but not the Explorascope, and Red Flashlight looks focused, so I will tab forward to keep looking.",
+        "times": 5
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2943,
+        "cachedTokens": 0,
+        "outputTokens": 516,
+        "usd": 0.00587175,
+        "latencyMs": 5848
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 5,
+      "tObserve": 1793802538260,
+      "tObserved": 1793802538446,
+      "tAct": 1793802542056,
+      "tSettled": 1793802545101,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-05.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I don't see focus, need to tab forward toward product listings to find Explorascopes.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 2987,
+        "cachedTokens": 0,
+        "outputTokens": 316,
+        "usd": 0.00507675,
+        "latencyMs": 3571
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 6,
+      "tObserve": 1793802545137,
+      "tObserved": 1793802545491,
+      "tAct": 1793802547481,
+      "tSettled": 1793802550210,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-06.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Lens Cleaning Kit, not my product, so I keep tabbing forward.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3022,
+        "cachedTokens": 0,
+        "outputTokens": 171,
+        "usd": 0.00450425,
+        "latencyMs": 1976
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 7,
+      "tObserve": 1793802550225,
+      "tObserved": 1793802550612,
+      "tAct": 1793802553021,
+      "tSettled": 1793802556478,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-07.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus on Eclipsmart telescope, not Explorascopes, so I keep tabbing forward.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3057,
+        "cachedTokens": 0,
+        "outputTokens": 189,
+        "usd": 0.0046245,
+        "latencyMs": 2394
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 8,
+      "tObserve": 1793802556483,
+      "tObserved": 1793802556663,
+      "tAct": 1793802559559,
+      "tSettled": 1793802561739,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-08.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see my product but no focus visible, so I tab forward to reach it.",
+        "times": 5
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3094,
+        "cachedTokens": 0,
+        "outputTokens": 249,
+        "usd": 0.00492575,
+        "latencyMs": 2889
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 9,
+      "tObserve": 1793802561937,
+      "tObserved": 1793802562128,
+      "tAct": 1793802564861,
+      "tSettled": 1793802567890,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-09.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Solar System Imager, not my product, so I keep tabbing forward.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3128,
+        "cachedTokens": 0,
+        "outputTokens": 180,
+        "usd": 0.004675,
+        "latencyMs": 2724
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 10,
+      "tObserve": 1793802567895,
+      "tObserved": 1793802568043,
+      "tAct": 1793802572348,
+      "tSettled": 1793802575160,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-10.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see my product but focus is at the footer, so I shift-tab back to reach it.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3164,
+        "cachedTokens": 0,
+        "outputTokens": 420,
+        "usd": 0.00574,
+        "latencyMs": 4297
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 11,
+      "tObserve": 1793802575213,
+      "tObserved": 1793802575459,
+      "tAct": 1793802580052,
+      "tSettled": 1793802583201,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-11.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Solar System Imager, my product is further down so I tab forward.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3203,
+        "cachedTokens": 0,
+        "outputTokens": 453,
+        "usd": 0.005929,
+        "latencyMs": 4589
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 12,
+      "tObserve": 1793802583205,
+      "tObserved": 1793802583332,
+      "tAct": 1793802587798,
+      "tSettled": 1793802589512,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-12.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I found the Explorascopes at $101.96, but I don't see focus, so I tab forward a little to reach it.",
+        "times": 3
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3238,
+        "cachedTokens": 0,
+        "outputTokens": 494,
+        "usd": 0.006147,
+        "latencyMs": 4462
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 13,
+      "tObserve": 1793802589533,
+      "tObserved": 1793802589828,
+      "tAct": 1793802595139,
+      "tSettled": 1793802598169,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-13.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I am back at the top with no focus visible, so I tab forward toward the products to find Explorascopes.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3283,
+        "cachedTokens": 0,
+        "outputTokens": 453,
+        "usd": 0.006029,
+        "latencyMs": 5306
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 14,
+      "tObserve": 1793802598205,
+      "tObserved": 1793802598537,
+      "tAct": 1793802600472,
+      "tSettled": 1793802604068,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-14.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Lens Cleaning Kit, my product is further down so I keep tabbing forward.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3290,
+        "cachedTokens": 0,
+        "outputTokens": 178,
+        "usd": 0.004869,
+        "latencyMs": 1930
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 15,
+      "tObserve": 1793802604086,
+      "tObserved": 1793802604312,
+      "tAct": 1793802606591,
+      "tSettled": 1793802609313,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-15.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Eclipsmart telescope, my product is further down so I keep tabbing forward.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3291,
+        "cachedTokens": 0,
+        "outputTokens": 226,
+        "usd": 0.00507425,
+        "latencyMs": 2268
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 16,
+      "tObserve": 1793802609327,
+      "tObserved": 1793802609856,
+      "tAct": 1793802612749,
+      "tSettled": 1793802614877,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-16.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "My product is visible, focus was just above it, so tab forward to reach it.",
+        "times": 5
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3293,
+        "cachedTokens": 0,
+        "outputTokens": 241,
+        "usd": 0.0051405,
+        "latencyMs": 2885
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 17,
+      "tObserve": 1793802614884,
+      "tObserved": 1793802615292,
+      "tAct": 1793802618136,
+      "tSettled": 1793802621001,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-17.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Solar System Imager, not my product, so I keep tabbing forward to find Explorascopes.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3284,
+        "cachedTokens": 0,
+        "outputTokens": 242,
+        "usd": 0.0051335,
+        "latencyMs": 2838
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 18,
+      "tObserve": 1793802621051,
+      "tObserved": 1793802621318,
+      "tAct": 1793802623634,
+      "tSettled": 1793802626469,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-18.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "Focus is at footer Source Code, past my product, so I shift-tab back to reach Explorascopes.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3290,
+        "cachedTokens": 0,
+        "outputTokens": 244,
+        "usd": 0.0051495,
+        "latencyMs": 2299
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 19,
+      "tObserve": 1793802626565,
+      "tObserved": 1793802627101,
+      "tAct": 1793802630378,
+      "tSettled": 1793802633165,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-19.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Solar System Imager, my product is further down so I keep tabbing forward.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3296,
+        "cachedTokens": 0,
+        "outputTokens": 294,
+        "usd": 0.0053695,
+        "latencyMs": 3270
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 20,
+      "tObserve": 1793802633180,
+      "tObserved": 1793802633324,
+      "tAct": 1793802638065,
+      "tSettled": 1793802640015,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-20.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "Focus is on footer Source Code just below my product, so I shift-tab back a few steps to reach Explorascopes.",
+        "times": 3
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3296,
+        "cachedTokens": 0,
+        "outputTokens": 546,
+        "usd": 0.0064405,
+        "latencyMs": 4733
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 21,
+      "tObserve": 1793802640036,
+      "tObserved": 1793802640208,
+      "tAct": 1793802643250,
+      "tSettled": 1793802644829,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-21.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Lens Cleaning Kit, my product is just below, so I tab forward to reach Explorascopes.",
+        "times": 2
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3306,
+        "cachedTokens": 1137,
+        "outputTokens": 283,
+        "usd": 0.00533525,
+        "latencyMs": 3035
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 22,
+      "tObserve": 1793802644834,
+      "tObserved": 1793802645005,
+      "tAct": 1793802646660,
+      "tSettled": 1793802649161,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-22.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Enter",
+        "why": "Focus is now on my Explorascopes product, so I press Enter to open it."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3310,
+        "cachedTokens": 0,
+        "outputTokens": 142,
+        "usd": 0.004741,
+        "latencyMs": 1650
+      },
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 23,
+      "tObserve": 1793802649168,
+      "tObserved": 1793802649276,
+      "tAct": 1793802655294,
+      "tSettled": 1793802657462,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-23.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see my product at $101.96 and need 3, so I tab forward to reach the Quantity field.",
+        "times": 5,
+        "note": "Explorascope price $101.96, need 3"
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3316,
+        "cachedTokens": 0,
+        "outputTokens": 587,
+        "usd": 0.00663975,
+        "latencyMs": 6014
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 24,
+      "tObserve": 1793802657471,
+      "tObserved": 1793802657658,
+      "tAct": 1793802663110,
+      "tSettled": 1793802665845,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-24.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "Focus is on Lens Cleaning Kit below my product, so I shift-tab back up toward quantity and add to cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3338,
+        "cachedTokens": 0,
+        "outputTokens": 569,
+        "usd": 0.00659075,
+        "latencyMs": 5439
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 25,
+      "tObserve": 1793802665849,
+      "tObserved": 1793802665980,
+      "tAct": 1793802670279,
+      "tSettled": 1793802670279,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-25.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "give_up",
+        "reason": "I could not reach the quantity and add to cart controls for the Explorascopes using only the keyboard.",
+        "why": "I am at the bottom of the page on a related product and out of steps, so I leave without buying."
+      },
+      "usage": {
+        "model": "muse-spark-1.3",
+        "inputTokens": 3335,
+        "cachedTokens": 0,
+        "outputTokens": 363,
+        "usd": 0.0057115,
+        "latencyMs": 4293
+      }
+    }
+  ],
+  "outcome": {
+    "kind": "gave_up",
+    "reason": "I could not reach the quantity and add to cart controls for the Explorascopes using only the keyboard.",
+    "atStep": 25
+  },
+  "findings": [
+    {
+      "kind": "slow_interaction",
+      "t": 1793802602180.2998,
+      "step": 14,
+      "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+      "durationMs": 296,
+      "code": {
+        "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+        "line": 1,
+        "column": 166318,
+        "functionName": "s8"
+      },
+      "summary": "keydown on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 296 ms to paint (input delay 3, handlers 51, paint 243); longest script 64 ms in s8 /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:166318 (DIV#__next.onkeyup)."
+    },
+    {
+      "kind": "slow_interaction",
+      "t": 1793802646683.5,
+      "step": 22,
+      "target": "",
+      "durationMs": 240,
+      "code": {
+        "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+        "line": 1,
+        "column": 179694,
+        "functionName": "N"
+      },
+      "summary": "keydown on the page took 240 ms to paint (input delay 12, handlers 15, paint 213); longest script 62 ms in N /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:179694 (MessagePort.onmessage)."
+    },
+    {
+      "kind": "js_error",
+      "t": 1793802646835,
+      "step": 22,
+      "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "kind": "failed_request",
+      "t": 1793802646835,
+      "step": 22,
+      "summary": "GET /images/products/undefined returned 404."
+    }
+  ],
+  "sentence": "On the product page at step 25 while trying to set quantity to three and add to cart, the shopper was stuck on related items like the Lens Cleaning Kit and never reached the buying controls.",
+  "usd": 0.1336565,
+  "startedAt": "2026-11-04T14:28:26.359Z",
+  "durationMs": 164318
+}

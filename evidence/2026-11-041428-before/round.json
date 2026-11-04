@@ -1,0 +1,568 @@
+{
+  "round": "2026-11-041428-before",
+  "label": "before",
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "startedAt": "2026-11-04T14:28:25.773Z",
+  "finishedAt": "2026-11-04T14:31:57.064Z",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "bought": 1,
+  "total": 12,
+  "usd": 0.7519097500000002,
+  "runs": [
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p01-cheap-android",
+      "personaName": "Rosa",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The Go to Shopping Cart button does nothing so I can't check the total before paying.",
+        "atStep": 22
+      },
+      "steps": 22,
+      "startedAt": "2026-11-04T14:28:26.349Z",
+      "durationMs": 154296,
+      "usd": 0.08239325,
+      "findings": [
+        {
+          "kind": "slow_request",
+          "t": 1793802526602,
+          "step": null,
+          "durationMs": 28277,
+          "summary": "GET /images/products/EclipsmartTravelRefractorTelescope.jpg took 28.3 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802526606,
+          "step": null,
+          "durationMs": 32008,
+          "summary": "GET /images/products/RedFlashlight.jpg took 32.0 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802526606,
+          "step": null,
+          "durationMs": 28796,
+          "summary": "GET /images/products/TheCometBook.jpg took 28.8 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802526606,
+          "step": null,
+          "durationMs": 21028,
+          "summary": "GET /images/products/LensCleaningKit.jpg took 21.0 s."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793802606771.9,
+          "step": 13,
+          "target": "div.sc-e8cdbf93-1.eaQQue",
+          "summary": "Tap on div.sc-e8cdbf93-1.eaQQue did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802609379,
+          "step": 13,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802611269,
+          "step": 13,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "unanswered_tap",
+          "t": 1793802624780.5999,
+          "step": 16,
+          "target": "button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\"",
+          "durationMs": 2305,
+          "summary": "Tap on button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\" sent POST /api/cart and nothing on the page changed until the answer came 2.3 s later."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802629342,
+          "step": 16,
+          "durationMs": 22483,
+          "summary": "GET /images/products/RedFlashlight.jpg took 22.5 s."
+        }
+      ],
+      "sentence": "At step 22 while trying to open the full cart to check the total, Rosa left after tapping Go to Shopping Cart twice and seeing only the small cart with 3 scopes and no total, with nothing changing on screen."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p02-slow-3g",
+      "personaName": "Tomasz",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows 3 items at $101.96 but totals only $128.93 instead of over $300, so I won't pay.",
+        "atStep": 8
+      },
+      "steps": 8,
+      "startedAt": "2026-11-04T14:28:26.355Z",
+      "durationMs": 57815,
+      "usd": 0.03013825,
+      "findings": [
+        {
+          "kind": "slow_request",
+          "t": 1793802518811,
+          "step": null,
+          "durationMs": 13136,
+          "summary": "GET /images/products/RoofBinoculars.jpg took 13.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802518812,
+          "step": null,
+          "durationMs": 23564,
+          "summary": "GET /images/products/LensCleaningKit.jpg took 23.6 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802518812,
+          "step": null,
+          "durationMs": 14088,
+          "summary": "GET /images/products/SolarFilter.jpg took 14.1 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802518812,
+          "step": null,
+          "durationMs": 12683,
+          "summary": "GET /images/products/OpticalTubeAssembly.jpg took 12.7 s."
+        },
+        {
+          "kind": "slow_request",
+          "t": 1793802518813,
+          "step": null,
+          "durationMs": 23149,
+          "summary": "GET /images/products/NationalParkFoundationExplorascope.jpg took 23.1 s."
+        },
+        {
+          "kind": "dead_tap",
+          "t": 1793802536948.9,
+          "step": 4,
+          "target": "div.sc-e8cdbf93-1.eKIFhw",
+          "summary": "Tap on div.sc-e8cdbf93-1.eKIFhw did nothing within 300 ms: no change on the page, no request."
+        },
+        {
+          "kind": "slow_interaction",
+          "t": 1793802542674.8,
+          "step": 5,
+          "target": "div.sc-d6305667-3.dNiWFa \"$ 0.00Quantity12345678910 Add To Cart\"",
+          "durationMs": 392,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/219.2fc34a0056c32b12.js",
+            "line": 1,
+            "column": 1,
+            "functionName": ""
+          },
+          "summary": "click on div.sc-d6305667-3.dNiWFa \"$ 0.00Quantity12345678910 Add To Cart\" took 392 ms to paint (input delay 377, handlers 4, paint 11); longest script 98 ms in /_next/static/chunks/219.2fc34a0056c32b12.js:1:1 (http://localhost:8080/_next/static/chunks/219.2fc34a0056c32b12.js)."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802542907,
+          "step": 5,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802544235,
+          "step": 5,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 8 while checking the cart before paying Tomasz saw 3 Explorascopes at $101.96 totaled as $128.93 instead of over $300 which was wrong on the screen alone."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p03-large-text",
+      "personaName": "Margaret",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not match 3 times $101.96 plus $26.97 shipping, so I will not pay.",
+        "atStep": 15
+      },
+      "steps": 15,
+      "startedAt": "2026-11-04T14:28:26.355Z",
+      "durationMs": 70603,
+      "usd": 0.05198425,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793802553349.3,
+          "step": 10,
+          "target": "",
+          "durationMs": 344,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 179694,
+            "functionName": "N"
+          },
+          "summary": "click on the page took 344 ms to paint (input delay 19, handlers 40, paint 285); longest script 90 ms in N /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:179694 (MessagePort.onmessage)."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802553723,
+          "step": 10,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802553723,
+          "step": 10,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "At step 15 while checking the cart before paying, Margaret left because she saw 3 at $101.96 plus $26.97 shipping totaled as $128.93, which shows only on the screen as a wrong price."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p04-keyboard-only",
+      "personaName": "Dev",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "I could not reach the quantity and add to cart controls for the Explorascopes using only the keyboard.",
+        "atStep": 25
+      },
+      "steps": 25,
+      "startedAt": "2026-11-04T14:28:26.359Z",
+      "durationMs": 164318,
+      "usd": 0.1439155,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793802602180.2998,
+          "step": 14,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "durationMs": 296,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 166318,
+            "functionName": "s8"
+          },
+          "summary": "keydown on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 296 ms to paint (input delay 3, handlers 51, paint 243); longest script 64 ms in s8 /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:166318 (DIV#__next.onkeyup)."
+        },
+        {
+          "kind": "slow_interaction",
+          "t": 1793802646683.5,
+          "step": 22,
+          "target": "",
+          "durationMs": 240,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 179694,
+            "functionName": "N"
+          },
+          "summary": "keydown on the page took 240 ms to paint (input delay 12, handlers 15, paint 213); longest script 62 ms in N /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:179694 (MessagePort.onmessage)."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802646835,
+          "step": 22,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802646835,
+          "step": 22,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "On the product page at step 25 while trying to set quantity to three and add to cart, the shopper was stuck on related items like the Lens Cleaning Kit and never reached the buying controls."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p05-screen-reader",
+      "personaName": "Amara",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows quantity 3 at $101.96 each but totals only $128.93 including shipping instead of about $332.85, so I will not pay.",
+        "atStep": 4
+      },
+      "steps": 4,
+      "startedAt": "2026-11-04T14:28:26.359Z",
+      "durationMs": 24596,
+      "usd": 0.024623,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793802516398,
+          "step": 1,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802516400,
+          "step": 1,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Amara left at step 4 while checking her cart because it showed 3 telescopes at $101.96 each but totaled only $128.93 with shipping, and this wrong total was visible only on the screen."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p06-spanish",
+      "personaName": "Lucía",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "El total no suma para tres telescopios, solo cobra uno más envío y así no pago.",
+        "atStep": 7
+      },
+      "steps": 7,
+      "startedAt": "2026-11-04T14:28:26.359Z",
+      "durationMs": 45429,
+      "usd": 0.029149499999999995,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793802533031,
+          "step": 4,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802533032,
+          "step": 4,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 7 while checking her cart before paying for three telescopes, Lucía saw quantity 3 at $101.96 but a total of $128.93 for one plus shipping, and this wrong total shows only on the screen."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p07-tablet",
+      "personaName": "Hiro",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows 3 items at $101.96 but the total is only $128.93 instead of about $332, so I will not pay.",
+        "atStep": 8
+      },
+      "steps": 8,
+      "startedAt": "2026-11-04T14:28:50.959Z",
+      "durationMs": 54502,
+      "usd": 0.04123925,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793802541253.4,
+          "step": 1,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "durationMs": 320,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 166318,
+            "functionName": "s8"
+          },
+          "summary": "click on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 320 ms to paint (input delay 90, handlers 22, paint 208); longest script 15 ms in s8 /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:166318 (DIV#__next.onclick)."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802567458,
+          "step": 5,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802567628,
+          "step": 5,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 8 while checking the cart before paying, Hiro saw 3 scopes at $101.96 but a total of only $128.93, and this wrong total shows only on the screen."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p08-desktop-mouse",
+      "personaName": "Sam",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total $128.93 doesn't equal 3 x $101.96 plus $26.97 shipping so I won't pay.",
+        "atStep": 10
+      },
+      "steps": 10,
+      "startedAt": "2026-11-04T14:29:11.790Z",
+      "durationMs": 54368,
+      "usd": 0.0574285,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793802560142.8,
+          "step": 1,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "durationMs": 560,
+          "summary": "click on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 560 ms to paint (input delay 19, handlers 12, paint 529)."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802589179,
+          "step": 7,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802589185,
+          "step": 7,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Sam left at step 10 while checking the cart because 3 at $101.96 plus $26.97 shipping showed as $128.93 total, a wrong total seen only on the screen."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p09-high-latency",
+      "personaName": "Kai",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not equal 3 items at $101.96 plus $26.97 shipping.",
+        "atStep": 17
+      },
+      "steps": 17,
+      "startedAt": "2026-11-04T14:29:24.172Z",
+      "durationMs": 107463,
+      "usd": 0.08893425,
+      "findings": [
+        {
+          "kind": "failed_request",
+          "t": 1793802642665,
+          "step": 13,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802643370,
+          "step": 13,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "At step 17 while checking the cart before paying, Kai left because the screen showed 3 at $101.96 plus $26.97 shipping totaling only $128.93, a wrong total visible only on the screen."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p10-reduced-motion",
+      "personaName": "Noor",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart shows 3 items at $101.96 but the total of $128.93 does not include all three plus shipping.",
+        "atStep": 12
+      },
+      "steps": 12,
+      "startedAt": "2026-11-04T14:29:36.961Z",
+      "durationMs": 57544,
+      "usd": 0.05897525000000001,
+      "findings": [
+        {
+          "kind": "js_error",
+          "t": 1793802619834,
+          "step": 9,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802619834,
+          "step": 9,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "At step 12 while checking the cart before paying, she saw 3 scopes at $101.96 plus $26.97 shipping but a $128.93 total, which was wrong on the screen itself."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p11-colour-blind",
+      "personaName": "Ben",
+      "outcome": {
+        "kind": "bought",
+        "reason": "order placed",
+        "atStep": 22
+      },
+      "steps": 22,
+      "startedAt": "2026-11-04T14:29:45.462Z",
+      "durationMs": 114776,
+      "usd": 0.10135675,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793802590505.3,
+          "step": 1,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "durationMs": 280,
+          "summary": "click on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 280 ms to paint (input delay 13, handlers 8, paint 260)."
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802675765,
+          "step": 17,
+          "summary": "GET /images/products/undefined returned 404."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802675786,
+          "step": 17,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "sentence": "Ben bought in 22 steps."
+    },
+    {
+      "round": "2026-11-041428-before",
+      "persona": "p12-low-end-desktop",
+      "personaName": "Grace",
+      "outcome": {
+        "kind": "gave_up",
+        "reason": "The cart total of $128.93 does not match 3 times $101.96 plus $26.97 shipping.",
+        "atStep": 8
+      },
+      "steps": 8,
+      "startedAt": "2026-11-04T14:30:06.159Z",
+      "durationMs": 43477,
+      "usd": 0.041772000000000004,
+      "findings": [
+        {
+          "kind": "slow_interaction",
+          "t": 1793802614265.5,
+          "step": 1,
+          "target": "button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\"",
+          "durationMs": 264,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 166411,
+            "functionName": "s6"
+          },
+          "summary": "click on button.sc-83a403b4-0.sc-a415c2da-5 \"Go Shopping\" took 264 ms to paint (input delay 59, handlers 31, paint 175); longest script 30 ms in s6 /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:166411 (DIV#__next.onmouseout)."
+        },
+        {
+          "kind": "slow_interaction",
+          "t": 1793802633520.5,
+          "step": 5,
+          "target": "",
+          "durationMs": 240,
+          "code": {
+            "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+            "line": 1,
+            "column": 179694,
+            "functionName": "N"
+          },
+          "summary": "click on the page took 240 ms to paint (input delay 22, handlers 22, paint 196); longest script 61 ms in N /_next/static/chunks/framework-8a7ac262f6e10eb2.js:1:179694 (MessagePort.onmessage)."
+        },
+        {
+          "kind": "js_error",
+          "t": 1793802633727,
+          "step": 5,
+          "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "kind": "failed_request",
+          "t": 1793802633727,
+          "step": 5,
+          "summary": "GET /images/products/undefined returned 404."
+        }
+      ],
+      "sentence": "Grace left at step 8 while checking her cart before paying because the screen showed $128.93 total for 3 scopes at $101.96 plus $26.97 shipping, which does not add up."
+    }
+  ]
+}
