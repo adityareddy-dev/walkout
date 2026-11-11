@@ -1,0 +1,2821 @@
+{
+  "inputs": [
+    {
+      "t": 1794357125420.9001,
+      "type": "click",
+      "x": 206,
+      "y": 636,
+      "target": "button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\"",
+      "interactive": true,
+      "freshMutations": 0,
+      "focusMoved": false,
+      "urlChanged": false,
+      "scrolled": false,
+      "unloaded": false
+    }
+  ],
+  "mutations": [
+    {
+      "t": 1794357117060,
+      "count": 4
+    },
+    {
+      "t": 1794357117941.5,
+      "count": 1
+    },
+    {
+      "t": 1794357117994.3,
+      "count": 3
+    },
+    {
+      "t": 1794357121016.3,
+      "count": 33
+    },
+    {
+      "t": 1794357121994.5,
+      "count": 4
+    },
+    {
+      "t": 1794357122198.3,
+      "count": 4
+    },
+    {
+      "t": 1794357123345.7,
+      "count": 1
+    },
+    {
+      "t": 1794357125156.1,
+      "count": 1
+    },
+    {
+      "t": 1794357125307.3,
+      "count": 2
+    },
+    {
+      "t": 1794357126375,
+      "count": 1
+    },
+    {
+      "t": 1794357127595.1,
+      "count": 1
+    },
+    {
+      "t": 1794357129557.7,
+      "count": 1
+    },
+    {
+      "t": 1794357129663.5,
+      "count": 5
+    },
+    {
+      "t": 1794357129983.2,
+      "count": 12
+    },
+    {
+      "t": 1794357130036.3,
+      "count": 1
+    },
+    {
+      "t": 1794357130044.4001,
+      "count": 2
+    },
+    {
+      "t": 1794357131845.3,
+      "count": 8
+    }
+  ],
+  "requests": [
+    {
+      "t": 1794357107023,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "method": "GET",
+      "type": "document",
+      "tEnd": 1794357109125,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/css/4a86f4d07dfbe27c.css",
+      "method": "GET",
+      "type": "stylesheet",
+      "tEnd": 1794357111127,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap",
+      "method": "GET",
+      "type": "stylesheet",
+      "tEnd": 1794357111641,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/chunks/webpack-6856275f0cc086b5.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357111340,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357115689,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/chunks/main-01b73838d8a55cf3.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357113948,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/chunks/pages/_app-09d07af675096bb9.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357116920,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/chunks/817-23874bcd8932bcf2.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357111967,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/chunks/250-072a0e68f3e65dac.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357115867,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/chunks/pages/product/%5BproductId%5D-ebcdadc7cd5b07e9.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357117786,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/WZK0rrLFidha-Qvt2odB7/_buildManifest.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357117956,
+      "status": 200
+    },
+    {
+      "t": 1794357109112,
+      "url": "http://localhost:8080/_next/static/WZK0rrLFidha-Qvt2odB7/_ssgManifest.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357118925,
+      "status": 200
+    },
+    {
+      "t": 1794357109125,
+      "url": "http://localhost:8080/images/opentelemetry-demo-logo.png",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357118148,
+      "status": 200
+    },
+    {
+      "t": 1794357109125,
+      "url": "http://localhost:8080/icons/Chevron.svg",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357113476,
+      "status": 200
+    },
+    {
+      "t": 1794357111732,
+      "url": "http://localhost:8080/images/products/undefined",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357114096,
+      "status": 404
+    },
+    {
+      "t": 1794357111732,
+      "url": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2",
+      "method": "GET",
+      "type": "font",
+      "tEnd": 1794357117090,
+      "status": 200
+    },
+    {
+      "t": 1794357111732,
+      "url": "http://localhost:8080//icons/CartIcon.svg?w=48&q=75",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357116045,
+      "status": 308
+    },
+    {
+      "t": 1794357111732,
+      "url": "http://localhost:8080//icons/Cart.svg?w=32&q=75",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357116195,
+      "status": 308
+    },
+    {
+      "t": 1794357116046,
+      "url": "http://localhost:8080/icons/CartIcon.svg?w=48&q=75",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357118092,
+      "status": 200
+    },
+    {
+      "t": 1794357116196,
+      "url": "http://localhost:8080/icons/Cart.svg?w=32&q=75",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357118242,
+      "status": 200
+    },
+    {
+      "t": 1794357117084,
+      "url": "http://localhost:8080/_next/static/chunks/219.2fc34a0056c32b12.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357123188,
+      "status": 200
+    },
+    {
+      "t": 1794357117085,
+      "url": "http://localhost:8080/flagservice/flagd.evaluation.v1.Service/EventStream",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357117110,
+      "url": "http://localhost:8080/images/products/undefined",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357119917,
+      "status": 404
+    },
+    {
+      "t": 1794357117946,
+      "url": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357120110,
+      "status": 200
+    },
+    {
+      "t": 1794357117947,
+      "url": "http://localhost:8080/api/products/OLJCESPC7Z?currencyCode=",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357120169,
+      "status": 200
+    },
+    {
+      "t": 1794357117947,
+      "url": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357120249,
+      "status": 200
+    },
+    {
+      "t": 1794357117947,
+      "url": "http://localhost:8080/api/currency?",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357120953,
+      "status": 200
+    },
+    {
+      "t": 1794357117999,
+      "url": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357121933,
+      "status": 200
+    },
+    {
+      "t": 1794357117999,
+      "url": "http://localhost:8080/api/products/OLJCESPC7Z?currencyCode=USD",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357122148,
+      "status": 200
+    },
+    {
+      "t": 1794357118000,
+      "url": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357122227,
+      "status": 200
+    },
+    {
+      "t": 1794357119852,
+      "url": "http://localhost:8080/flagservice/flagd.evaluation.v1.Service/ResolveAll",
+      "method": "POST",
+      "type": "fetch",
+      "tEnd": 1794357122300,
+      "status": 200
+    },
+    {
+      "t": 1794357122002,
+      "url": "http://localhost:8080/images/products/OpticalTubeAssembly.jpg",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357125145,
+      "status": 200
+    },
+    {
+      "t": 1794357122003,
+      "url": "http://localhost:8080/images/products/TheCometBook.jpg",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357122003,
+      "url": "http://localhost:8080/images/products/SolarSystemColorImager.jpg",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357129548,
+      "status": 200
+    },
+    {
+      "t": 1794357122003,
+      "url": "http://localhost:8080/images/products/StarsenseExplorer.jpg",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357126368,
+      "status": 200
+    },
+    {
+      "t": 1794357122203,
+      "url": "http://localhost:8080/api/data?contextKeys=telescopes",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357125321,
+      "status": 200
+    },
+    {
+      "t": 1794357122220,
+      "url": "http://localhost:8080/images/products/NationalParkFoundationExplorascope.jpg",
+      "method": "GET",
+      "type": "image",
+      "tEnd": 1794357128524,
+      "status": 200
+    },
+    {
+      "t": 1794357125443,
+      "url": "http://localhost:8080/api/cart?currencyCode=USD",
+      "method": "POST",
+      "type": "fetch",
+      "tEnd": 1794357127574,
+      "status": 200
+    },
+    {
+      "t": 1794357127599,
+      "url": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357129639,
+      "status": 200
+    },
+    {
+      "t": 1794357127599,
+      "url": "http://localhost:8080/_next/static/chunks/pages/cart-9422c90c241f7baa.js",
+      "method": "GET",
+      "type": "script",
+      "tEnd": 1794357129786,
+      "status": 200
+    },
+    {
+      "t": 1794357128400,
+      "url": "http://localhost:8080/otlp-http/v1/traces",
+      "method": "POST",
+      "type": "ping",
+      "tEnd": 1794357130626,
+      "status": 200
+    },
+    {
+      "t": 1794357129666,
+      "url": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z%2COLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+      "method": "GET",
+      "type": "fetch",
+      "tEnd": 1794357131768,
+      "status": 200
+    },
+    {
+      "t": 1794357130042,
+      "url": "http://localhost:8080/api/shipping?itemList=%5B%7B%22productId%22%3A%22OLJCESPC7Z%22%2C%22quantity%22%3A3%7D%5D&currencyCode=USD&address=%7B%22streetAddress%22%3A%221600+Amphitheatre+Parkway%22%2C%22city%22%3A%22Mountain+View%22%2C%22state%22%3A%22CA%22%2C%22country%22%3A%22United+States%22%2C%22zipCode%22%3A%2294043%22%7D",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357130042,
+      "url": "http://localhost:8080/images/products/OpticalTubeAssembly.jpg",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357130042,
+      "url": "http://localhost:8080/images/products/TheCometBook.jpg",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357130042,
+      "url": "http://localhost:8080/images/products/SolarSystemColorImager.jpg",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357130042,
+      "url": "http://localhost:8080/images/products/StarsenseExplorer.jpg",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357130043,
+      "url": "http://localhost:8080/api/data?contextKeys=telescopes",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357130043,
+      "url": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "t": 1794357130348,
+      "url": "http://localhost:8080/otlp-http/v1/traces",
+      "method": "POST",
+      "type": "ping"
+    }
+  ],
+  "navigations": [
+    {
+      "t": 1794357109075,
+      "url": "http://localhost:8080/product/OLJCESPC7Z"
+    },
+    {
+      "t": 1794357117823,
+      "url": "http://localhost:8080/product/OLJCESPC7Z"
+    },
+    {
+      "t": 1794357129801,
+      "url": "http://localhost:8080/cart"
+    }
+  ],
+  "eventTimings": [
+    {
+      "t": 1794357125401,
+      "name": "click",
+      "interactionId": 3894,
+      "duration": 56,
+      "inputDelay": 18.799999952316284,
+      "processing": 20.5,
+      "presentation": 16.700000047683716,
+      "target": "button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\""
+    }
+  ],
+  "loafs": [
+    {
+      "t": 1794357109107.2,
+      "duration": 2616.9000000953674,
+      "blockingDuration": 42,
+      "scripts": []
+    },
+    {
+      "t": 1794357115689.6,
+      "duration": 133.1,
+      "blockingDuration": 83.1,
+      "scripts": [
+        {
+          "sourceURL": "http://localhost:8080/_next/static/chunks/main-01b73838d8a55cf3.js",
+          "sourceFunctionName": "",
+          "sourceCharPosition": 0,
+          "invoker": "http://localhost:8080/_next/static/chunks/main-01b73838d8a55cf3.js",
+          "invokerType": "classic-script",
+          "duration": 132.29999995231628
+        }
+      ]
+    },
+    {
+      "t": 1794357116916.6,
+      "duration": 188.39999997615814,
+      "blockingDuration": 131.7,
+      "scripts": [
+        {
+          "sourceURL": "http://localhost:8080/_next/static/chunks/pages/_app-09d07af675096bb9.js",
+          "sourceFunctionName": "",
+          "sourceCharPosition": 0,
+          "invoker": "http://localhost:8080/_next/static/chunks/pages/_app-09d07af675096bb9.js",
+          "invokerType": "classic-script",
+          "duration": 161.60000002384186
+        }
+      ]
+    },
+    {
+      "t": 1794357117824.8,
+      "duration": 77.6,
+      "blockingDuration": 27.7,
+      "scripts": [
+        {
+          "sourceURL": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+          "sourceFunctionName": "N",
+          "sourceCharPosition": 179693,
+          "invoker": "MessagePort.onmessage",
+          "invokerType": "event-listener",
+          "duration": 77.70000004768372
+        }
+      ]
+    },
+    {
+      "t": 1794357120947.8,
+      "duration": 80,
+      "blockingDuration": 29.9,
+      "scripts": [
+        {
+          "sourceURL": "http://localhost:8080/_next/static/chunks/pages/_app-09d07af675096bb9.js",
+          "sourceFunctionName": "",
+          "sourceCharPosition": 711,
+          "invoker": "TimerHandler:setTimeout",
+          "invokerType": "user-callback",
+          "duration": 70.39999997615814
+        }
+      ]
+    },
+    {
+      "t": 1794357121932.1,
+      "duration": 85.79999995231628,
+      "blockingDuration": 30.8,
+      "scripts": [
+        {
+          "sourceURL": "http://localhost:8080/_next/static/chunks/pages/_app-09d07af675096bb9.js",
+          "sourceFunctionName": "",
+          "sourceCharPosition": 711,
+          "invoker": "TimerHandler:setTimeout",
+          "invokerType": "user-callback",
+          "duration": 62.39999997615814
+        }
+      ]
+    },
+    {
+      "t": 1794357122145.4001,
+      "duration": 67.10000002384186,
+      "blockingDuration": 16.8,
+      "scripts": [
+        {
+          "sourceURL": "http://localhost:8080/_next/static/chunks/pages/_app-09d07af675096bb9.js",
+          "sourceFunctionName": "",
+          "sourceCharPosition": 711,
+          "invoker": "TimerHandler:setTimeout",
+          "invokerType": "user-callback",
+          "duration": 52.89999997615814
+        }
+      ]
+    },
+    {
+      "t": 1794357123186.5,
+      "duration": 159.4,
+      "blockingDuration": 109.4,
+      "scripts": [
+        {
+          "sourceURL": "http://localhost:8080/_next/static/chunks/219.2fc34a0056c32b12.js",
+          "sourceFunctionName": "",
+          "sourceCharPosition": 0,
+          "invoker": "http://localhost:8080/_next/static/chunks/219.2fc34a0056c32b12.js",
+          "invokerType": "classic-script",
+          "duration": 156.69999992847443
+        }
+      ]
+    }
+  ],
+  "vitals": [
+    {
+      "t": 1794357111753.3,
+      "name": "LCP",
+      "value": 4720,
+      "rating": "poor",
+      "attribution": {
+        "target": "#__next>main>footer.oSMMz.sc-fb94b18d-0>div>p"
+      }
+    },
+    {
+      "t": 1794357111755.5,
+      "name": "CLS",
+      "value": 0,
+      "rating": "good",
+      "attribution": {}
+    },
+    {
+      "t": 1794357117109.6,
+      "name": "CLS",
+      "value": 0.011460074525558715,
+      "rating": "good",
+      "attribution": {
+        "largestShiftTarget": "#__next>main>footer.oSMMz.sc-fb94b18d-0"
+      }
+    },
+    {
+      "t": 1794357118011.7,
+      "name": "CLS",
+      "value": 0.012065140026133615,
+      "rating": "good",
+      "attribution": {
+        "largestShiftTarget": "#__next>main>footer.oSMMz.sc-fb94b18d-0"
+      }
+    },
+    {
+      "t": 1794357118181.4001,
+      "name": "LCP",
+      "value": 11152,
+      "rating": "poor",
+      "attribution": {
+        "target": "nav.bYwzCX.sc-cc7551ae-1>div.iGDTNy.sc-cc7551ae-2>a.kmBXoJ.sc-cc7551ae-3>img.ceaQne.sc-cc7551ae-4",
+        "url": "http://localhost:8080/images/opentelemetry-demo-logo.png"
+      }
+    },
+    {
+      "t": 1794357122020.8,
+      "name": "CLS",
+      "value": 0.21643961660086358,
+      "rating": "needs-improvement",
+      "attribution": {
+        "largestShiftTarget": "#__next>main>footer.oSMMz.sc-fb94b18d-0"
+      }
+    },
+    {
+      "t": 1794357122218.5,
+      "name": "CLS",
+      "value": 0.29503215653891995,
+      "rating": "poor",
+      "attribution": {
+        "largestShiftTarget": "#__next>main>footer.oSMMz.sc-fb94b18d-0"
+      }
+    },
+    {
+      "t": 1794357122244.7,
+      "name": "LCP",
+      "value": 15212,
+      "rating": "poor",
+      "attribution": {
+        "target": "div.dEYCWg.sc-d6305667-1>div.dNiWFa.sc-d6305667-3>p.bZKIPj.kLiqki.sc-d6305667-6.sc-d6305667-7"
+      }
+    },
+    {
+      "t": 1794357125208.6,
+      "name": "LCP",
+      "value": 18176,
+      "rating": "poor",
+      "attribution": {
+        "target": "div.icSGGP.sc-a7f3c279-1>a.iarUnJ.sc-e8cdbf93-0>div.kZvJa.sc-e8cdbf93-2>div.fOrtol.sc-e8cdbf93-1",
+        "url": "blob:http://localhost:8080/2a11fa27-e18b-4a06-b8c6-4fb0b6d23415"
+      }
+    },
+    {
+      "t": 1794357125485,
+      "name": "INP",
+      "value": 8,
+      "rating": "good",
+      "attribution": {
+        "interactionTarget": "div.dEYCWg.sc-d6305667-1>div.dNiWFa.sc-d6305667-3>button.bOMpgB.iLwQcH.sc-83a403b4-0.sc-d6305667-4",
+        "interactionType": "pointer",
+        "interactionTime": 1794357125401,
+        "inputDelay": 7.600000023841858,
+        "processingDuration": 0.3999999761581421,
+        "presentationDelay": 0,
+        "loadState": "dom-content-loaded"
+      }
+    },
+    {
+      "t": 1794357125488.8,
+      "name": "INP",
+      "value": 56,
+      "rating": "good",
+      "attribution": {
+        "interactionTarget": "div.dEYCWg.sc-d6305667-1>div.dNiWFa.sc-d6305667-3>button.bOMpgB.iLwQcH.sc-83a403b4-0.sc-d6305667-4",
+        "interactionType": "pointer",
+        "interactionTime": 1794357125401,
+        "inputDelay": 15,
+        "processingDuration": 24.299999952316284,
+        "presentationDelay": 16.700000047683716,
+        "loadState": "dom-content-loaded"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "t": 1794357107464,
+      "message": "Access to fetch at 'http://127.0.0.1:33083/v1/traces' from origin 'null' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "source": "console"
+    },
+    {
+      "t": 1794357107467,
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "source": "console"
+    },
+    {
+      "t": 1794357108452,
+      "message": "Access to fetch at 'http://127.0.0.1:33083/v1/traces' from origin 'null' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "source": "console"
+    },
+    {
+      "t": 1794357108453,
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "source": "console"
+    },
+    {
+      "t": 1794357114095,
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "source": "console"
+    },
+    {
+      "t": 1794357119916,
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "source": "console"
+    }
+  ],
+  "spans": [
+    {
+      "name": "documentFetch",
+      "traceId": "049266c63fb22c459508c967f4dacd3e",
+      "spanId": "7a59690dcf72a077",
+      "start": 1794357106881.5,
+      "end": 1794357106915.7,
+      "attributes": {
+        "url.full": "about:blank",
+        "http.response_content_length": 0
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "secureConnectionStart",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357106881.5
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357106915.7
+        }
+      ]
+    },
+    {
+      "name": "documentLoad",
+      "traceId": "7561323d0bccb20ef20bd6d827de1f60",
+      "spanId": "3bfb3b652ea67e89",
+      "start": 1794357106881.7,
+      "end": 1794357106917.5999,
+      "attributes": {
+        "url.full": "about:blank",
+        "user_agent.original": "Mozilla/5.0 (Linux; Android 13; moto g play) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+      },
+      "events": [
+        {
+          "name": "domInteractive",
+          "t": 1794357106916.7
+        },
+        {
+          "name": "domContentLoadedEventStart",
+          "t": 1794357106916.7
+        },
+        {
+          "name": "domContentLoadedEventEnd",
+          "t": 1794357106916.8
+        },
+        {
+          "name": "domComplete",
+          "t": 1794357106917.5999
+        },
+        {
+          "name": "loadEventStart",
+          "t": 1794357106917.5999
+        },
+        {
+          "name": "loadEventEnd",
+          "t": 1794357106917.5999
+        }
+      ]
+    },
+    {
+      "name": "GET",
+      "traceId": "bb5d35dbc0ae39182de15123a37d45f2",
+      "spanId": "0866c3d1030cf2bc",
+      "start": 1794357117918,
+      "end": 1794357120103.6,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "7929e4efa1873b1425146c3b966b22d2",
+      "spanId": "80fd72e1c9fa9d69",
+      "start": 1794357117926,
+      "end": 1794357120164.8,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/products/OLJCESPC7Z?currencyCode=",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "7da3ebfd55563cbbb6aeeee4cd0a8563",
+      "spanId": "e6576d82338fbfbc",
+      "start": 1794357117928,
+      "end": 1794357120246.6,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "93284e56af93f9d8b619faaf44df5285",
+      "spanId": "f0d56aa2d8b1e1f7",
+      "start": 1794357117936,
+      "end": 1794357120944.5,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/currency?",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "fe0505a478486909676abd4c7172c879",
+      "spanId": "0e1b089626770794",
+      "start": 1794357117982,
+      "end": 1794357121929.8,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "d81eec1e38968b578b6f19745c7d9eef",
+      "spanId": "2344893f6b22a134",
+      "start": 1794357117988,
+      "end": 1794357122144.4,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/products/OLJCESPC7Z?currencyCode=USD",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "7d981948a6407721bdd400dcb793bf69",
+      "spanId": "df149d4f6097abf9",
+      "start": 1794357117991,
+      "end": 1794357122223.4,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "POST",
+      "traceId": "1c22204a1387034d2d6113d6a185b06f",
+      "spanId": "15ba18f5f88c8056",
+      "start": 1794357119843,
+      "end": 1794357122294.6,
+      "attributes": {
+        "http.request.method": "POST",
+        "url.full": "http://localhost:8080/flagservice/flagd.evaluation.v1.Service/ResolveAll",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "c785ad6899b92b364b2ee98c54c70fcc",
+      "spanId": "e8a10f68446c5b32",
+      "start": 1794357121975,
+      "end": 1794357125139.7,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/images/products/OpticalTubeAssembly.jpg",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "5205ef1c50ae73fee7114cb3fefdf188",
+      "spanId": "32734c5e93221bb2",
+      "start": 1794357122193,
+      "end": 1794357125287.5,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/data?contextKeys=telescopes",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "tap button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\"",
+      "traceId": "aec6ad85e0e25070ed1754f053527ac3",
+      "spanId": "e791c1a90caa9176",
+      "start": 1794357125422,
+      "end": 1794357125723.8,
+      "attributes": {
+        "ui.target": "button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\"",
+        "ui.event": "click"
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "7bc0aac82c17624d76c9e4f2a1f4f1fa",
+      "spanId": "e0d591a5427f27de",
+      "start": 1794357121990,
+      "end": 1794357126365.5,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/images/products/StarsenseExplorer.jpg",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "POST",
+      "traceId": "aec6ad85e0e25070ed1754f053527ac3",
+      "spanId": "c68f261879c7133f",
+      "parentSpanId": "e791c1a90caa9176",
+      "start": 1794357125433,
+      "end": 1794357127571.8,
+      "attributes": {
+        "http.request.method": "POST",
+        "url.full": "http://localhost:8080/api/cart?currencyCode=USD",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "4b7b68e614e01f01e5bd7bf360371974",
+      "spanId": "ec232338e4d57716",
+      "start": 1794357121982,
+      "end": 1794357129546.6,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/images/products/SolarSystemColorImager.jpg",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "GET",
+      "traceId": "542f2201c13bc06b8c18f1aa80e165aa",
+      "spanId": "10c0b2b062b5dd16",
+      "start": 1794357127578,
+      "end": 1794357129636.6,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+        "http.response.status_code": 200
+      },
+      "events": []
+    },
+    {
+      "name": "documentFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "7b605be08f039ef6",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357107018.6,
+      "end": 1794357109111.8,
+      "attributes": {
+        "url.full": "http://localhost:8080/cart",
+        "http.response_content_length": 3599,
+        "http.response_content_length_uncompressed": 11684
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357107018.6
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357107020.6
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357107020.7
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357107020.7
+        },
+        {
+          "name": "secureConnectionStart",
+          "t": 1794357107018.3
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357107021
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357107021.3
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357107054.7
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357109111.8
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "ee4569125c5de39b",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109102,
+      "end": 1794357111122.9001,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/css/4a86f4d07dfbe27c.css",
+        "http.response_content_length": 178
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109102
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109108.3
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109108.3
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109108.3
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109109.5
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357109109.6
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357109120.2
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357111122.9001
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "05e86b13bff01517",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109104,
+      "end": 1794357111632,
+      "attributes": {
+        "url.full": "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap",
+        "http.response_content_length": 2585,
+        "http.response_content_length_uncompressed": 72774
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109104
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109108.8
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109110.7
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109110.7
+        },
+        {
+          "name": "secureConnectionStart",
+          "t": 1794357109123.0999
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109143.5999
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357109144
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357109169.5999
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357111632
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "b4af04e57fab73bc",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109104.7,
+      "end": 1794357111332.5999,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/webpack-6856275f0cc086b5.js",
+        "http.response_content_length": 1542,
+        "http.response_content_length_uncompressed": 3002
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109104.7
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109104.7
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109104.7
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109104.7
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109104.7
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357109116.0999
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357109130.5
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357111332.5999
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "dc5f044a2b4f9727",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109105.9001,
+      "end": 1794357113942.5,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/main-01b73838d8a55cf3.js",
+        "http.response_content_length": 36716,
+        "http.response_content_length_uncompressed": 127211
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109105.9001
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109117.3
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109117.3
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109117.3
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109118.3
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357109118.5
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357109148.2002
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357113942.5
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "f43349f75e6a50a5",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109105.6,
+      "end": 1794357115682.1,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/framework-8a7ac262f6e10eb2.js",
+        "http.response_content_length": 57829,
+        "http.response_content_length_uncompressed": 182716
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109105.6
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109116.6
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109116.6
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109116.6
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109118
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357109118.2
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357109138
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357115682.1
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "7fa3b157a746c067",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109105.2,
+      "end": 1794357111961.1,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/817-23874bcd8932bcf2.js",
+        "http.response_content_length": 7186,
+        "http.response_content_length_uncompressed": 17842
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109105.2
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109117.1
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109117.1
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109117.1
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109117.5
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357109117.8
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357109144.1
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357111961.1
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "773fc4995c9e1d91",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109106.0999,
+      "end": 1794357116912.3,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/pages/_app-09d07af675096bb9.js",
+        "http.response_content_length": 76539,
+        "http.response_content_length_uncompressed": 258479
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109106.0999
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109117.7
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109117.7
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109117.7
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109118.4
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357109118.7
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357109137.5999
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357116912.3
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "fa9b9e8cec1f1ef3",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109106.2,
+      "end": 1794357115862.7,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/250-072a0e68f3e65dac.js",
+        "http.response_content_length": 3876,
+        "http.response_content_length_uncompressed": 12545
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109106.2
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109106.2
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109106.2
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109106.2
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109106.2
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357113463.0999
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357113468.5999
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357115862.7
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "15bc9e2aa7e285f2",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109105.6,
+      "end": 1794357117781.8,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/pages/product/%5BproductId%5D-ebcdadc7cd5b07e9.js",
+        "http.response_content_length": 2412,
+        "http.response_content_length_uncompressed": 7010
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109105.6
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109105.6
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109105.6
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109105.6
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109105.6
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357115682.3
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357115687.4
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357117781.8
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "3ca9186d646e2222",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109105.5,
+      "end": 1794357117901.7998,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/WZK0rrLFidha-Qvt2odB7/_buildManifest.js",
+        "http.response_content_length": 881
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109105.5
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109105.5
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109105.5
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109105.5
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109105.5
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357115862.7
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357115866.4
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357117901.7998
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "45c5992d5d89c008",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109105.4001,
+      "end": 1794357118921.5,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/WZK0rrLFidha-Qvt2odB7/_ssgManifest.js",
+        "http.response_content_length": 77
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109105.4001
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109105.4001
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109105.4001
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109105.4001
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109105.4001
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357116912.1
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357116916
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357118921.5
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "436f03ff48cb3b2f",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109116.1,
+      "end": 1794357118141.8,
+      "attributes": {
+        "url.full": "http://localhost:8080/images/opentelemetry-demo-logo.png",
+        "http.response_content_length": 100140
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109116.1
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109116.1
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109116.1
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109116.1
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109116.1
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357111122.4001
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357111124
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357118141.8
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "cc009b073081411b",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357109116.8,
+      "end": 1794357113462,
+      "attributes": {
+        "url.full": "http://localhost:8080/icons/Chevron.svg",
+        "http.response_content_length": 793,
+        "http.response_content_length_uncompressed": 1421
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357109116.8
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357109116.8
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357109116.8
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357109116.8
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357109116.8
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357111332.8
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357111337.8
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357113462
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "65b19f1c4973ea53",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357111657,
+      "end": 1794357114094.4,
+      "attributes": {
+        "url.full": "http://localhost:8080/images/products/undefined",
+        "http.response_content_length": 548
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357111657
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357111657
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357111657
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357111657
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357111657
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357111962.2
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357111963.9
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357114094.4
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "1dd22a9721434247",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357116042.6,
+      "end": 1794357118082.1,
+      "attributes": {
+        "url.full": "http://localhost:8080//icons/CartIcon.svg?w=48&q=75",
+        "http.response_content_length": 748,
+        "http.response_content_length_uncompressed": 1277
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357116042.6
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357116042.6
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357116042.6
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357116042.6
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357116042.6
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357116042.8
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357116047.7002
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357118082.1
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "e5dd4ada7dffce2e",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357116193.8,
+      "end": 1794357118232.3,
+      "attributes": {
+        "url.full": "http://localhost:8080//icons/Cart.svg?w=32&q=75",
+        "http.response_content_length": 1237,
+        "http.response_content_length_uncompressed": 2806
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357116193.8
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357116193.8
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357116193.8
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357116193.8
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357116193.8
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357116193.9
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357116198.6
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357118232.3
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "9b4ff8235e3537a9",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117055.5,
+      "end": 1794357123182.4,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/219.2fc34a0056c32b12.js",
+        "http.response_content_length": 12212,
+        "http.response_content_length_uncompressed": 35650
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117055.5
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117055.5
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117055.5
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117055.5
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117055.5
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357120935.5
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357120958.3
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357123182.4
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "f319c62c7af2bb25",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117092.8,
+      "end": 1794357119914.3,
+      "attributes": {
+        "url.full": "http://localhost:8080/images/products/undefined",
+        "http.response_content_length": 548
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117092.8
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117092.8
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117092.8
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117092.8
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117092.8
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357117902.7
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357117904.8
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357119914.3
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "f6b5d5922b16f234",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117923.9,
+      "end": 1794357120098.7,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=",
+        "http.response_content_length": 1192,
+        "http.response_content_length_uncompressed": 2495
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117923.9
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117923.9
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117923.9
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117923.9
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117923.9
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357118082.2998
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357118130.7
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357120098.7
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "a05cfcf2977dff42",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117927.9001,
+      "end": 1794357120152.8,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/products/OLJCESPC7Z?currencyCode=",
+        "http.response_content_length": 506
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117927.9001
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117927.9001
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117927.9001
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117927.9001
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117927.9001
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357118142.3
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357118157.4001
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357120152.8
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "8969fe609f3dcbe7",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117932.7998,
+      "end": 1794357120241.2998,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=",
+        "http.response_content_length": 24
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117932.7998
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117932.7998
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117932.7998
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117932.7998
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117932.7998
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357118231.9
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357118245.2998
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357120241.2998
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "0e5ccb21d368121f",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117937.9001,
+      "end": 1794357120931.3,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/currency?",
+        "http.response_content_length": 199
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117937.9001
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117937.9001
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117937.9001
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117937.9001
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117937.9001
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357118921.8
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357118935.5
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357120931.3
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "2b4ceab830faba83",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117987.2,
+      "end": 1794357121922.5,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+        "http.response_content_length": 1241,
+        "http.response_content_length_uncompressed": 2437
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117987.2
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117987.2
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117987.2
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117987.2
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117987.2
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357119912.3
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357119956.4001
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357121922.5
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "9c2575afae5556ed",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117990.8,
+      "end": 1794357122132.7002,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/products/OLJCESPC7Z?currencyCode=USD",
+        "http.response_content_length": 506
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117990.8
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117990.8
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117990.8
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117990.8
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117990.8
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357120099.2002
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357120124.4001
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357122132.7002
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "689cbc9081b2108d",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357117993.8,
+      "end": 1794357122162.9,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+        "http.response_content_length": 24
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357117993.8
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357117993.8
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357117993.8
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357117993.8
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357117993.8
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357120157.5
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357120175.4
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357122162.9
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "c1f216c0ef58162f",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357119847.9,
+      "end": 1794357122283.3,
+      "attributes": {
+        "url.full": "http://localhost:8080/flagservice/flagd.evaluation.v1.Service/ResolveAll",
+        "http.response_content_length": 360,
+        "http.response_content_length_uncompressed": 1681
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357119847.9
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357119847.9
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357119847.9
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357119847.9
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357119847.9
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357120242.4
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357120274.8
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357122283.3
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "10dbd009dd8698a4",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357120608.5,
+      "end": 1794357122671.8,
+      "attributes": {
+        "url.full": "http://127.0.0.1:33083/v1/traces",
+        "http.response_content_length": 0
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357120608.5
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357122671.8
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "68e9e74fa1206379",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357121976.8,
+      "end": 1794357125131.8,
+      "attributes": {
+        "url.full": "http://localhost:8080/images/products/OpticalTubeAssembly.jpg",
+        "http.response_content_length": 22201
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357121976.8
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357121976.8
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357121976.8
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357121976.8
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357121976.8
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357121979.7
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357121986.4001
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357125131.8
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "a02455f4d42f7d31",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357121989.6,
+      "end": 1794357129541.4001,
+      "attributes": {
+        "url.full": "http://localhost:8080/images/products/SolarSystemColorImager.jpg",
+        "http.response_content_length": 98549
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357121989.6
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357121989.6
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357121989.6
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357121989.6
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357121989.6
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357122163.7
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357122168.4001
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357129541.4001
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "980a83f74009c355",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357121991.3,
+      "end": 1794357126362.4001,
+      "attributes": {
+        "url.full": "http://localhost:8080/images/products/StarsenseExplorer.jpg",
+        "http.response_content_length": 29713
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357121991.3
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357121991.3
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357121991.3
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357121991.3
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357121991.3
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357122283.7
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357122286.3
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357126362.4001
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "bdf2e3a58e1c04d6",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357122001.9001,
+      "end": 1794357122001.9001,
+      "attributes": {
+        "url.full": "",
+        "http.response_content_length": 0
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357122001.9001
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357122001.9001
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "80338caf518f93da",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357122197.9,
+      "end": 1794357125282,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/data?contextKeys=telescopes",
+        "http.response_content_length": 106
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357122197.9
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357122197.9
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357122197.9
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357122197.9
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357122197.9
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357123183.2
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357123201.4
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357125282
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "ece273c78cb6872a",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357122204.1,
+      "end": 1794357128521.7,
+      "attributes": {
+        "url.full": "http://localhost:8080/images/products/NationalParkFoundationExplorascope.jpg",
+        "http.response_content_length": 21650
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357122204.1
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357122204.1
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357122204.1
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357122204.1
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357122204.1
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357125132.3
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357125134.2
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357128521.7
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "c2e3719bb6dc1418",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357123181.7,
+      "end": 1794357125401.4,
+      "attributes": {
+        "url.full": "http://127.0.0.1:33083/v1/traces",
+        "http.response_content_length": 0
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357123181.7
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357125401.4
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "483def3fd0bb44c6",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357125438.0999,
+      "end": 1794357127561.4,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/cart?currencyCode=USD",
+        "http.response_content_length": 99
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357125438.0999
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357125438.0999
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357125438.0999
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357125438.0999
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357125438.0999
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357125439.0999
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357125473.7998
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357127561.4
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "53ab4a16c77c61a3",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357125951.2998,
+      "end": 1794357128101.7998,
+      "attributes": {
+        "url.full": "http://127.0.0.1:33083/v1/traces",
+        "http.response_content_length": 0
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357125951.2998
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357128101.7998
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "47996e887050f666",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357127580.0999,
+      "end": 1794357129631.7998,
+      "attributes": {
+        "url.full": "http://localhost:8080/api/cart?sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+        "http.response_content_length": 616
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357127580.0999
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357127580.0999
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357127580.0999
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357127580.0999
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357127580.0999
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357127580.7998
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357127600.7
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357129631.7998
+        }
+      ]
+    },
+    {
+      "name": "resourceFetch",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "ea7096a652629d79",
+      "parentSpanId": "18d5bbc8a72d19be",
+      "start": 1794357127592.7,
+      "end": 1794357129781.2,
+      "attributes": {
+        "url.full": "http://localhost:8080/_next/static/chunks/pages/cart-9422c90c241f7baa.js",
+        "http.response_content_length": 3920,
+        "http.response_content_length_uncompressed": 14279
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357127592.7
+        },
+        {
+          "name": "domainLookupStart",
+          "t": 1794357127592.7
+        },
+        {
+          "name": "domainLookupEnd",
+          "t": 1794357127592.7
+        },
+        {
+          "name": "connectStart",
+          "t": 1794357127592.7
+        },
+        {
+          "name": "connectEnd",
+          "t": 1794357127592.7
+        },
+        {
+          "name": "requestStart",
+          "t": 1794357127595.8
+        },
+        {
+          "name": "responseStart",
+          "t": 1794357127603.2
+        },
+        {
+          "name": "responseEnd",
+          "t": 1794357129781.2
+        }
+      ]
+    },
+    {
+      "name": "documentLoad",
+      "traceId": "e066e8d165591ac72179ae9338ee184d",
+      "spanId": "18d5bbc8a72d19be",
+      "start": 1794357107019.4001,
+      "end": 1794357129807.9001,
+      "attributes": {
+        "url.full": "http://localhost:8080/cart",
+        "user_agent.original": "Mozilla/5.0 (Linux; Android 13; moto g play) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+      },
+      "events": [
+        {
+          "name": "fetchStart",
+          "t": 1794357107019.4001
+        },
+        {
+          "name": "domInteractive",
+          "t": 1794357111737.7002
+        },
+        {
+          "name": "domContentLoadedEventStart",
+          "t": 1794357118925.6
+        },
+        {
+          "name": "domContentLoadedEventEnd",
+          "t": 1794357118925.7002
+        },
+        {
+          "name": "domComplete",
+          "t": 1794357129807.1
+        },
+        {
+          "name": "loadEventStart",
+          "t": 1794357129807.1
+        },
+        {
+          "name": "loadEventEnd",
+          "t": 1794357129807.9001
+        },
+        {
+          "name": "firstPaint",
+          "t": 1794357111739.1
+        },
+        {
+          "name": "firstContentfulPaint",
+          "t": 1794357111739.1
+        }
+      ]
+    },
+    {
+      "name": "GET",
+      "traceId": "6f28cadf530300e46309ee995d7e54f3",
+      "spanId": "a659b34246e908aa",
+      "start": 1794357129659,
+      "end": 1794357131765.1,
+      "attributes": {
+        "http.request.method": "GET",
+        "url.full": "http://localhost:8080/api/recommendations?productIds=OLJCESPC7Z%2COLJCESPC7Z&sessionId=efd74ac9-fdac-4267-ad80-c40f0a7b885b&currencyCode=USD",
+        "http.response.status_code": 200
+      },
+      "events": []
+    }
+  ]
+}

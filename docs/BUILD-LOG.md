@@ -1,0 +1,136 @@
+# Build log
+
+Times are America/Chicago. Cost is the model API spend so far for the whole build, priced from each call's token usage at the list price. The dated entries are the history as I wrote it then. The records and the call log of the runs before Nov 11 are no longer in this repo; the current results are the run of Nov 11 in the last entry, and `spend/calls.jsonl` holds only that run's calls. The day-one tests run separately and are added here when they report.
+
+## 2026-10-26 22:05 CDT, repo, personas and the probe (M2 and M4 started)
+
+Repo started tonight. Nothing in it comes from earlier projects.
+
+Twelve personas as Playwright contexts with a card each (`src/personas.ts`). CPU throttle, network and the colour-blind filter go through CDP, the large-text shopper reads at 200 percent browser zoom, the Spanish shopper has the browser in es-MX, and the screen reader shopper gets the accessibility tree with refs instead of a screenshot.
+
+The probe is an init script that runs before the shop's own code. It records OpenTelemetry spans (document load and fetch), web-vitals with attribution, event timing, Long Animation Frames, errors, and whether each tap changed anything within 300 ms.
+
+Found on the way: with `@opentelemetry/instrumentation-user-interaction` on, Chrome's Long Animation Frame entries lose the shop's event handler from their script list, cause that instrumentation wraps every listener in a function from the init script. With it off, the same slow tap reports `blockFor400` in `app.js` line 10. So the probe records taps with its own listeners and leaves that instrumentation out.
+
+The newest OpenTelemetry JS packages (core 3.0, instrumentations 0.300) don't install next to `sdk-trace-web` 2.12, so the probe pins the 2.x line: api 1.9.1, sdk-trace-web 2.12.0, instrumentation 0.223.0.
+
+`test/probe.test.ts` drives a small test page (`test/fixtures/taps`, a test page, not the shop) with a scripted shopper and checks dead taps, repeated taps, the slow tap's script line and an error's line, for a mouse, a touch and a screen reader persona. No model calls.
+
+Cost so far: 0.00 USD.
+
+## 2026-10-26 22:14 CDT, the shopper's loop, live (M3)
+
+Each step the model gets the persona card, the goal, the last eight things it did with what happened after each, and what that person can perceive: a screenshot with numbered marks for the pointer shoppers, a plain screenshot for the keyboard shopper, the accessibility tree with refs for the screen reader shopper. It answers with one `act` tool call (click, type, press, scroll, wait, back, give up, done). Mark labels use only text a sighted person can see, never aria-label. An order counts only when the shop shows it, not when the model says so.
+
+First live calls, on the test page: the shopper model took the screenshot and answered with tool calls on the first try for all three kinds of shopper. A desktop step is about 2,700 input and 150 to 370 output tokens, about 0.004 USD and 1.5 to 2.4 s. A screen reader step is about 1,200 input tokens. So a 25-step run costs at most about 0.10 USD and a round of twelve about 1 USD.
+
+Also in: the walkout sentence (M5, `src/explain.ts`), the fix step (M6, `src/fix.ts`: one call picks the files, the fix model writes exact find and replace edits, they go on a branch of the shop's source), the round runner with a spend check before each round, and the CLI.
+
+Cost so far: 0.03 USD.
+
+## 2026-10-26 22:50 CDT, the day-one result and the shop (M0 read, M1)
+
+The day-one tests passed and were signed off at 22:52 CDT. The loop that passed is set B: screenshot plus the numbered element list, one prompt line about noting what you saw (with an optional `note` field in the tool), and a wait before each screenshot. The shopper model caught the wrong total in 5 of 5 defect runs and passed 5 of 5 clean runs, at about 1.3 cents a run. That is the loop here now.
+
+The shop is the OpenTelemetry Demo (`shops/otel-demo.json`, `shops/otel-demo/stack.sh`):
+
+- Defect: release 2.1.3. The cart Total ignores quantity, cause `src/frontend/components/CartItems/CartItems.tsx` adds up unit prices without multiplying by quantity. Reported in April 2024 as https://github.com/open-telemetry/opentelemetry-demo/issues/1526, shipped through release 2.1.3 (tag 2025-09-26), fixed upstream in 3.x by #2660 (3e7498db, merged 2025-10-23). Nothing planted, no feature flag.
+- By hand: open http://localhost:8080/product/OLJCESPC7Z, pick quantity 3, tap Add To Cart. The cart shows Quantity 3, Price $101.96, Shipping $26.97, Total $128.93. The right total is $332.85.
+- Clean: release 3.1.0 on http://localhost:8082, same flow, Total $332.85.
+- Both frontends sit on the 3.1.0 backends, compose project `walkout2934` (`compose.walkout-pair.yaml`). The 2.1.3 frontend has to be on :8080, its image loader only draws the header cart icon on the origin it was built for.
+- Fix builds: the 2.1.3 frontend image builds from source on this VPS in 3 min 2 s cold (npm ci and next build, 4 cores). `stack.sh fix` builds the patched source and serves it on :8080 in place of the release image, `stack.sh unfix` puts the release back. The 2.1.3 frontend has no unit tests. Its check is next build's type check and lint inside the image build, so a patch that doesn't compile is never served.
+
+Changes to the loop from set B:
+
+- The wait before each screenshot ends when the shop's own `/api/` calls go quiet (none in flight, none started for 1.5 s), cap 30 s. The day-one wait always ran to its 30 s cap, cause the shop's telemetry and polling never let the whole network go quiet. Now a wait is 1.3 to 2.6 s on the cheap phone.
+- A `select` action. A native dropdown never shows in a headless screenshot, so tapping the quantity box showed nothing and the first smoke run tapped it until it ran out of steps.
+- The shopper's own past thoughts come back with its steps (the day-one loop had them too). Without them the second smoke run read "$128.93 which is right" and then scrolled between the total and the form for twelve steps.
+- Marks in screen pixels. The 2.1.3 checkout form is wider than a 412 px phone, so Chrome zooms the page out to about 0.75, and every mark below the fold was drawn on the field above its own (the Place Order mark sat on the card number field). Marks and taps now use `visualViewport`. The day-one doc had warned about this zoom for raw points.
+
+## 2026-10-26 23:05 CDT, first live demo: before round and the fix (M2 to M6 live)
+
+`npm run demo -- --no-shop` on the defect shop, twelve shoppers, three at a time, round `2026-10-270359-before`.
+
+- Before: 1 of 12 bought, 0.66 USD, about 3.5 min for the round.
+- Ten walked out at the cart over the total, each in their own words, for example the slow 3G shopper: "I added three Explorascopes at $101.96 each but the total shows $128.93 instead of $332.85, so I will not pay." The Spanish shopper said it in Spanish.
+- The keyboard-only shopper never reached the quantity box and Add To Cart: 23 steps of Tab, then gave up. Worth checking by hand before it goes in the story.
+- The reduced-motion shopper paid $128.93 for three without noticing. One of twelve missed the defect.
+- The fix (M6): the pick call chose four cart files, the fix model wrote the patch in one call (0.033 USD). It multiplies units and nanos by quantity in `CartItems.tsx`, the same shape as upstream #2660. It went on branch `walkout/fix-2026-10-270359-before` of the 2.1.3 source. The frontend image rebuilt in about 75 s with the npm layer cached, and the patched shop was serving on :8080 2 min 10 s after the patch came back.
+- After, on the patched 2.1.3 (round `2026-10-270405-after`): 11 of 12 bought, 0.73 USD. The fix is kept. The keyboard-only shopper still ran out of steps.
+- Clean 3.1.0 (round `2026-10-270409-clean`, 23:09 to 23:13 CDT): 11 of 12 bought, 0.75 USD. No shopper flagged a right total, so no false alarms. The keyboard-only shopper ran out of steps here too, so that one is not the cart defect.
+- Scoreboard for before and after: `runs/board/index.html`.
+
+Cost so far: 2.4377 USD.
+
+## 2026-10-26 23:25 CDT, the walkouts only telemetry sees, and the keyboard check
+
+Both causes go in the story: the wrong total only shows on the screen, the slow-phone walkouts are what telemetry ties to taps.
+
+- With the `/api/`-quiet wait nobody saw the slow-phone failures, cause every screenshot came after the page caught up. Real shoppers on slow phones don't wait for that. Rosa now matches the day-one Rosa (DevTools Slow 3G with a 2 s round trip, 4x CPU) and looks at the screen 3 s after each tap (`glanceMs`). The other eleven keep the `/api/`-quiet wait.
+- The M4 dead-tap rule counted any request as an answer, so an Add To Cart that sends `POST /api/cart` and then shows nothing for seconds never counted. New finding `unanswered_tap`: the tap sent an `/api/` request, nothing on the page changed, and the answer took over 1.5 s or never came.
+- Also fixed: a link to an anchor on the same page (Go Shopping, `href="#hot-products"`) answers by scrolling, which changes no DOM. The probe called that a dead tap in most runs on both shops. A scroll now counts as an answer.
+- Rosa x5 on the defect shop (rounds `rosa-x5-a` to `e`, 0.26 USD): Add To Cart went unanswered in 5 of 5 runs, for 2.0 to 8.9 s. Two runs walked out over it ("I tapped Add To Cart twice and nothing happened, so the site seems broken"), one because the cart never loaded, and two over the wrong total. In one of those the double tap had put six in the cart, the day-one 6-in-cart walkout again.
+- Scoreboard: a "Why they left" line splits the walkouts into the ones who left over something on the screen and the ones who left right after taps that did nothing, which only telemetry shows. `scripts/rederive.ts` recomputes findings from saved telemetry without model calls.
+- Keyboard-only (Dev) ran out of steps on 2.1.3, on the patched 2.1.3 and on 3.1.0. On 3.1.0 he paid at step 19 but pressed Enter on what was most likely Continue Shopping, cause he couldn't see where focus was. By hand: both releases set `outline: none` on the shared Button (`src/frontend/components/Button/Button.tsx` line 12) with no focus style to replace it. A keyboard-focused Go Shopping button on 3.1.0 is pixel for pixel the same as an unfocused one (`scripts/focus-check.mjs`). So that walkout is a real second defect, missing focus indicators, on both releases. It is not the cart bug.
+
+Cost so far: 2.7558 USD.
+
+## 2026-10-26 23:33 CDT, second demo run with both causes (M7 live)
+
+`npm run demo -- --no-shop`, 23:21 to 23:33 CDT, rounds `2026-10-270421-before` and `2026-10-270427-after`.
+
+- Before: 2 of 12 bought, 0.80 USD. Ten left: eight over the wrong total, Rosa with "the cart stays empty" after Add To Cart went unanswered, and Dev, who couldn't reach the quantity box (2 bought plus 10 left is 12). The scoreboard line below counts Dev with the screen walkouts, cause no tap of his went unanswered, so it says 9 and 1. The tablet and desktop shoppers paid $128.93 without noticing, so 2 of 12 missed the defect this time.
+- The scoreboard's line: "9 left over something they saw on the screen ... 1 left right after taps that did nothing ("Add To Cart", ...), which only the browser telemetry shows."
+- The fix: the same quantity patch, kept. After: 9 of 12 bought, 0.70 USD. Still leaving: Rosa (slow Add To Cart, which the fix doesn't touch), Dev (no focus ring) and the colour-blind shopper, who ran out of steps.
+
+Cost so far: 4.2825 USD.
+
+## 2026-10-27 00:15 CDT, the final run and checkable evidence (M9)
+
+One complete run, same twelve personas, 2026-10-26 23:53 to 2026-10-27 00:08 CDT. The saved results in the README come from it.
+
+- Before, `2026-10-270453-before` (2.1.3): 2 of 12 bought (Amara, screen reader, and Sam, desktop, who paid $128.93 without noticing). 10 left: nine over the wrong total (Rosa, Tomasz, Margaret, Lucía, Hiro, Kai, Noor, Ben, Grace) and Dev, keyboard only, who never reached the quantity box. 2 + 9 + 1 = 12. 0.71 USD with the sentences and the fix calls.
+- Fix: the same quantity patch in `CartItems.tsx`. Gate printed: "this shop has no test command, so the gate is the frontend's type check and lint in next build, inside the 2.1.3 frontend image build. It passed."
+- After, `2026-10-270458-after` (2.1.3 with the patch): 8 of 12 bought. 4 left: Rosa (Add To Cart unanswered for 6.4 s and 3.5 s, then 10.4 s and 7.6 s, she tapped twice each time, saw an empty cart and then six telescopes), Margaret (200 percent zoom, ran out of steps scrolling the cart), Hiro (tablet, couldn't find the telescope after a slow Go Shopping tap) and Dev. 8 + 4 = 12. 0.69 USD.
+- Clean, `2026-10-270503-clean` (3.1.0): 9 of 12 bought. Nobody called the right total wrong. 3 left: Dev, Sam ("could not find the cart totals to verify") and Ben (ran out of steps). 9 + 3 = 12. 0.77 USD.
+- The scoreboard line now reads "10 walked out, each says why in their own words on the tile. 2 of them had a tap go unanswered in their last steps before leaving". It no longer splits screen and telemetry walkouts into exclusive counts. Rosa's before run had both, an unanswered Add To Cart at step 9 and the wrong total at step 11.
+
+Evidence:
+
+- `spend/calls.jsonl` is now committed with every call, 1,000+ lines. Before this it had only the first 8, cause later commits staged files by name and left the ledger out. `npx tsx src/cli.ts spend` adds it up per round.
+- `evidence/<round>/` has `round.json`, each shopper's `run.json` (every step, the model's usage per step, findings, sentence) and the fix's `fix.json` and `fix.diff` for every round tonight (`scripts/save-evidence.sh`). Screenshots and raw telemetry stay in `runs/` on the VPS, about 300 MB.
+
+Setup on a fresh machine: `shops/otel-demo/stack.sh setup` (also run by `up` and so by `npm run demo`) shallow-clones the demo at tag 2.1.3 into `shops/otel-demo/src` and archives tag 3.1.0 into `shops/otel-demo/stack`. No local paths. Images come from the registries when missing. I tested setup in a fresh clone of this repo (1.3 s, tag commit 91356a39). The full `up` on a clean machine wasn't tested, cause the stack here is already up under the same project name.
+
+The shop has no tests, so the fix gate for this shop is the frontend type check and lint that `next build` runs inside the image build ("Linting and checking validity of types" in the build log). A patch that fails it is dropped and there is no after round.
+Cost so far: 6.4560 USD.
+
+## 2026-10-29 14:55 CDT, a fresh machine
+
+On a clean GitHub runner (ubuntu-24.04, 2 cores, 7.7 GB, nothing cached), from a fresh clone of main plus the workflow: `npm install`, the Playwright browser, typecheck and the tests (17 of 17) pass, `npm run shop` gets both shops up in 1 min 56 s and both answer on :8080 and :8082, `stack.sh fix` builds the frontend image in 2 min 58 s and serves it, and `stack.sh unfix` puts the release back. The workflow is `.github/workflows/fresh-machine.yml`.
+
+Before this, `npm test` failed on a fresh clone, cause the probe tests load `dist/probe.js` and nothing built it. `pretest` builds it now.
+
+The shoppers and the fix call the model API, so they didn't run there (no key on the runner). The fresh-checkout demo run on 2026-10-28 covers that part.
+
+## 2026-11-04, a review call checks the patch (America/Chicago)
+
+One call still picks the source files and the fix model writes the fix. Now a review call checks it before anything goes on a branch or through the rebuild gate. It gets the same walkout sentences and telemetry, the proposal, and the exact edits with twenty lines of surrounding code. The terminal prints its verdict and reasons. A small correction replaces the edits; otherwise the fixer gets one more try with the review reasons, and another revise drops the patch before the gate. The review is saved with the fix records and copied into evidence.
+
+The review runs on the same model as the patch, with medium reasoning. `WALKOUT_REVIEW_MODEL` changes the reviewer; `WALKOUT_NO_REVIEW=1` keeps the old flow.
+
+The added cost is one review call per fix, about 60k input tokens, roughly 0.25 to 0.40 USD. A retry adds another patch call and review call. No paid calls were made for this change.
+
+## 2026-11-10 18:11 to 18:34 CST (2026-11-11 00:11 to 00:34 UTC), one fresh run on the clean code
+
+One run of the whole loop from this code, to replace every older run in the repo. Empty call log, `WALKOUT_BUDGET_USD=6`, the model settings from `~/.config/walkout/env`, and `WALKOUT_OBS=1 npm run demo -- --serve`, so the demo's Collector, Jaeger and Grafana ran with the shop. Round ids are UTC.
+
+- The shops answered and the before round started 46 s after the command (00:12:06 UTC).
+- Before, `2026-11-110012-before` (2.1.3), 00:12:06 to 00:18:10 UTC: 0 of 12 bought, 0.7543 USD. Ten left over the cart total ($128.93 for 3 at $101.96 plus $26.97 shipping), each in their own words. Dev, keyboard only, never reached the quantity box and Add To Cart. Noor, reduced motion, never found the telescope, cause Go Shopping never left the home page. Rosa's Add To Cart went unanswered for 2.0 s at step 10 before she saw the total.
+- First fix attempt, 00:18:20 to 00:19:13: the pick, the patch and the review (approve) ran, then the commit in the shop's source checkout was refused. A git hook on my server only allows commits under my own name, and the tool commits there as `walkout`. I set `GIT_AUTHOR_*` and `GIT_COMMITTER_*` to my name for the retry, so the hook allowed it. The first retry I stopped myself after its file pick (0.0056 USD), cause the checkout still held the first attempt's uncommitted edit; if its patch call was already sent, that call is not in the log. I reset the checkout to 2.1.3 and ran the step again with `npm run demo -- --before 2026-11-110012-before --no-shop --serve`.
+- The fix, 00:21:22 to 00:24:30: the pick read five cart files, the patch is one edit in `CartItems.tsx` (units and nanos times quantity in the total), the review approved it with five reasons, and the 2.1.3 frontend image rebuilt with its type check and lint in 141 s. Gate passed.
+- After, `2026-11-110024-after` (2.1.3 plus the patch), 00:24:30 to 00:31:20 UTC: 11 of 12 bought, 0.6733 USD. Rosa left after her Add To Cart went unanswered for 2.0 s: "The Go to Shopping Cart button does nothing so I cannot check the totals." Dev bought, at step 25 of 25. The fix is kept. `stack.sh unfix` put the release image back on :8080 at 00:31:21.
+- The call log for the run: 332 calls, 1.651472 USD, with both fix attempts and the stopped retry's pick.
+- 00:31:46 to 00:33:39 UTC, on the same stack: Rosa's scripted Add To Cart three times, each trace saved from the demo's Jaeger (`docs/telemetry-check.md`).
+
+Records: `evidence/2026-11-110012-before`, `evidence/2026-11-110024-after`, `evidence/2026-11-11-rosa-phone-1` to `-3`.

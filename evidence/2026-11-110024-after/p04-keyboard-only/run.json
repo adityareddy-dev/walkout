@@ -1,0 +1,710 @@
+{
+  "persona": {
+    "card": {
+      "id": "p04-keyboard-only",
+      "name": "Dev",
+      "life": "Software tester with a wrist injury who uses only the keyboard: Tab, Shift+Tab, Enter, Space and arrows.",
+      "constraints": [
+        "No mouse, no touch",
+        "Needs to see where focus is",
+        "Can type into the focused field"
+      ],
+      "patience": "Will tab through a long page, but gives up if focus disappears or a control cannot be reached."
+    },
+    "device": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "locale": "en-US",
+      "timezoneId": "America/Chicago",
+      "cpuThrottle": 1
+    },
+    "observation": "keyboard"
+  },
+  "shop": "otel-demo",
+  "build": "2.1.3 + fix",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "steps": [
+    {
+      "index": 1,
+      "tObserve": 1794356779457,
+      "tObserved": 1794356779593,
+      "tAct": 1794356786695,
+      "tSettled": 1794356788120,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-01.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "No focus visible, need to tab to reach Go Shopping."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2835,
+        "cachedTokens": 0,
+        "outputTokens": 128,
+        "usd": 0.00408775,
+        "latencyMs": 7101
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 2,
+      "tObserve": 1794356788123,
+      "tObserved": 1794356788237,
+      "tAct": 1794356793522,
+      "tSettled": 1794356795202,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-02.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see home with Go Shopping button, focus was on logo, tabbing forward to reach shopping.",
+        "times": 3
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2862,
+        "cachedTokens": 0,
+        "outputTokens": 307,
+        "usd": 0.00488225,
+        "latencyMs": 5283
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 3,
+      "tObserve": 1794356795204,
+      "tObserved": 1794356795342,
+      "tAct": 1794356806448,
+      "tSettled": 1794356807875,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-03.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I don't see focus, tabbing forward hoping to land on Go Shopping."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2899,
+        "cachedTokens": 0,
+        "outputTokens": 341,
+        "usd": 0.005073,
+        "latencyMs": 11106
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 4,
+      "tObserve": 1794356807877,
+      "tObserved": 1794356808004,
+      "tAct": 1794356815365,
+      "tSettled": 1794356816790,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-04.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on first product, not my item, so tabbing to next product."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2929,
+        "cachedTokens": 0,
+        "outputTokens": 444,
+        "usd": 0.00554825,
+        "latencyMs": 7360
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 5,
+      "tObserve": 1794356816792,
+      "tObserved": 1794356816905,
+      "tAct": 1794356827828,
+      "tSettled": 1794356829257,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-05.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on a different telescope, so I keep tabbing to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2962,
+        "cachedTokens": 0,
+        "outputTokens": 185,
+        "usd": 0.00448875,
+        "latencyMs": 10922
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 6,
+      "tObserve": 1794356829260,
+      "tObserved": 1794356829404,
+      "tAct": 1794356831201,
+      "tSettled": 1794356832626,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-06.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Roof Binoculars, not my item, so tabbing onward to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2996,
+        "cachedTokens": 0,
+        "outputTokens": 145,
+        "usd": 0.00436125,
+        "latencyMs": 1795
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 7,
+      "tObserve": 1794356832630,
+      "tObserved": 1794356832768,
+      "tAct": 1794356834520,
+      "tSettled": 1794356835948,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-07.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Starsense Explorer, not my item, so tabbing onward to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3034,
+        "cachedTokens": 0,
+        "outputTokens": 149,
+        "usd": 0.00442575,
+        "latencyMs": 1751
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 8,
+      "tObserve": 1794356835950,
+      "tObserved": 1794356836083,
+      "tAct": 1794356838117,
+      "tSettled": 1794356839545,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-08.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Solar Filter, not my item, so tabbing onward to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3071,
+        "cachedTokens": 0,
+        "outputTokens": 147,
+        "usd": 0.0044635,
+        "latencyMs": 2033
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 9,
+      "tObserve": 1794356839547,
+      "tObserved": 1794356839684,
+      "tAct": 1794356842220,
+      "tSettled": 1794356843646,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-09.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Optical Tube Assembly, not my item, so tabbing onward to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3107,
+        "cachedTokens": 0,
+        "outputTokens": 167,
+        "usd": 0.0045935,
+        "latencyMs": 2535
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 10,
+      "tObserve": 1794356843649,
+      "tObserved": 1794356843766,
+      "tAct": 1794356845728,
+      "tSettled": 1794356847174,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-10.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on The Comet Book, not my item, so tabbing onward to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3144,
+        "cachedTokens": 0,
+        "outputTokens": 143,
+        "usd": 0.00453775,
+        "latencyMs": 1960
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 11,
+      "tObserve": 1794356847176,
+      "tObserved": 1794356847295,
+      "tAct": 1794356849025,
+      "tSettled": 1794356850451,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-11.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Lens Cleaning Kit, not my item, so tabbing onward to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3181,
+        "cachedTokens": 0,
+        "outputTokens": 145,
+        "usd": 0.0045925,
+        "latencyMs": 1727
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 12,
+      "tObserve": 1794356850453,
+      "tObserved": 1794356850567,
+      "tAct": 1794356859197,
+      "tSettled": 1794356860625,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-12.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Focus is on Red Flashlight, not my item, so tabbing onward to find Explorascopes."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3218,
+        "cachedTokens": 0,
+        "outputTokens": 139,
+        "usd": 0.00461325,
+        "latencyMs": 8628
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 13,
+      "tObserve": 1794356860627,
+      "tObserved": 1794356860726,
+      "tAct": 1794356862947,
+      "tSettled": 1794356864885,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-13.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Enter",
+        "why": "I see focus on National Park Foundation Explorascopes, so I open it to buy three."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3255,
+        "cachedTokens": 0,
+        "outputTokens": 152,
+        "usd": 0.00471475,
+        "latencyMs": 2220
+      },
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 14,
+      "tObserve": 1794356864902,
+      "tObserved": 1794356864978,
+      "tAct": 1794356868062,
+      "tSettled": 1794356869488,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-14.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I am on product page $101.96, need to reach quantity to choose 3, tabbing forward."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3277,
+        "cachedTokens": 0,
+        "outputTokens": 238,
+        "usd": 0.00510775,
+        "latencyMs": 3083
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 15,
+      "tObserve": 1794356869490,
+      "tObserved": 1794356869543,
+      "tAct": 1794356875432,
+      "tSettled": 1794356876858,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-15.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I don't see focus clearly, tabbing to reach Quantity selector for 3 items."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3278,
+        "cachedTokens": 0,
+        "outputTokens": 419,
+        "usd": 0.00587825,
+        "latencyMs": 5888
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 16,
+      "tObserve": 1794356876860,
+      "tObserved": 1794356876923,
+      "tAct": 1794356889913,
+      "tSettled": 1794356891336,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-16.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see quantity still 1, tabbing to reach quantity selector to set 3."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3280,
+        "cachedTokens": 0,
+        "outputTokens": 471,
+        "usd": 0.00610175,
+        "latencyMs": 12988
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 17,
+      "tObserve": 1794356891338,
+      "tObserved": 1794356891399,
+      "tAct": 1794356894368,
+      "tSettled": 1794356895801,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-17.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Space",
+        "why": "I see focus on Quantity 1, I need 3, so I open the dropdown."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3280,
+        "cachedTokens": 0,
+        "outputTokens": 198,
+        "usd": 0.0049415,
+        "latencyMs": 2969
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 18,
+      "tObserve": 1794356895804,
+      "tObserved": 1794356895875,
+      "tAct": 1794356899705,
+      "tSettled": 1794356901256,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-18.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "ArrowDown",
+        "why": "Dropdown is open on 1, I need 3, so arrowing down twice to reach 3.",
+        "times": 2
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3280,
+        "cachedTokens": 0,
+        "outputTokens": 242,
+        "usd": 0.0051285,
+        "latencyMs": 3829
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 19,
+      "tObserve": 1794356901258,
+      "tObserved": 1794356901318,
+      "tAct": 1794356904512,
+      "tSettled": 1794356905941,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-19.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Enter",
+        "why": "Dropdown shows 3 highlighted, so I press Enter to select quantity 3."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3282,
+        "cachedTokens": 0,
+        "outputTokens": 180,
+        "usd": 0.0048675,
+        "latencyMs": 3193
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 20,
+      "tObserve": 1794356905943,
+      "tObserved": 1794356906016,
+      "tAct": 1794356908083,
+      "tSettled": 1794356909507,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-20.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see quantity now 3, so I tab to Add To Cart to add them."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3276,
+        "cachedTokens": 0,
+        "outputTokens": 175,
+        "usd": 0.00483875,
+        "latencyMs": 2067
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 21,
+      "tObserve": 1794356909510,
+      "tObserved": 1794356909579,
+      "tAct": 1794356911849,
+      "tSettled": 1794356913779,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-21.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Enter",
+        "why": "I tabbed to Add To Cart with quantity 3 set, so I activate it to add them."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3273,
+        "cachedTokens": 0,
+        "outputTokens": 178,
+        "usd": 0.00484775,
+        "latencyMs": 2269
+      },
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 22,
+      "tObserve": 1794356913782,
+      "tObserved": 1794356913827,
+      "tAct": 1794356919458,
+      "tSettled": 1794356920884,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-22.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see cart has 3 items with correct math, so I tab forward to fill shipping and pay.",
+        "note": "Cart: qty 3, price 101.96 each =305.88, shipping 26.97, total 332.85 matches"
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3272,
+        "cachedTokens": 0,
+        "outputTokens": 482,
+        "usd": 0.0061385,
+        "latencyMs": 5629
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 23,
+      "tObserve": 1794356920886,
+      "tObserved": 1794356920952,
+      "tAct": 1794356930982,
+      "tSettled": 1794356933031,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-23.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see email prefilled and cart math correct, so I tab forward to reach Street Address to fill shipping.",
+        "times": 6
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3304,
+        "cachedTokens": 0,
+        "outputTokens": 692,
+        "usd": 0.007071,
+        "latencyMs": 10028
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 24,
+      "tObserve": 1794356933035,
+      "tObserved": 1794356933104,
+      "tAct": 1794356937309,
+      "tSettled": 1794356939854,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-24.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "Shipping looks prefilled, I'm on Zip Code, so tabbing forward to reach Place Order.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3306,
+        "cachedTokens": 0,
+        "outputTokens": 336,
+        "usd": 0.0055605,
+        "latencyMs": 4204
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 25,
+      "tObserve": 1794356939857,
+      "tObserved": 1794356939912,
+      "tAct": 1794356952787,
+      "tSettled": 1794356954970,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-25.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Enter",
+        "why": "I tabbed from Zip Code forward and now see payment fields with Place Order button, so I press Enter to place the order since cart math was correct."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3305,
+        "cachedTokens": 0,
+        "outputTokens": 954,
+        "usd": 0.00818575,
+        "latencyMs": 12874
+      }
+    }
+  ],
+  "outcome": {
+    "kind": "bought",
+    "reason": "order placed",
+    "atStep": 25
+  },
+  "findings": [
+    {
+      "kind": "js_error",
+      "t": 1794356862980,
+      "step": 13,
+      "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "kind": "failed_request",
+      "t": 1794356862980,
+      "step": 13,
+      "summary": "GET /images/products/undefined returned 404."
+    }
+  ],
+  "sentence": "Dev bought in 25 steps.",
+  "usd": 0.12904975,
+  "startedAt": "2026-11-11T00:26:17.147Z",
+  "durationMs": 178186
+}

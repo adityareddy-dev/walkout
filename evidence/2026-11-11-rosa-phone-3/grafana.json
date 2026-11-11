@@ -1,0 +1,6 @@
+{
+  "traceId": "619225c3fa1069b5f28c7c0b2f293e64",
+  "jaegerApi": "http://localhost:8080/jaeger/ui/api/traces/619225c3fa1069b5f28c7c0b2f293e64",
+  "jaegerUi": "http://localhost:8080/jaeger/ui/trace/619225c3fa1069b5f28c7c0b2f293e64",
+  "grafanaExplore": "http://localhost:8080/grafana/explore?schemaVersion=1&orgId=1&panes=%7B%22a%22%3A%7B%22datasource%22%3A%22webstore-traces%22%2C%22queries%22%3A%5B%7B%22refId%22%3A%22A%22%2C%22datasource%22%3A%7B%22type%22%3A%22jaeger%22%2C%22uid%22%3A%22webstore-traces%22%7D%2C%22query%22%3A%22619225c3fa1069b5f28c7c0b2f293e64%22%7D%5D%2C%22range%22%3A%7B%22from%22%3A%221794356308267%22%2C%22to%22%3A%221794358108267%22%7D%7D%7D"
+}

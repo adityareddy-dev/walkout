@@ -1,0 +1,21 @@
+{
+  "run": "2026-11-11-rosa-phone-2",
+  "capturedAt": "2026-11-11T00:32:49.404Z",
+  "traceId": "b595e31f57d789a0a4b4a62d29aff43a",
+  "browserPostMs": 6074.3,
+  "heldBeforeSendingMs": 3871.3,
+  "sentToFirstByteMs": 2158.7,
+  "backendProxyToLastValkeyMs": 39.8,
+  "spans": 15,
+  "services": [
+    "walkout-browser",
+    "frontend",
+    "frontend-proxy",
+    "cart"
+  ],
+  "rootSpans": [
+    "walkout-browser: tap button.sc-83a403b4-0.sc-d6305667-4 \"Add To Cart\""
+  ],
+  "valkeySpans": 4,
+  "sameHostRequestsOpenAtTap": 6
+}

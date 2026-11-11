@@ -1,0 +1,34 @@
+{
+  "proposal": {
+    "summary": "The cart total summed each product's unit price once instead of multiplying by its quantity, so the fix multiplies both units and nanos by quantity when computing the total.",
+    "files": [
+      "src/frontend/components/Cart/CartDetail.tsx",
+      "src/frontend/pages/cart/index.tsx",
+      "src/frontend/components/CartItems/CartItems.tsx",
+      "src/frontend/components/CartItems/CartItem.tsx",
+      "src/frontend/components/Cart/EmptyCart.tsx"
+    ],
+    "edits": [
+      {
+        "file": "src/frontend/components/CartItems/CartItems.tsx",
+        "find": "    const nanoSum =\n      productList.reduce((acc, { product: { priceUsd: { nanos = 0 } = {} } }) => acc + Number(nanos), 0) +\n        shippingConst?.nanos || 0;\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce((acc, { product: { priceUsd: { units = 0 } = {} } }) => acc + Number(units), 0) +\n        (shippingConst?.units || 0) + nanoExceed;",
+        "replace": "    const nanoSum =\n      productList.reduce(\n        (acc, { product: { priceUsd: { nanos = 0 } = {} }, quantity }) => acc + Number(nanos) * quantity,\n        0\n      ) +\n        (shippingConst?.nanos || 0);\n    const nanoExceed = Math.floor(nanoSum / 1000000000);\n\n    const unitSum =\n      productList.reduce(\n        (acc, { product: { priceUsd: { units = 0 } = {} }, quantity }) => acc + Number(units) * quantity,\n        0\n      ) +\n        (shippingConst?.units || 0) +\n        nanoExceed;"
+      }
+    ]
+  },
+  "review": {
+    "verdict": "approve",
+    "reasons": [
+      "The patch directly fixes the repeated cart walkout cause by multiplying both units and nanos by quantity before adding shipping.",
+      "The calculation correctly handles nanos overflow into units and preserves the existing total structure.",
+      "It is a minimal change confined to the cart total calculation in CartItems.tsx.",
+      "No breakage is visible in the surrounding code, and the quantity field is already available from each product list entry.",
+      "Every find string matches the original file exactly once."
+    ]
+  },
+  "branch": "walkout/fix-2026-11-110012-before",
+  "commit": "b1389e8658b6696519fdfb43501a7041c8d42a57",
+  "failedEdits": [],
+  "testsPassed": true,
+  "testOutput": "sha256:cc6d7a0955c68e995814d6fc360a767b964d1d08dd7ffc5109e16cfb10709341\nfix image built in 141 s\n"
+}

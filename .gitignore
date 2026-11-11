@@ -1,0 +1,8 @@
+node_modules/
+dist/
+runs/
+shops/*/src/
+.env
+tmp/
+shops/*/stack/
+evidence/board/

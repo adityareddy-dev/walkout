@@ -1,0 +1,674 @@
+{
+  "persona": {
+    "card": {
+      "id": "p04-keyboard-only",
+      "name": "Dev",
+      "life": "Software tester with a wrist injury who uses only the keyboard: Tab, Shift+Tab, Enter, Space and arrows.",
+      "constraints": [
+        "No mouse, no touch",
+        "Needs to see where focus is",
+        "Can type into the focused field"
+      ],
+      "patience": "Will tab through a long page, but gives up if focus disappears or a control cannot be reached."
+    },
+    "device": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "locale": "en-US",
+      "timezoneId": "America/Chicago",
+      "cpuThrottle": 1
+    },
+    "observation": "keyboard"
+  },
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "steps": [
+    {
+      "index": 1,
+      "tObserve": 1794355998320,
+      "tObserved": 1794355998454,
+      "tAct": 1794356006452,
+      "tSettled": 1794356008274,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-01.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see the home page with a Go Shopping button and no focus yet, so I will tab forward to reach it.",
+        "times": 4
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2835,
+        "cachedTokens": 0,
+        "outputTokens": 464,
+        "usd": 0.00551575,
+        "latencyMs": 7997
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 2,
+      "tObserve": 1794356008277,
+      "tObserved": 1794356008418,
+      "tAct": 1794356011177,
+      "tSettled": 1794356013235,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-02.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I don't see focus, so I'll keep tabbing to reach Go Shopping.",
+        "times": 6
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2876,
+        "cachedTokens": 0,
+        "outputTokens": 209,
+        "usd": 0.00448325,
+        "latencyMs": 2758
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 3,
+      "tObserve": 1794356013238,
+      "tObserved": 1794356013363,
+      "tAct": 1794356023566,
+      "tSettled": 1794356025490,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-03.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on Optical Tube Assembly, not the product I need, so I will tab forward to find navigation to all products.",
+        "times": 5
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2908,
+        "cachedTokens": 0,
+        "outputTokens": 479,
+        "usd": 0.00567075,
+        "latencyMs": 10202
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 4,
+      "tObserve": 1794356025493,
+      "tObserved": 1794356025591,
+      "tAct": 1794356029606,
+      "tSettled": 1794356031596,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-04.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see focus is at footer Source Code past the product, so I'll shift-tab back to reach the Explorascope.",
+        "times": 5
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2951,
+        "cachedTokens": 0,
+        "outputTokens": 290,
+        "usd": 0.00492125,
+        "latencyMs": 4015
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 5,
+      "tObserve": 1794356031601,
+      "tObserved": 1794356031779,
+      "tAct": 1794356038845,
+      "tSettled": 1794356040645,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-05.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on Optical Tube Assembly, not the product I need, so I'll tab forward to keep looking for Explorascopes.",
+        "times": 4
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2994,
+        "cachedTokens": 0,
+        "outputTokens": 326,
+        "usd": 0.005128,
+        "latencyMs": 7065
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 6,
+      "tObserve": 1794356040652,
+      "tObserved": 1794356040783,
+      "tAct": 1794356042639,
+      "tSettled": 1794356044577,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-06.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Enter",
+        "why": "I see focus on National Park Foundation Explorascope at $101.96, so I'll press Enter to open it."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3037,
+        "cachedTokens": 0,
+        "outputTokens": 140,
+        "usd": 0.00439125,
+        "latencyMs": 1855
+      },
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 7,
+      "tObserve": 1794356044580,
+      "tObserved": 1794356044640,
+      "tAct": 1794356050324,
+      "tSettled": 1794356052133,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-07.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see the product at $101.96 and need 3, so I'll tab to reach the Quantity selector.",
+        "times": 4
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3091,
+        "cachedTokens": 0,
+        "outputTokens": 285,
+        "usd": 0.005075,
+        "latencyMs": 5684
+      },
+      "result": "nothing on the screen changed"
+    },
+    {
+      "index": 8,
+      "tObserve": 1794356052136,
+      "tObserved": 1794356052200,
+      "tAct": 1794356063942,
+      "tSettled": 1794356065581,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-08.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I still don't see focus on this product page, so I'll tab forward to reach the Quantity selector.",
+        "times": 2
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3133,
+        "cachedTokens": 0,
+        "outputTokens": 610,
+        "usd": 0.00650875,
+        "latencyMs": 11740
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 9,
+      "tObserve": 1794356065583,
+      "tObserved": 1794356065664,
+      "tAct": 1794356069928,
+      "tSettled": 1794356072497,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-09.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I scrolled too far to recommendations, so I'll shift-tab back up to find quantity and add to cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3170,
+        "cachedTokens": 0,
+        "outputTokens": 334,
+        "usd": 0.005382,
+        "latencyMs": 4263
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 10,
+      "tObserve": 1794356072499,
+      "tObserved": 1794356072582,
+      "tAct": 1794356077186,
+      "tSettled": 1794356079801,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-10.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see focus is down in recommendations, so I'll shift-tab back up to find quantity and Add to Cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3211,
+        "cachedTokens": 0,
+        "outputTokens": 316,
+        "usd": 0.00535675,
+        "latencyMs": 4604
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 11,
+      "tObserve": 1794356079804,
+      "tObserved": 1794356079897,
+      "tAct": 1794356084189,
+      "tSettled": 1794356086754,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-11.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see focus on The Comet Book in recommendations, so I'll shift-tab back up toward quantity and Add to Cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3252,
+        "cachedTokens": 0,
+        "outputTokens": 258,
+        "usd": 0.0051615,
+        "latencyMs": 4291
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 12,
+      "tObserve": 1794356086757,
+      "tObserved": 1794356086835,
+      "tAct": 1794356091871,
+      "tSettled": 1794356094496,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-12.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see focus on the promo banner near the footer, so I'll shift-tab back up toward quantity and Add to Cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3294,
+        "cachedTokens": 0,
+        "outputTokens": 340,
+        "usd": 0.0055625,
+        "latencyMs": 5036
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 13,
+      "tObserve": 1794356094498,
+      "tObserved": 1794356094570,
+      "tAct": 1794356107299,
+      "tSettled": 1794356109955,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-13.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus is stuck at footer Source Code, so I'll tab forward to wrap to top and find quantity.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3337,
+        "cachedTokens": 0,
+        "outputTokens": 572,
+        "usd": 0.00660225,
+        "latencyMs": 12727
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 14,
+      "tObserve": 1794356109957,
+      "tObserved": 1794356110035,
+      "tAct": 1794356119687,
+      "tSettled": 1794356122233,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-14.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see recommendations with no clear focus, so I'll tab forward to wrap to the top to find Quantity.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3335,
+        "cachedTokens": 0,
+        "outputTokens": 483,
+        "usd": 0.0062215,
+        "latencyMs": 9650
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 15,
+      "tObserve": 1794356122236,
+      "tObserved": 1794356122307,
+      "tAct": 1794356129916,
+      "tSettled": 1794356132464,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-15.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on The Comet Book in recommendations, so I'll tab forward to wrap around to the top for Quantity.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3341,
+        "cachedTokens": 0,
+        "outputTokens": 261,
+        "usd": 0.0052855,
+        "latencyMs": 7609
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 16,
+      "tObserve": 1794356132467,
+      "tObserved": 1794356132544,
+      "tAct": 1794356139693,
+      "tSettled": 1794356142237,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-16.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on Starsense product, so I'll tab forward to wrap to the top for Quantity.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3338,
+        "cachedTokens": 0,
+        "outputTokens": 367,
+        "usd": 0.00573225,
+        "latencyMs": 7147
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 17,
+      "tObserve": 1794356142240,
+      "tObserved": 1794356142310,
+      "tAct": 1794356148053,
+      "tSettled": 1794356150591,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-17.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on Lens Cleaning Kit, so I'll tab forward to wrap past footer back to top quantity.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3332,
+        "cachedTokens": 0,
+        "outputTokens": 395,
+        "usd": 0.00584375,
+        "latencyMs": 5743
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 18,
+      "tObserve": 1794356150593,
+      "tObserved": 1794356150659,
+      "tAct": 1794356154235,
+      "tSettled": 1794356156815,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-18.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I see focus on Red Flashlight, so I'll tab forward to wrap back to the top for Quantity.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3327,
+        "cachedTokens": 0,
+        "outputTokens": 282,
+        "usd": 0.00535725,
+        "latencyMs": 3574
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 19,
+      "tObserve": 1794356156818,
+      "tObserved": 1794356156894,
+      "tAct": 1794356162763,
+      "tSettled": 1794356164315,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-19.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Tab",
+        "why": "I don't see focus in this view, so I'll tab a little to try to reveal it near the top.",
+        "times": 2
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3319,
+        "cachedTokens": 0,
+        "outputTokens": 394,
+        "usd": 0.00582325,
+        "latencyMs": 5868
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 20,
+      "tObserve": 1794356164318,
+      "tObserved": 1794356164391,
+      "tAct": 1794356172998,
+      "tSettled": 1794356175686,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-20.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see focus on Lens Cleaning Kit, so I'll shift-tab back up to reach Quantity and Add to Cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3316,
+        "cachedTokens": 0,
+        "outputTokens": 642,
+        "usd": 0.0068735,
+        "latencyMs": 8607
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 21,
+      "tObserve": 1794356175688,
+      "tObserved": 1794356175818,
+      "tAct": 1794356182292,
+      "tSettled": 1794356184855,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-21.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see focus on Starsense product, so I'll shift-tab back up to reach Quantity and Add to Cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3320,
+        "cachedTokens": 0,
+        "outputTokens": 408,
+        "usd": 0.005884,
+        "latencyMs": 6473
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 22,
+      "tObserve": 1794356184857,
+      "tObserved": 1794356184942,
+      "tAct": 1794356192597,
+      "tSettled": 1794356195155,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-22.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "press",
+        "key": "Shift+Tab",
+        "why": "I see focus on The Comet Book, so I'll shift-tab back up toward quantity and Add to Cart.",
+        "times": 10
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3320,
+        "cachedTokens": 0,
+        "outputTokens": 578,
+        "usd": 0.0066065,
+        "latencyMs": 7655
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 23,
+      "tObserve": 1794356195157,
+      "tObserved": 1794356195231,
+      "tAct": 1794356206824,
+      "tSettled": 1794356206824,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-23.png",
+      "marked": null,
+      "tree": null,
+      "action": {
+        "action": "give_up",
+        "reason": "I could not reach the quantity field or Add to Cart button using only the keyboard.",
+        "why": "I've tabbed many times through recommendations and footer without ever reaching Quantity, so I am leaving."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3319,
+        "cachedTokens": 0,
+        "outputTokens": 704,
+        "usd": 0.00714075,
+        "latencyMs": 11593
+      }
+    }
+  ],
+  "outcome": {
+    "kind": "gave_up",
+    "reason": "I could not reach the quantity field or Add to Cart button using only the keyboard.",
+    "atStep": 23
+  },
+  "findings": [
+    {
+      "kind": "js_error",
+      "t": 1794356042669,
+      "step": 6,
+      "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "kind": "failed_request",
+      "t": 1794356042669,
+      "step": 6,
+      "summary": "GET /images/products/undefined returned 404."
+    }
+  ],
+  "sentence": "The shopper left at step 23 on the product page while trying to choose 3 Explorascopes because tabbing only moved through the recommended products and footer banner and never reached the quantity box or add button.",
+  "usd": 0.13052724999999998,
+  "startedAt": "2026-11-11T00:13:15.319Z",
+  "durationMs": 211826
+}

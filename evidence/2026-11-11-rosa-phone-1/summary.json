@@ -1,0 +1,47 @@
+{
+  "capturedAt": "2026-11-11T00:32:11.951Z",
+  "mode": "phone",
+  "device": {
+    "viewport": {
+      "width": 412,
+      "height": 839
+    },
+    "deviceScaleFactor": 1.75,
+    "isMobile": true,
+    "hasTouch": true,
+    "userAgent": "Mozilla/5.0 (Linux; Android 13; moto g play) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+    "locale": "en-US",
+    "timezoneId": "America/Chicago",
+    "cpuThrottle": 4,
+    "network": {
+      "label": "DevTools Slow 3G",
+      "latencyMs": 2000,
+      "downloadBps": 50000,
+      "uploadBps": 50000
+    },
+    "glanceMs": 3000
+  },
+  "url": "http://localhost:8080",
+  "elapsedMs": 2247,
+  "browserSpanMs": 2138.800048828125,
+  "traceId": "aec6ad85e0e25070ed1754f053527ac3",
+  "tapSpanId": "e791c1a90caa9176",
+  "fetchSpanId": "c68f261879c7133f",
+  "network": [
+    {
+      "url": "http://localhost:8080/api/cart?currencyCode=USD",
+      "traceparent": "00-aec6ad85e0e25070ed1754f053527ac3-c68f261879c7133f-01",
+      "timing": {
+        "startTime": 1794357125440.4531,
+        "domainLookupStart": -1,
+        "domainLookupEnd": -1,
+        "connectStart": -1,
+        "secureConnectionStart": -1,
+        "connectEnd": -1,
+        "requestStart": 0.314,
+        "responseStart": 2122.059,
+        "responseEnd": 2124.396
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "verdict": "approve",
+  "reasons": [
+    "The patch directly fixes the repeated cart walkout cause by multiplying both units and nanos by quantity before adding shipping.",
+    "The calculation correctly handles nanos overflow into units and preserves the existing total structure.",
+    "It is a minimal change confined to the cart total calculation in CartItems.tsx.",
+    "No breakage is visible in the surrounding code, and the quantity field is already available from each product list entry.",
+    "Every find string matches the original file exactly once."
+  ]
+}

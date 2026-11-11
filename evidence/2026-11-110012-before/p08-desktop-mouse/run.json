@@ -1,0 +1,230 @@
+{
+  "persona": {
+    "card": {
+      "id": "p08-desktop-mouse",
+      "name": "Sam",
+      "life": "Office manager ordering supplies on a fast work laptop with a mouse.",
+      "constraints": [
+        "Fast laptop, fast office network"
+      ],
+      "patience": "Busy, expects things to just work, leaves after a couple of failed clicks."
+    },
+    "device": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "locale": "en-US",
+      "timezoneId": "America/Chicago",
+      "cpuThrottle": 1
+    },
+    "observation": "screenshot"
+  },
+  "shop": "otel-demo",
+  "build": "2.1.3",
+  "goal": "Buy three National Park Foundation Explorascopes, one for each of your kids. Before you pay, check the cart: the quantity, the price, shipping and the Total must add up. If they don't, don't pay; leave and say why.",
+  "steps": [
+    {
+      "index": 1,
+      "tObserve": 1794356059073,
+      "tObserved": 1794356059422,
+      "tAct": 1794356062262,
+      "tSettled": 1794356063635,
+      "url": "http://localhost:8080/",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-01.png",
+      "marked": "shots/step-01-marked.png",
+      "tree": null,
+      "action": {
+        "action": "click",
+        "target": "3",
+        "why": "I need to find the Explorascopes so I'll start shopping."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2868,
+        "cachedTokens": 0,
+        "outputTokens": 381,
+        "usd": 0.00520425,
+        "latencyMs": 2840
+      },
+      "targetLabel": "link \"Go Shopping\"",
+      "point": {
+        "x": 180,
+        "y": 644
+      },
+      "result": "the page changed to \"Otel Demo - Home\""
+    },
+    {
+      "index": 2,
+      "tObserve": 1794356063638,
+      "tObserved": 1794356064028,
+      "tAct": 1794356069836,
+      "tSettled": 1794356071541,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-02.png",
+      "marked": "shots/step-02-marked.png",
+      "tree": null,
+      "action": {
+        "action": "scroll",
+        "direction": "down",
+        "why": "I don't see Explorascopes in these hot products, so I'll scroll to find more."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2972,
+        "cachedTokens": 0,
+        "outputTokens": 291,
+        "usd": 0.00495175,
+        "latencyMs": 5807
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 3,
+      "tObserve": 1794356071544,
+      "tObserved": 1794356071811,
+      "tAct": 1794356074948,
+      "tSettled": 1794356077034,
+      "url": "http://localhost:8080/#hot-products",
+      "title": "Otel Demo - Home",
+      "screenshot": "shots/step-03.png",
+      "marked": "shots/step-03-marked.png",
+      "tree": null,
+      "action": {
+        "action": "click",
+        "target": "7",
+        "why": "I found the National Park Foundation Explorascope I need, so I'll open its page to buy three."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 2972,
+        "cachedTokens": 0,
+        "outputTokens": 263,
+        "usd": 0.00483275,
+        "latencyMs": 3136
+      },
+      "targetLabel": "link \"National Park Foundation Explorascope $ 101.96\"",
+      "point": {
+        "x": 323,
+        "y": 716
+      },
+      "result": "the page changed to \"Otel Demo - Product\""
+    },
+    {
+      "index": 4,
+      "tObserve": 1794356077037,
+      "tObserved": 1794356077227,
+      "tAct": 1794356078905,
+      "tSettled": 1794356080271,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-04.png",
+      "marked": "shots/step-04-marked.png",
+      "tree": null,
+      "action": {
+        "action": "select",
+        "target": "3",
+        "value": "3",
+        "why": "I need three for my kids, so I'll set quantity to 3. Price $101.96 each."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3027,
+        "cachedTokens": 0,
+        "outputTokens": 147,
+        "usd": 0.0044085,
+        "latencyMs": 1677
+      },
+      "targetLabel": "dropdown \"1\", choices: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+      "point": {
+        "x": 694,
+        "y": 570
+      },
+      "result": "the screen changed"
+    },
+    {
+      "index": 5,
+      "tObserve": 1794356080274,
+      "tObserved": 1794356080427,
+      "tAct": 1794356081987,
+      "tSettled": 1794356084081,
+      "url": "http://localhost:8080/product/OLJCESPC7Z",
+      "title": "Otel Demo - Product",
+      "screenshot": "shots/step-05.png",
+      "marked": "shots/step-05-marked.png",
+      "tree": null,
+      "action": {
+        "action": "click",
+        "target": "4",
+        "why": "I set quantity to 3, now I'll add them to cart."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3068,
+        "cachedTokens": 0,
+        "outputTokens": 120,
+        "usd": 0.004345,
+        "latencyMs": 1559
+      },
+      "targetLabel": "button \"Add To Cart\"",
+      "point": {
+        "x": 754,
+        "y": 639
+      },
+      "result": "the page changed to \"Otel Demo - Cart\""
+    },
+    {
+      "index": 6,
+      "tObserve": 1794356084084,
+      "tObserved": 1794356084242,
+      "tAct": 1794356086789,
+      "tSettled": 1794356086789,
+      "url": "http://localhost:8080/cart",
+      "title": "Otel Demo - Cart",
+      "screenshot": "shots/step-06.png",
+      "marked": "shots/step-06-marked.png",
+      "tree": null,
+      "action": {
+        "action": "give_up",
+        "reason": "The cart total of $128.93 does not match 3 x $101.96 plus $26.97 shipping, so I won't pay.",
+        "why": "I see quantity 3 at $101.96 plus $26.97 shipping should be much more than $128.93 total, so I need to leave without paying."
+      },
+      "usage": {
+        "model": "shopper-model",
+        "inputTokens": 3087,
+        "cachedTokens": 0,
+        "outputTokens": 270,
+        "usd": 0.00500625,
+        "latencyMs": 2547
+      }
+    }
+  ],
+  "outcome": {
+    "kind": "gave_up",
+    "reason": "The cart total of $128.93 does not match 3 x $101.96 plus $26.97 shipping, so I won't pay.",
+    "atStep": 6
+  },
+  "findings": [
+    {
+      "kind": "failed_request",
+      "t": 1794356075002,
+      "step": 3,
+      "summary": "GET /images/products/undefined returned 404."
+    },
+    {
+      "kind": "js_error",
+      "t": 1794356075003,
+      "step": 3,
+      "summary": "Console error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "sentence": "Sam left at step 6 while checking his cart because the $128.93 total did not match 3 at $101.96 plus $26.97 shipping, which was plainly wrong on the screen.",
+  "usd": 0.0287485,
+  "startedAt": "2026-11-11T00:14:16.729Z",
+  "durationMs": 30423
+}

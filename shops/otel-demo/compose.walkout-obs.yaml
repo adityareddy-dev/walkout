@@ -1,0 +1,11 @@
+# Rootless Docker on this server cannot raise the memlock limit, so OpenSearch
+# runs without locking its heap. Everything else in the demo's observability
+# add-on (Grafana, Jaeger, Prometheus) is unchanged.
+services:
+  opensearch:
+    environment:
+      - bootstrap.memory_lock=false
+    ulimits: !override
+      nofile:
+        soft: 65536
+        hard: 65536
